@@ -16,9 +16,9 @@ const THEME_KEY = "rkd-theme";
 const flakes: SnowStyle[] = Array.from({ length: 56 }, (_, index) => ({
   "--snow-x": `${(index * 37 + 11) % 100}%`,
   "--snow-delay": `${-((index * 0.61) % 12).toFixed(2)}s`,
-  "--snow-duration": `${7 + (index % 8)}s`,
-  "--snow-size": `${2 + (index % 4)}px`,
-  "--snow-drift": `${-42 + ((index * 19) % 84)}px`,
+  "--snow-duration": `${5 + (index % 8)}s`,
+  "--snow-size": `${2 + (index % 5)}px`,
+  "--snow-drift": `${130 + ((index * 29) % 320)}px`,
   "--snow-opacity": `${0.35 + (index % 6) * 0.1}`,
 }));
 

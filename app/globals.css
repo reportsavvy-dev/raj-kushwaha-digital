@@ -152,3 +152,25 @@ html[data-theme="antarctica"] .snow-field i:nth-child(3n){filter:blur(1.2px) dro
 html[data-theme="antarctica"] .snow-field i:nth-child(5n){box-shadow:0 -8px 11px #e9fcff7d}
 
 @media(max-width:1000px){html[data-theme="antarctica"] .hero-copy>.studio-hero-copy{display:none}html[data-theme="antarctica"] .hero-copy>.antarctica-hero-copy{display:block}html[data-theme="antarctica"] .hero-copy>.kinetic-title i{font-family:var(--font-geist-sans),Arial,sans-serif;font-style:normal;font-weight:500;color:#8ddcff}html[data-theme="antarctica"] .hero-copy>.hero-signal-strip{margin-top:30px;padding:16px;border:1px solid #73cfe982;border-radius:13px;background:#082139d9}html[data-theme="antarctica"] .hero-solar-system{overflow:hidden}html[data-theme="antarctica"] .home-hero{padding-bottom:30px}}
+
+/* Selected Antarctica references: photographic aurora base + wind-driven snow depth. */
+html[data-theme="antarctica"] .antarctica-atmosphere{background:#020d19}
+html[data-theme="antarctica"] .antarctica-atmosphere:before{content:"";position:absolute;inset:-22px;background-image:linear-gradient(90deg,#020c1bbb 0%,#03102042 38%,transparent 72%),linear-gradient(180deg,#0109182b 0%,transparent 55%,#03101b80 100%),url("/antarctica-aurora.webp");background-size:cover;background-position:center;filter:saturate(.9) contrast(1.04) brightness(.72);transform:scale(1.045);animation:polarCamera 22s ease-in-out infinite alternate;will-change:transform}
+html[data-theme="antarctica"] .antarctica-atmosphere:after{content:"";position:absolute;inset:26% -2% -4%;background:linear-gradient(180deg,transparent 0 25%,#07162782 72%),url("/antarctica-snow.webp") center bottom/cover no-repeat;opacity:.15;mix-blend-mode:screen;mask-image:linear-gradient(180deg,transparent 0%,#000 38%,#000 100%);filter:saturate(.7) contrast(1.08);animation:snowSceneBreathe 13s ease-in-out infinite alternate}
+html[data-theme="antarctica"] .polar-stars{opacity:.25;mix-blend-mode:screen}
+html[data-theme="antarctica"] .aurora-one{opacity:.23;mix-blend-mode:screen}
+html[data-theme="antarctica"] .aurora-two{opacity:.19;mix-blend-mode:screen}
+html[data-theme="antarctica"] .aurora-three{opacity:.17;mix-blend-mode:screen}
+html[data-theme="antarctica"] .ice-horizon{opacity:.36;mix-blend-mode:screen}
+html[data-theme="antarctica"] .snow-field{z-index:5;filter:drop-shadow(0 0 3px #eafcff)}
+html[data-theme="antarctica"] .snow-field i{width:calc(var(--snow-size)*2.7);height:var(--snow-size);border-radius:999px;background:linear-gradient(90deg,transparent,#f8fdff 48%,#dbf5ff);transform:rotate(27deg);animation-name:antarcticaSnow;filter:blur(.25px);box-shadow:0 0 7px #e7faff8f}
+html[data-theme="antarctica"] .snow-field i:nth-child(3n){width:calc(var(--snow-size)*4.4);height:calc(var(--snow-size)*1.25);filter:blur(1.5px);opacity:.72}
+html[data-theme="antarctica"] .snow-field i:nth-child(4n){width:calc(var(--snow-size)*1.4);height:calc(var(--snow-size)*.7);filter:none;opacity:.42}
+html[data-theme="antarctica"] .snow-field i:nth-child(7n){width:calc(var(--snow-size)*6);filter:blur(2.4px);opacity:.55}
+html[data-theme="antarctica"] .nav,html[data-theme="antarctica"] .hero-copy>.hero-signal-strip,html[data-theme="antarctica"] .solar-core,html[data-theme="antarctica"] .solar-planet{background-color:#06182abf;backdrop-filter:blur(18px) saturate(1.2)}
+html[data-theme="antarctica"] body>main{background:linear-gradient(180deg,#020b1614 0,#06152562 72%,#061525 100%)}
+@keyframes polarCamera{from{transform:scale(1.045) translate3d(-.8%,0,0)}to{transform:scale(1.085) translate3d(1.2%,-.8%,0)}}
+@keyframes snowSceneBreathe{from{opacity:.1;transform:scale(1.02) translateY(5px)}to{opacity:.19;transform:scale(1.05) translateY(-6px)}}
+@keyframes antarcticaSnow{0%{transform:translate3d(-11vw,-13vh,0) rotate(27deg)}100%{transform:translate3d(var(--snow-drift),113vh,0) rotate(27deg)}}
+@media(max-width:650px){html[data-theme="antarctica"] .antarctica-atmosphere:before{background-position:64% center}html[data-theme="antarctica"] .antarctica-atmosphere:after{inset:35% -35% -3%;opacity:.12}}
+@media(prefers-reduced-motion:reduce){html[data-theme="antarctica"] .antarctica-atmosphere:before,html[data-theme="antarctica"] .antarctica-atmosphere:after{animation-play-state:paused!important}}
