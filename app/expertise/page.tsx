@@ -4,6 +4,8 @@ import { ExpertiseExplorer } from "../components/ExpertiseExplorer";
 import { Nav } from "../components/Nav";
 import { Contact, Footer } from "../page";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Expertise",
   description: "Explore 15 connected digital marketing, creative, technology and automation services from Raj Kushwaha Digital.",

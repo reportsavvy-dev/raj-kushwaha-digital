@@ -7,6 +7,8 @@ import { ToolLogo } from "./components/ToolLogo";
 import { ThemeSwitcher } from "./components/ThemeSystem";
 import { services } from "./data/services";
 
+export const dynamic = "force-static";
+
 const heroSignals = [
   { tool: "Google", label: "Google", note: "SEARCH" },
   { tool: "Meta Ads", label: "Meta", note: "ADS" },

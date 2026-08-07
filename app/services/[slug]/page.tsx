@@ -10,6 +10,9 @@ import { serviceBySlug, services } from "../../data/services";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
