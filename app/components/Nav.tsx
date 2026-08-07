@@ -6,8 +6,8 @@ import { services } from "../data/services";
 
 export function Logo() {
   return <span className="logo-lockup">
-    <span className="logo-mark"><i>R</i><b>K</b><em>D</em><small><u/><u/><u/></small></span>
-    <span className="logo-name">RAJ KUSHWAHA<small>DIGITAL</small></span>
+    <span className="logo-road-mark" aria-hidden="true"><b>RKD</b><i/><i/><i/></span>
+    <span className="logo-name"><b>RAJ KUSHWAHA</b><small>DIGITAL / GROWTH</small></span>
   </span>;
 }
 

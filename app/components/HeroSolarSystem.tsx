@@ -35,14 +35,26 @@ export function HeroSolarSystem() {
     <div className="solar-signal signal-a"/><div className="solar-signal signal-b"/><div className="solar-signal signal-c"/><div className="solar-signal signal-d"/>
 
     <article className="solar-core">
-      <header><span>RKD GROWTH CORE</span><b>● LIVE</b></header>
-      <div className="core-dashboard">
-        <div className="core-chart"><small>CONNECTED PERFORMANCE</small><div className="chart-line"><i/><i/><i/><i/><i/></div></div>
-        <div className="core-signals"><i/><i/><i/><i/><i/></div>
-        <div className="core-donut"><i/></div>
-        <div className="core-bars"><i/><i/><i/><i/><i/></div>
+      <header><span>RKD GROWTH INTELLIGENCE</span><b>● DEMO SIGNAL</b></header>
+      <div className="analytics-sources" aria-label="Analytics data sources">
+        <ToolLogo name="GA4"/><ToolLogo name="Google Search Console"/><ToolLogo name="Meta Ads"/><ToolLogo name="HubSpot"/>
       </div>
-      <div className="core-footer"><span>STRATEGY</span><span>CREATIVE</span><span>TECH</span></div>
+      <div className="analytics-kpis">
+        <article><small>BLENDED ROAS</small><strong>4.8×</strong><span>↑ 18.6%</span></article>
+        <article><small>QUALIFIED LEADS</small><strong>386</strong><span>↑ 24.1%</span></article>
+        <article><small>ORGANIC VISIBILITY</small><strong>+42%</strong><span>90 DAYS</span></article>
+      </div>
+      <div className="analytics-performance">
+        <header><small>ATTRIBUTED CONVERSIONS</small><b>74</b></header>
+        <div className="analytics-line"><i/><i/><i/><i/><i/><i/></div>
+      </div>
+      <div className="analytics-channels">
+        <span>GOOGLE <i><b style={{width:"84%"}}/></i><em>32</em></span>
+        <span>META <i><b style={{width:"67%"}}/></i><em>21</em></span>
+        <span>ORGANIC <i><b style={{width:"51%"}}/></i><em>14</em></span>
+        <span>EMAIL <i><b style={{width:"29%"}}/></i><em>07</em></span>
+      </div>
+      <div className="core-footer"><span>SESSIONS 82.4K</span><span>CAC ₹1,240</span><span>CVR 3.7%</span></div>
     </article>
 
     {planets.map((planet) => <div className={`solar-runner ${planet.orbit}`} style={{animationDelay: planet.delay} as React.CSSProperties} key={planet.name}>
