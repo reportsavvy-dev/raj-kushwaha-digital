@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
+import { GrowthStack } from "./components/GrowthStack";
 import { HeroCanvas } from "./components/HeroCanvas";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
@@ -18,7 +19,14 @@ export default function Home() {
       <HeroCanvas/>
     </section>
 
+    <section className="visual-manifesto shell">
+      <div className="visual-manifesto-copy"><span className="eyebrow-small">THE RKD VISUAL SYSTEM</span><h2>Move attention.<br/><i>Build momentum.</i></h2><p>The colorful strategy, media, search, social, email, AI and web system is now part of the visible homepage—not only its social-share preview.</p></div>
+      <figure><img src="/og.png" alt="Raj Kushwaha Digital visual system with colorful marketing, social, search, email, AI and website cards"/><figcaption><span>STRATEGY</span><span>CREATIVE</span><span>TECHNOLOGY</span><span>GROWTH</span></figcaption></figure>
+    </section>
+
     <div className="ticker coral-ticker"><div>{[...services, ...services].map((service, index) => <span key={`${service.name}-${index}`}>{service.name} <b>•</b></span>)}</div></div>
+
+    <GrowthStack/>
 
     <section className="home-capabilities shell">
       <header><span className="eyebrow-small">CAPABILITIES IN MOTION</span><h2>Every discipline.<br/><i>Moving as one.</i></h2><p>Move across a service to reveal the real tools and platforms that power it. Select any capability for its process, case study, proof and answers.</p></header>
