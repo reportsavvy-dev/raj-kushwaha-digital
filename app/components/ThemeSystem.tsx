@@ -42,6 +42,7 @@ export function ThemeAtmosphere() {
     let frame = 0;
     let current = 0;
     let target = 0;
+    let lastPaint = 0;
 
     const paintAurora = (progress: number) => {
       const arc = Math.sin(progress * Math.PI);
@@ -52,7 +53,6 @@ export function ThemeAtmosphere() {
       root.style.setProperty("--aurora-scroll-scale", `${(1.045 + arc * 0.09 + progress * 0.035).toFixed(3)}`);
       root.style.setProperty("--aurora-scroll-rotate", `${(-2 + progress * 7).toFixed(2)}deg`);
       root.style.setProperty("--aurora-scroll-opacity", `${(0.72 + arc * 0.2 - progress * 0.08).toFixed(3)}`);
-      root.style.setProperty("--aurora-scroll-hue", `${(progress * 18).toFixed(1)}deg`);
       root.style.setProperty("--aurora-fold-shift", `${(progress * 10).toFixed(2)}vw`);
       root.style.setProperty("--aurora-fold-scale", `${(0.88 + arc * 0.28).toFixed(3)}`);
       root.style.setProperty("--aurora-reflection", `${(0.18 + arc * 0.2).toFixed(3)}`);
@@ -63,7 +63,12 @@ export function ThemeAtmosphere() {
       root.style.setProperty("--aurora-surge-glow", `${(0.08 + surge * 0.34).toFixed(3)}`);
     };
 
-    const animate = () => {
+    const animate = (time: number) => {
+      if (time - lastPaint < 32) {
+        frame = requestAnimationFrame(animate);
+        return;
+      }
+      lastPaint = time;
       current += (target - current) * 0.075;
       paintAurora(current);
       if (Math.abs(target - current) > 0.0005) frame = requestAnimationFrame(animate);
@@ -71,7 +76,7 @@ export function ThemeAtmosphere() {
     };
 
     const onScroll = () => {
-      if (reducedMotion || root.dataset.theme !== "antarctica") return;
+      if (reducedMotion || document.hidden || root.dataset.theme !== "antarctica") return;
       target = Math.min(1, window.scrollY / Math.max(window.innerHeight * 2.2, 1));
       if (!frame) frame = requestAnimationFrame(animate);
     };
@@ -82,13 +87,24 @@ export function ThemeAtmosphere() {
       if (nextTheme === "antarctica") onScroll();
     };
 
+    const onVisibilityChange = () => {
+      if (document.hidden && frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      } else if (!document.hidden) {
+        onScroll();
+      }
+    };
+
     paintAurora(0);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("rkd-theme-change", syncAtmosphere);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     onScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("rkd-theme-change", syncAtmosphere);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.cancelAnimationFrame(activationFrame);
       if (frame) cancelAnimationFrame(frame);
     };

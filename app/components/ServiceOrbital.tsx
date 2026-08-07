@@ -1,30 +1,16 @@
 "use client";
 
-import { useRef } from "react";
 import type { Service } from "../data/services";
 import { ToolLogo } from "./ToolLogo";
+import { useMotionSurface } from "./useMotionSurface";
 
 export function ServiceOrbital({ service, compact = false }: { service: Service; compact?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const motion = useMotionSurface("--orbit-x", "--orbit-y");
   const rings = [service.tools.slice(0, 2), service.tools.slice(2, 5), service.tools.slice(5, 8)];
-
-  const move = (event: React.MouseEvent) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect || !ref.current) return;
-    const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
-    const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
-    ref.current.style.setProperty("--orbit-x", `${x * 18}px`);
-    ref.current.style.setProperty("--orbit-y", `${y * 18}px`);
-  };
 
   return <div
     className={`service-orbital ${compact ? "orbital-compact" : ""}`}
-    ref={ref}
-    onMouseMove={move}
-    onMouseLeave={() => {
-      ref.current?.style.setProperty("--orbit-x", "0px");
-      ref.current?.style.setProperty("--orbit-y", "0px");
-    }}
+    {...motion}
     style={{"--service-accent": service.accent, "--service-soft": service.accentSoft} as React.CSSProperties}
   >
     <div className="orbital-label"><span>{service.visual.toUpperCase()} SYSTEM</span><b>● LIVE</b></div>

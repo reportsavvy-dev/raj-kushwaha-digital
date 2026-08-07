@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import { ToolLogo } from "./ToolLogo";
+import { useMotionSurface } from "./useMotionSurface";
 
 const planets = [
   { name: "Meta Ads", tool: "Meta Ads", orbit: "orbit-one", delay: "0s", color: "#0866ff", className: "planet-meta", content: <><div className="planet-chart"><i/><i/><i/><i/></div><small>CAMPAIGN SIGNAL</small></> },
@@ -13,20 +13,9 @@ const planets = [
 ];
 
 export function HeroSolarSystem() {
-  const ref = useRef<HTMLDivElement>(null);
-  const move = (event: React.MouseEvent) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect || !ref.current) return;
-    const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
-    const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
-    ref.current.style.setProperty("--solar-x", `${x * 18}px`);
-    ref.current.style.setProperty("--solar-y", `${y * 18}px`);
-  };
+  const motion = useMotionSurface("--solar-x", "--solar-y");
 
-  return <div className="hero-solar-system" ref={ref} onMouseMove={move} onMouseLeave={() => {
-    ref.current?.style.setProperty("--solar-x", "0px");
-    ref.current?.style.setProperty("--solar-y", "0px");
-  }} aria-label="Connected marketing tools orbiting the Raj Kushwaha Digital analytics core">
+  return <div className="hero-solar-system" {...motion} aria-label="Connected marketing tools orbiting the Raj Kushwaha Digital analytics core">
     <div className="solar-stage">
     <div className="solar-glow"/>
     <div className="solar-orbit orbit-one" aria-hidden="true"/>

@@ -5775,6 +5775,19 @@ html[data-theme="antarctica"] .antarctica-atmosphere:before {
   contain: paint style;
 }
 
+.motion-paused .solar-runner,
+.motion-paused .solar-planet,
+.motion-paused .solar-signal,
+.motion-paused .orbital-ring,
+.motion-paused .orbital-ring .tool-logo {
+  animation-play-state: paused !important;
+}
+
+.ticker.motion-paused > div,
+.service-marquee.motion-paused > div {
+  animation-play-state: paused !important;
+}
+
 @media (pointer: coarse), (hover: none) {
   body {
     cursor: auto;
