@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { caseStudies } from "./data/caseStudies";
+import { linkedinWorkSamples } from "./data/linkedinWork";
 import { services } from "./data/services";
 
 const baseUrl = "https://rajkushwahadigital.com";
@@ -15,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.85,
+    })),
+    ...linkedinWorkSamples.map((sample) => ({
+      url: `${baseUrl}/work/linkedin/${sample.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     ...services.map((service) => ({
       url: `${baseUrl}/services/${service.slug}`,

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Cursor } from "../components/Cursor";
 import { Nav } from "../components/Nav";
 import { caseStudies } from "../data/caseStudies";
+import { linkedinWorkSamples } from "../data/linkedinWork";
 import { Contact, Footer } from "../page";
 
 export const dynamic = "force-static";
@@ -20,12 +21,15 @@ export default function WorkPage() {
     <section className="work-hero shell">
       <span className="eyebrow-small">CLIENT WORK / PORTFOLIO EVIDENCE</span>
       <h1>Proof before<br/><i>promises.</i></h1>
-      <p>Three engagements from Raj&apos;s 2025 portfolio. Every metric is tied to a supplied screenshot or written portfolio statement. Search positions and platform counts are shown as dated evidence, not permanent guarantees.</p>
+      <p>Verified performance cases sit beside publicly visible LinkedIn work. Metrics appear only when the portfolio supplies evidence. Creative samples show the strategy and production work without inventing campaign results.</p>
     </section>
 
     <section className="client-logo-band shell" aria-label="Selected clients">
       <span>SELECTED CLIENTS</span>
-      <div>{caseStudies.map((study) => <a href={study.website} target="_blank" rel="noreferrer" key={study.client}><Image src={study.logo} alt={study.logoAlt} width={260} height={100}/></a>)}</div>
+      <div>
+        {linkedinWorkSamples.map((sample) => <a href={sample.linkedin} target="_blank" rel="noreferrer" key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={180} height={80}/></a>)}
+        <a href={caseStudies[1].website} target="_blank" rel="noreferrer"><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={180} height={80}/></a>
+      </div>
     </section>
 
     <section className="work-index shell">
@@ -41,6 +45,26 @@ export default function WorkPage() {
       </Link>)}
     </section>
 
+    <section className="linkedin-work-section shell" id="linkedin-work">
+      <header>
+        <span className="eyebrow-small">PUBLISHED LINKEDIN WORK</span>
+        <h2>Nine brands.<br/><i>Nine distinct systems.</i></h2>
+        <p>Each card links to a public client post and a breakdown of the audience, problem, content decision and final delivery. These are work samples, not fabricated performance claims.</p>
+      </header>
+      <div className="linkedin-work-grid">
+        {linkedinWorkSamples.map((sample, index) => <Link href={`/work/linkedin/${sample.slug}`} className="linkedin-work-card" key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
+          <div className="linkedin-work-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"/></div>
+          <div className="linkedin-work-copy">
+            <header><span>{String(index + 1).padStart(2, "0")}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52}/></header>
+            <small>PUBLIC LINKEDIN SAMPLE</small>
+            <h3>{sample.headline}</h3>
+            <p>{sample.topic}</p>
+            <b>VIEW THE WORK ↗</b>
+          </div>
+        </Link>)}
+      </div>
+    </section>
+
     <section className="evidence-principle shell">
       <span className="eyebrow-small">HOW RESULTS ARE PRESENTED</span>
       <h2>Specific enough to inspect.<br/><i>Honest enough to trust.</i></h2>
@@ -49,4 +73,3 @@ export default function WorkPage() {
     <Contact/><Footer/>
   </main>;
 }
-

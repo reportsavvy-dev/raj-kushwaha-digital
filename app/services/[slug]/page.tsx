@@ -8,6 +8,7 @@ import { Nav } from "../../components/Nav";
 import { ServiceOrbital } from "../../components/ServiceOrbital";
 import { ToolLogo } from "../../components/ToolLogo";
 import { caseStudies } from "../../data/caseStudies";
+import { linkedinWorkSamples } from "../../data/linkedinWork";
 import { serviceBySlug, services } from "../../data/services";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -44,6 +45,8 @@ export default async function ServicePage({ params }: PageProps) {
   const index = services.findIndex((item) => item.slug === service.slug);
   const related = [services[(index + 1) % services.length], services[(index + 5) % services.length], services[(index + 10) % services.length]];
   const relatedCases = caseStudies.filter((study) => study.services.includes(service.slug));
+  const relatedLinkedIn = linkedinWorkSamples.filter((sample) => sample.services.includes(service.slug));
+  const hasClientProof = relatedCases.length > 0 || relatedLinkedIn.length > 0;
   const orbitalService = { shortName: service.shortName, tools: service.tools, visual: service.visual, accent: service.accent, accentSoft: service.accentSoft };
   const canonicalUrl = `https://rajkushwahadigital.com/services/${service.slug}`;
   const structuredData = {
@@ -80,7 +83,7 @@ export default async function ServicePage({ params }: PageProps) {
         <h1>{service.name}</h1>
         <p className="service-direct-answer">{service.directAnswer}</p>
         <p>{service.intro}</p>
-        <div><a className="primary-button magnetic" href={`mailto:hello@rajkushwahadigital.com?subject=${encodeURIComponent(service.name)} project`}>START A {service.shortName.toUpperCase()} PROJECT <span>→</span></a><Link className="text-link" href={relatedCases.length ? "#portfolio-results" : "#case-study"}>{relatedCases.length ? "SEE CLIENT RESULTS" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
+        <div><a className="primary-button magnetic" href={`mailto:hello@rajkushwahadigital.com?subject=${encodeURIComponent(service.name)} project`}>START A {service.shortName.toUpperCase()} PROJECT <span>→</span></a><Link className="text-link" href={hasClientProof ? "#client-work" : "#case-study"}>{hasClientProof ? "SEE CLIENT WORK" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
       </div>
       <ServiceOrbital service={orbitalService}/>
     </section>
@@ -100,7 +103,7 @@ export default async function ServicePage({ params }: PageProps) {
       <div className="shell"><header><span className="eyebrow-small">HOW THE WORK RUNS</span><h2>{service.processHeading}</h2></header><div className="service-process-grid">{service.process.map((item) => <article key={item.step}><span>{item.step}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div>
     </section>
 
-    {relatedCases.length ? <section className="service-proof shell" id="portfolio-results">
+    {relatedCases.length ? <section className="service-proof shell" id="client-work">
       <header><span className="eyebrow-small">RELATED CLIENT RESULTS</span><h2>Portfolio evidence for<br/><i>{service.shortName}.</i></h2><p>These cases use supplied screenshots, portfolio reporting and attributed client feedback.</p></header>
       <div>{relatedCases.map((study) => <Link href={`/work/${study.slug}`} key={study.slug} style={{"--proof-accent": study.accent, "--proof-soft": study.accentSoft} as React.CSSProperties}>
         <span className="service-proof-logo"><Image src={study.logo} alt={study.logoAlt} width={180} height={68}/></span>
@@ -110,6 +113,16 @@ export default async function ServicePage({ params }: PageProps) {
       </Link>)}</div>
     </section> : null}
 
+    {relatedLinkedIn.length ? <section className="service-linkedin-proof shell" id={relatedCases.length ? undefined : "client-work"}>
+      <header><span className="eyebrow-small">PUBLIC LINKEDIN WORK</span><h2>Published work for<br/><i>real brands.</i></h2><p>These creatives are visible on the brands&apos; official LinkedIn pages. The work proves content and design delivery without inventing performance numbers.</p></header>
+      <div className="service-linkedin-grid">{relatedLinkedIn.slice(0, 3).map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
+        <div className="service-linkedin-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 900px) 100vw, 33vw"/></div>
+        <span><Image src={sample.logo} alt={sample.logoAlt} width={130} height={54}/><small>{sample.client}</small></span>
+        <h3>{sample.headline}</h3><b>VIEW WORK SAMPLE ↗</b>
+      </Link>)}</div>
+      {relatedLinkedIn.length > 3 ? <Link className="all-work-link" href="/work#linkedin-work">VIEW ALL NINE BRAND SAMPLES ↗</Link> : null}
+    </section> : null}
+
     <section className="service-case shell" id="case-study">
       <div className="case-art">
         <div className="case-art-top"><span>{service.caseStudy.label ?? "Case study"}</span><b>{service.caseStudy.sector}</b></div>
@@ -117,7 +130,7 @@ export default async function ServicePage({ params }: PageProps) {
         <div className="case-art-tools">{service.tools.slice(0, 5).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div>
       </div>
       <div className="case-copy">
-        <span className="eyebrow-small">PLANNING EXAMPLE / CONCEPT</span><h2>{service.caseStudy.title}</h2>
+        <span className="eyebrow-small">CAPABILITY CASE STUDY / CONCEPT</span><h2>{service.caseStudy.title}</h2>
         <div><small>THE CHALLENGE</small><p>{service.caseStudy.challenge}</p></div>
         <div><small>THE MOVE</small><p>{service.caseStudy.solution}</p></div>
         <div><small>THE IMPACT</small><p>{service.caseStudy.impact}</p></div>

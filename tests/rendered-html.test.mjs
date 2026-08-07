@@ -39,7 +39,23 @@ test("work index renders all portfolio case routes", async () => {
   assert.match(html, /\/work\/key-medsolutions-search-authority/);
   assert.match(html, /\/work\/vizva-linkedin-organic-growth/);
   assert.match(html, /historical rankings/i);
+  assert.match(html, /PUBLISHED LINKEDIN WORK/);
+  assert.match(html, /Amoha RCM/);
+  assert.match(html, /Vizva Consultancy Services UK/);
+  assert.match(html, /\/work\/linkedin\/bridgepoint-careers-linkedin-content-system/);
   assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/work"/);
+});
+
+test("LinkedIn sample page separates visible work from unverified outcomes", async () => {
+  const response = await render("/work/linkedin/amoha-rcm-linkedin-content-system");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /PUBLIC LINKEDIN WORK/);
+  assert.match(html, /Secondary claims need primary EOB evidence/);
+  assert.match(html, /does not claim impressions, leads or revenue/i);
+  assert.match(html, /VIEW LINKEDIN POST/);
+  assert.match(html, /"@type":"Article"/);
 });
 
 test("case page exposes evidence, attribution and structured data", async () => {
@@ -57,12 +73,13 @@ test("case page exposes evidence, attribution and structured data", async () => 
 });
 
 test("service page separates real work from planning examples", async () => {
-  const response = await render("/services/seo-aeo-geo-sxo");
+  const response = await render("/services/social-media-management-marketing");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /RELATED CLIENT RESULTS/);
-  assert.match(html, /PLANNING EXAMPLE \/ CONCEPT/);
+  assert.match(html, /PUBLIC LINKEDIN WORK/);
+  assert.match(html, /CAPABILITY CASE STUDY \/ CONCEPT/);
   assert.match(html, /This is not client work/);
   assert.match(html, /Planning benchmark, not client feedback/);
 });
@@ -73,5 +90,5 @@ test("sitemap includes work and case study URLs", async () => {
   const xml = await response.text();
   assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work<\/loc>/);
   assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/key-medsolutions-search-authority/);
+  assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/linkedin\/vizva-uk-linkedin-content-system/);
 });
-
