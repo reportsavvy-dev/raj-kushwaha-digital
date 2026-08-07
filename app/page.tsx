@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
 import { GrowthStack } from "./components/GrowthStack";
-import { HeroCanvas } from "./components/HeroCanvas";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
 import { services } from "./data/services";
@@ -16,12 +15,10 @@ export default function Home() {
         <p>Strategy, creativity and technology—connected to grow your business.</p>
         <div><a className="primary-button magnetic" href="mailto:hello@rajkushwahadigital.com?subject=Start a project">START A PROJECT <span>→</span></a><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
       </div>
-      <HeroCanvas/>
-    </section>
-
-    <section className="visual-manifesto shell">
-      <div className="visual-manifesto-copy"><span className="eyebrow-small">THE RKD VISUAL SYSTEM</span><h2>Move attention.<br/><i>Build momentum.</i></h2><p>The colorful strategy, media, search, social, email, AI and web system is now part of the visible homepage—not only its social-share preview.</p></div>
-      <figure><img src="/og.png" alt="Raj Kushwaha Digital visual system with colorful marketing, social, search, email, AI and website cards"/><figcaption><span>STRATEGY</span><span>CREATIVE</span><span>TECHNOLOGY</span><span>GROWTH</span></figcaption></figure>
+      <figure className="hero-visual-poster">
+        <img src="/og.png" alt="Raj Kushwaha Digital visual system with colorful marketing, social, search, email, AI and website cards"/>
+        <figcaption><span>STRATEGY</span><span>CREATIVE</span><span>TECHNOLOGY</span><span>GROWTH</span></figcaption>
+      </figure>
     </section>
 
     <div className="ticker coral-ticker"><div>{[...services, ...services].map((service, index) => <span key={`${service.name}-${index}`}>{service.name} <b>•</b></span>)}</div></div>
