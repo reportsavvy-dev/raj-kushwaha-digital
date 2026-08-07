@@ -5,11 +5,26 @@ import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
 import { services } from "./data/services";
 
+const heroSignals = [
+  { tool: "Google", label: "Google", note: "SEARCH" },
+  { tool: "Meta Ads", label: "Meta", note: "ADS" },
+  { tool: "Instagram", label: "Instagram", note: "SOCIAL" },
+  { tool: "LinkedIn", label: "LinkedIn", note: "B2B" },
+  { tool: "OpenAI", label: "AI", note: "INSIGHTS" },
+];
+
 export default function Home() {
   return <main>
     <Cursor/><Nav/>
     <section className="home-hero shell">
       <div className="hero-copy">
+        <section className="hero-signal-strip" aria-label="Active marketing platforms">
+          <header><span>● ACTIVE SIGNALS</span><i/></header>
+          <div>{heroSignals.map((signal, index) => <article key={signal.label} style={{"--signal-index": index} as React.CSSProperties}>
+            <ToolLogo name={signal.tool}/><span><b>{signal.label}</b><small>{signal.note}</small></span>
+          </article>)}</div>
+          <footer>{heroSignals.map((signal) => <i key={signal.label}/>)}</footer>
+        </section>
         <span className="eyebrow-small">INDEPENDENT DIGITAL GROWTH AGENCY</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
         <p>Strategy, creativity and technology—connected to grow your business.</p>

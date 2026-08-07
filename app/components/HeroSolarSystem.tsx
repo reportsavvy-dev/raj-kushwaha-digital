@@ -27,6 +27,7 @@ export function HeroSolarSystem() {
     ref.current?.style.setProperty("--solar-x", "0px");
     ref.current?.style.setProperty("--solar-y", "0px");
   }} aria-label="Connected marketing tools orbiting the Raj Kushwaha Digital analytics core">
+    <div className="solar-stage">
     <div className="solar-glow"/>
     <div className="solar-orbit orbit-one" aria-hidden="true"/>
     <div className="solar-orbit orbit-two" aria-hidden="true"/>
@@ -51,5 +52,6 @@ export function HeroSolarSystem() {
         </article>
       </div>
     </div>)}
+    </div>
   </div>;
 }
