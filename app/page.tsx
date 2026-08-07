@@ -4,6 +4,7 @@ import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { RKDMark } from "./components/BrandMark";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
+import { ThemeSwitcher } from "./components/ThemeSystem";
 import { services } from "./data/services";
 
 const heroSignals = [
@@ -16,7 +17,7 @@ const heroSignals = [
 
 export default function Home() {
   return <main>
-    <Cursor/><Nav/>
+    <Cursor/><Nav/><ThemeSwitcher/>
     <section className="home-hero shell">
       <div className="hero-copy">
         <section className="hero-signal-strip" aria-label="Active marketing platforms">
