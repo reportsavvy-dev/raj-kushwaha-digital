@@ -114,15 +114,105 @@
 .service-linkedin-image {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   background: var(--sample-soft);
   border-bottom: 1px solid var(--ink);
 }
 
 .linkedin-work-image img,
 .service-linkedin-image img {
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.45s ease;
+}
+
+.linkedin-visual-status {
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 11px;
+  color: var(--ink);
+  border: 1px solid rgb(17 17 15 / 16%);
+  border-radius: 7px;
+  background: rgb(255 253 248 / 90%);
+  box-shadow: 0 8px 24px rgb(17 17 15 / 8%);
+  backdrop-filter: blur(8px);
+  font: 750 9px var(--font-geist-mono);
+  letter-spacing: 0.08em;
+}
+
+.linkedin-visual-status b {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #007a49;
+}
+
+.linkedin-visual-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #09a767;
+  box-shadow: 0 0 0 4px rgb(9 167 103 / 12%);
+}
+
+.linkedin-visual-logo {
+  position: absolute;
+  z-index: 2;
+  bottom: 14px;
+  left: 14px;
+  display: grid;
+  width: 128px;
+  height: 58px;
+  place-items: center;
+  padding: 7px 10px;
+  border: 1px solid rgb(17 17 15 / 14%);
+  border-radius: 7px;
+  background: rgb(255 253 248 / 94%);
+  box-shadow: 0 8px 24px rgb(17 17 15 / 10%);
+  backdrop-filter: blur(8px);
+}
+
+.linkedin-visual-logo img {
+  position: static !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.linkedin-visual-steps {
+  position: absolute;
+  z-index: 2;
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 4px;
+}
+
+.linkedin-visual-steps span {
+  display: grid;
+  gap: 2px;
+  min-width: 61px;
+  padding: 8px 7px;
+  color: var(--ink);
+  border: 1px solid rgb(17 17 15 / 14%);
+  border-radius: 6px;
+  background: rgb(255 253 248 / 92%);
+  text-align: left;
+  font: 700 7px var(--font-geist-mono);
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(8px);
+}
+
+.linkedin-visual-steps b {
+  color: var(--sample-accent);
+  font-size: 11px;
 }
 
 .linkedin-work-card:hover .linkedin-work-image img,
@@ -134,7 +224,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  min-height: 285px;
+  min-height: 270px;
   padding: 24px;
 }
 
@@ -182,6 +272,11 @@
 .service-linkedin-grid > a > b {
   margin-top: auto;
   font: 700 10px var(--font-geist-mono);
+}
+
+.linkedin-work-copy > b i {
+  color: var(--sample-accent);
+  font-style: normal;
 }
 
 .all-work-link {
@@ -356,6 +451,22 @@
   .service-linkedin-proof h2,
   .linkedin-proof h2 {
     font-size: 49px;
+  }
+
+  .linkedin-visual-logo {
+    width: 98px;
+    height: 50px;
+    padding: 6px 8px;
+  }
+
+  .linkedin-visual-steps span {
+    min-width: 48px;
+    padding: 6px 5px;
+    font-size: 6px;
+  }
+
+  .linkedin-visual-steps b {
+    font-size: 9px;
   }
 }
 

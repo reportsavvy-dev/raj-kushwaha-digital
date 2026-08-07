@@ -9,6 +9,8 @@ export type LinkedInWorkSample = {
   summary: string;
   postImage: string;
   postAlt: string;
+  cardImage: string;
+  cardAlt: string;
   postUrl: string;
   topic: string;
   audience: string;
@@ -40,6 +42,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "A research-led LinkedIn content system turns detailed revenue cycle topics into clear, useful posts for dental practice owners and billing teams.",
     postImage: "/linkedin-work/amoha-rcm-v2.webp",
     postAlt: "Amoha RCM LinkedIn creative about secondary claims and primary EOB evidence",
+    cardImage: "/linkedin-work/generated/amoha-rcm-case-visual.webp",
+    cardAlt: "Illustrated medical claim workflow for the Amoha RCM LinkedIn case study",
     postUrl: "https://www.linkedin.com/posts/amoharcm_amoharcm-dentalbilling-revenuecyclemanagement-activity-7491185213067399168-puTW",
     topic: "Secondary claims need primary EOB evidence",
     audience: "United States dental practice owners, office managers and billing teams",
@@ -61,6 +65,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "The publishing system gives recruitment topics a consistent point of view, recognizable design and a practical takeaway instead of generic hiring motivation.",
     postImage: "/linkedin-work/amoha-recruitment-v2.webp",
     postAlt: "Amoha Recruitment Services LinkedIn creative about complementary candidate assessments",
+    cardImage: "/linkedin-work/generated/amoha-recruitment-case-visual.webp",
+    cardAlt: "Illustrated multi-assessment candidate evaluation for the Amoha Recruitment Services case study",
     postUrl: "https://www.linkedin.com/posts/amoha-recruitment-services-llc_amoharecruitmentservices-hiringstrategy-activity-7491184564984528896-s38e",
     topic: "One assessment cannot show the whole candidate",
     audience: "United States employers, recruiters and international job seekers",
@@ -82,6 +88,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "Career guidance is structured around a specific action a job seeker can take, supported by a compact visual journey designed for a LinkedIn feed.",
     postImage: "/linkedin-work/bridgepoint-careers.webp",
     postAlt: "Bridgepoint Careers LinkedIn creative about searching by work activities rather than job titles",
+    cardImage: "/linkedin-work/generated/bridgepoint-careers-case-visual.webp",
+    cardAlt: "Illustrated transferable-skills career path for the Bridgepoint Careers case study",
     postUrl: "https://www.linkedin.com/posts/bridgepoint-careers_jobsearchstrategy-careertransition-careercoaching-activity-7491534896696582144-7C4t",
     topic: "Search by work, not only titles",
     audience: "Students, international professionals and United States job seekers",
@@ -103,6 +111,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "Complex United States career and immigration topics are shaped into focused posts with a clear operational takeaway and a recognizable visual system.",
     postImage: "/linkedin-work/ipeople-career.webp",
     postAlt: "iPeople Career LinkedIn creative about documenting STEM OPT training plan changes",
+    cardImage: "/linkedin-work/generated/ipeople-career-case-visual.webp",
+    cardAlt: "Illustrated STEM OPT evidence review workflow for the iPeople Career case study",
     postUrl: "https://www.linkedin.com/posts/ipeople-career_stemopt-f1visa-immigrationcompliance-activity-7491527327647121408-ew5U",
     topic: "STEM OPT changes need updated evidence",
     audience: "F1, OPT and STEM OPT professionals building careers in the United States",
@@ -124,6 +134,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "The content system positions technology topics around governance, risk and real business decisions rather than repeating product trends.",
     postImage: "/linkedin-work/the-dataflux.webp",
     postAlt: "The Dataflux LinkedIn creative about follow-up checks for time-limited right-to-work status",
+    cardImage: "/linkedin-work/generated/the-dataflux-case-visual.webp",
+    cardAlt: "Illustrated data governance and follow-up system for The Dataflux case study",
     postUrl: "https://www.linkedin.com/posts/the-dataflux_righttowork-compliancemanagement-immigrationcompliance-activity-7491538673428127744-gKon",
     topic: "Time-limited status needs follow-up",
     audience: "Business and technology leaders working across AI, data, cloud and operations",
@@ -145,6 +157,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "Education posts move beyond motivational copy by explaining a learning decision, showing a visual model and linking it to job-ready evidence.",
     postImage: "/linkedin-work/flawless-ed-v2.webp",
     postAlt: "Flawless Ed LinkedIn creative about mixed practice and strategy choice",
+    cardImage: "/linkedin-work/generated/flawless-ed-case-visual.webp",
+    cardAlt: "Illustrated mixed-practice learning system for the Flawless Ed case study",
     postUrl: "https://www.linkedin.com/posts/flawless-ed_instructionaldesign-learningstrategy-edtech-activity-7491205965342511104-OwUi",
     topic: "Mixed practice builds strategy choice",
     audience: "Learners, educators and early-career professionals",
@@ -166,6 +180,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "Industry insight, recruiting problems and workforce decisions are converted into clear LinkedIn posts that support the wider organic growth program.",
     postImage: "/linkedin-work/silverspace-linkedin.webp",
     postAlt: "Silverspace Inc LinkedIn creative about cybersecurity talent hiring",
+    cardImage: "/linkedin-work/generated/silverspace-case-visual.webp",
+    cardAlt: "Illustrated cybersecurity talent hiring system for the Silverspace Inc case study",
     postUrl: "https://www.linkedin.com/posts/silverspace-inc_why-cybersecurity-talent-is-the-hardest-hire-activity-7491523609895747584-aulw",
     topic: "Why cybersecurity talent is difficult to hire",
     audience: "Technology leaders, hiring teams and skilled professionals",
@@ -187,6 +203,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "Vizva's broad offer is organized into distinct content themes so each post addresses one audience problem while retaining a consistent corporate identity.",
     postImage: "/linkedin-work/vizva-usa-linkedin.webp",
     postAlt: "Vizva Consultancy Services LinkedIn creative introducing recruitment process outsourcing",
+    cardImage: "/linkedin-work/generated/vizva-usa-case-visual.webp",
+    cardAlt: "Illustrated recruitment process outsourcing pipeline for the Vizva USA case study",
     postUrl: "https://www.linkedin.com/posts/vizvainc_recruitment-process-outsourcing-the-complete-activity-7491523556963565569-2tHR",
     topic: "Recruitment process outsourcing for modern businesses",
     audience: "United States employers, staffing teams and growing businesses",
@@ -208,6 +226,8 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     summary: "The UK feed uses staffing and compliance topics to give employers and candidates a focused reminder, supported by a clear visual path and source-aware caption.",
     postImage: "/linkedin-work/vizva-uk.webp",
     postAlt: "Vizva Consultancy Services UK LinkedIn creative about follow-up right-to-work checks",
+    cardImage: "/linkedin-work/generated/vizva-uk-case-visual.webp",
+    cardAlt: "Illustrated right-to-work evidence and follow-up workflow for the Vizva UK case study",
     postUrl: "https://www.linkedin.com/posts/vizva-consultancy-uk_righttowork-ukcompliance-immigrationcompliance-activity-7491402821947367425-Dcxm",
     topic: "Time-limited right-to-work status needs follow-up",
     audience: "United Kingdom employers, agencies, contractors and international candidates",

@@ -63,7 +63,24 @@ test("work index renders all portfolio case routes", async () => {
     "vizva-usa-linkedin",
     "vizva-uk",
   ]) assert.match(html, new RegExp(`src="/clients/linkedin/${logo}\\.webp"`));
+  for (const visual of [
+    "amoha-rcm-case-visual",
+    "amoha-recruitment-case-visual",
+    "bridgepoint-careers-case-visual",
+    "ipeople-career-case-visual",
+    "the-dataflux-case-visual",
+    "flawless-ed-case-visual",
+    "silverspace-case-visual",
+    "vizva-usa-case-visual",
+    "vizva-uk-case-visual",
+  ]) assert.match(html, new RegExp(`src="/linkedin-work/generated/${visual}\\.webp"`));
+  assert.match(html, /CASE <!-- -->01<!-- --> \/ 09/);
+  assert.match(html, /LIVE POST/);
+  assert.match(html, />01<\/b> STRATEGY/);
+  assert.match(html, />02<\/b> CREATIVE/);
+  assert.match(html, />03<\/b> DELIVERY/);
   assert.doesNotMatch(html, /_vinext\/image\?url=%2Fclients%2Flinkedin/);
+  assert.doesNotMatch(html, /_vinext\/image\?url=%2Flinkedin-work%2Fgenerated/);
   assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/work"/);
 });
 
@@ -77,6 +94,8 @@ test("LinkedIn sample page separates visible work from unverified outcomes", asy
   assert.match(html, /does not claim impressions, leads or revenue/i);
   assert.match(html, /VIEW LINKEDIN POST/);
   assert.match(html, /src="\/clients\/linkedin\/amoha-rcm\.webp"/);
+  assert.match(html, /src="\/linkedin-work\/amoha-rcm-v2\.webp"/);
+  assert.doesNotMatch(html, /_vinext\/image\?url=%2Flinkedin-work%2Famoha-rcm-v2/);
   assert.match(html, /"@type":"Article"/);
 });
 

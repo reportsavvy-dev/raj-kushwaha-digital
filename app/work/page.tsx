@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Cursor } from "../components/Cursor";
+import { LinkedInWorkCard } from "../components/LinkedInWorkCard";
 import { Nav } from "../components/Nav";
 import { caseStudies } from "../data/caseStudies";
 import { linkedinWorkSamples } from "../data/linkedinWork";
@@ -52,16 +53,7 @@ export default function WorkPage() {
         <p>Each card links to a public client post and a breakdown of the audience, problem, content decision and final delivery. These are work samples, not fabricated performance claims.</p>
       </header>
       <div className="linkedin-work-grid">
-        {linkedinWorkSamples.map((sample, index) => <Link href={`/work/linkedin/${sample.slug}`} className="linkedin-work-card" key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
-          <div className="linkedin-work-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"/></div>
-          <div className="linkedin-work-copy">
-            <header><span>{String(index + 1).padStart(2, "0")}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52} unoptimized/></header>
-            <small>PUBLIC LINKEDIN SAMPLE</small>
-            <h3>{sample.headline}</h3>
-            <p>{sample.topic}</p>
-            <b>VIEW THE WORK ↗</b>
-          </div>
-        </Link>)}
+        {linkedinWorkSamples.map((sample, index) => <LinkedInWorkCard sample={sample} index={index} key={sample.slug}/>)}
       </div>
     </section>
 

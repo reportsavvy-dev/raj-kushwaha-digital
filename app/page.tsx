@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
+import { LinkedInWorkCard } from "./components/LinkedInWorkCard";
 import { RKDMark } from "./components/BrandMark";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
@@ -89,10 +90,7 @@ export default function Home() {
     <section className="home-linkedin-work shell">
       <header><span className="eyebrow-small">PUBLISHED LINKEDIN CREATIVE</span><h2>Content people can see.<br/><i>Work they can inspect.</i></h2><p>These samples are live on official client LinkedIn pages. Each breakdown shows the audience, editorial decision and delivered creative without attaching unverified performance figures.</p></header>
       <div className="linkedin-work-grid">
-        {linkedinWorkSamples.slice(0, 3).map((sample, index) => <Link href={`/work/linkedin/${sample.slug}`} className="linkedin-work-card" key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
-          <div className="linkedin-work-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 720px) 100vw, 33vw"/></div>
-          <div className="linkedin-work-copy"><header><span>0{index + 1}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52} unoptimized/></header><small>PUBLIC LINKEDIN SAMPLE</small><h3>{sample.headline}</h3><b>VIEW THE WORK ↗</b></div>
-        </Link>)}
+        {linkedinWorkSamples.slice(0, 3).map((sample, index) => <LinkedInWorkCard sample={sample} index={index} key={sample.slug}/>)}
       </div>
       <Link className="all-work-link" href="/work#linkedin-work">VIEW ALL NINE BRAND SAMPLES ↗</Link>
     </section>
