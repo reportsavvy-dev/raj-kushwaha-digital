@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
     url: "https://rajkushwahadigital.com",
     siteName: "Raj Kushwaha Digital",
-    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "Raj Kushwaha Digital — Move Attention. Build Momentum." }],
+    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "Raj Kushwaha Digital. Move Attention. Build Momentum." }],
     type: "website",
   },
   twitter: {
@@ -52,6 +52,15 @@ const organizationSchema = {
       url: "https://rajkushwahadigital.com/",
       email: "hello@rajkushwahadigital.com",
       description: "Independent digital marketing agency covering strategy, search, media, creative, development and AI automation.",
+      founder: { "@id": "https://rajkushwahadigital.com/#raj-kushwaha" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rajkushwahadigital.com/#raj-kushwaha",
+      name: "Raj Kushwaha",
+      jobTitle: "Digital Marketing Strategist",
+      description: "Digital marketing strategist with six years of hands on experience across SEO, social media, content, analytics and organic growth.",
+      worksFor: { "@id": "https://rajkushwahadigital.com/#organization" },
     },
     {
       "@type": "WebSite",

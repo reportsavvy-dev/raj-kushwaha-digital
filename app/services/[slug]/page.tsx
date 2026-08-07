@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Contact, Footer } from "../../page";
@@ -6,6 +7,7 @@ import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { ServiceOrbital } from "../../components/ServiceOrbital";
 import { ToolLogo } from "../../components/ToolLogo";
+import { caseStudies } from "../../data/caseStudies";
 import { serviceBySlug, services } from "../../data/services";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -41,6 +43,7 @@ export default async function ServicePage({ params }: PageProps) {
   if (!service) notFound();
   const index = services.findIndex((item) => item.slug === service.slug);
   const related = [services[(index + 1) % services.length], services[(index + 5) % services.length], services[(index + 10) % services.length]];
+  const relatedCases = caseStudies.filter((study) => study.services.includes(service.slug));
   const orbitalService = { shortName: service.shortName, tools: service.tools, visual: service.visual, accent: service.accent, accentSoft: service.accentSoft };
   const canonicalUrl = `https://rajkushwahadigital.com/services/${service.slug}`;
   const structuredData = {
@@ -77,7 +80,7 @@ export default async function ServicePage({ params }: PageProps) {
         <h1>{service.name}</h1>
         <p className="service-direct-answer">{service.directAnswer}</p>
         <p>{service.intro}</p>
-        <div><a className="primary-button magnetic" href={`mailto:hello@rajkushwahadigital.com?subject=${encodeURIComponent(service.name)} project`}>START A {service.shortName.toUpperCase()} PROJECT <span>→</span></a><Link className="text-link" href="#case-study">SEE THE CASE STUDY ↓</Link></div>
+        <div><a className="primary-button magnetic" href={`mailto:hello@rajkushwahadigital.com?subject=${encodeURIComponent(service.name)} project`}>START A {service.shortName.toUpperCase()} PROJECT <span>→</span></a><Link className="text-link" href={relatedCases.length ? "#portfolio-results" : "#case-study"}>{relatedCases.length ? "SEE CLIENT RESULTS" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
       </div>
       <ServiceOrbital service={orbitalService}/>
     </section>
@@ -97,6 +100,16 @@ export default async function ServicePage({ params }: PageProps) {
       <div className="shell"><header><span className="eyebrow-small">HOW THE WORK RUNS</span><h2>{service.processHeading}</h2></header><div className="service-process-grid">{service.process.map((item) => <article key={item.step}><span>{item.step}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div>
     </section>
 
+    {relatedCases.length ? <section className="service-proof shell" id="portfolio-results">
+      <header><span className="eyebrow-small">RELATED CLIENT RESULTS</span><h2>Portfolio evidence for<br/><i>{service.shortName}.</i></h2><p>These cases use supplied screenshots, portfolio reporting and attributed client feedback.</p></header>
+      <div>{relatedCases.map((study) => <Link href={`/work/${study.slug}`} key={study.slug} style={{"--proof-accent": study.accent, "--proof-soft": study.accentSoft} as React.CSSProperties}>
+        <span className="service-proof-logo"><Image src={study.logo} alt={study.logoAlt} width={180} height={68}/></span>
+        <h3>{study.headline}</h3>
+        <p>{study.metrics[0].value}<small>{study.metrics[0].label}</small></p>
+        <b>VIEW EVIDENCE ↗</b>
+      </Link>)}</div>
+    </section> : null}
+
     <section className="service-case shell" id="case-study">
       <div className="case-art">
         <div className="case-art-top"><span>{service.caseStudy.label ?? "Case study"}</span><b>{service.caseStudy.sector}</b></div>
@@ -104,17 +117,17 @@ export default async function ServicePage({ params }: PageProps) {
         <div className="case-art-tools">{service.tools.slice(0, 5).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div>
       </div>
       <div className="case-copy">
-        <span className="eyebrow-small">CASE STUDY / CONCEPT</span><h2>{service.caseStudy.title}</h2>
+        <span className="eyebrow-small">PLANNING EXAMPLE / CONCEPT</span><h2>{service.caseStudy.title}</h2>
         <div><small>THE CHALLENGE</small><p>{service.caseStudy.challenge}</p></div>
         <div><small>THE MOVE</small><p>{service.caseStudy.solution}</p></div>
         <div><small>THE IMPACT</small><p>{service.caseStudy.impact}</p></div>
         <ul>{service.caseStudy.metrics.map((metric) => <li key={metric}>{metric}</li>)}</ul>
-        <p className="concept-disclosure">Illustrative concept prepared to demonstrate the case-study format. Replace with verified portfolio data before presenting it as client work.</p>
+        <p className="concept-disclosure">Planning example only. This is not client work and does not contain claimed results. Verified client cases appear above where relevant.</p>
       </div>
     </section>
 
     <section className="service-testimonial shell">
-      <span>↗</span><blockquote>{service.testimonial.quote}</blockquote><div className="testimonial-credit"><b>{service.testimonial.label}</b><small>{service.testimonial.attribution}</small></div>
+      <span>↗</span><blockquote>A successful engagement should make this statement true: “{service.testimonial.quote}”</blockquote><div className="testimonial-credit"><b>PROJECT OUTCOME STANDARD</b><small>Planning benchmark, not client feedback</small></div>
     </section>
 
     <section className="service-faq shell">

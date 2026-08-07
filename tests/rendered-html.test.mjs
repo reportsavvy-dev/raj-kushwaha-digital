@@ -1,91 +1,77 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
+const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+const { default: worker } = await import(workerUrl.href);
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
+async function render(pathname = "/") {
   return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
+    new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
   );
 }
 
-test("server-renders the starter loading skeleton", async () => {
+test("home page renders verified portfolio proof", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
   const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Building your site/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(
-    html,
-    /Your first version will appear here automatically when it’s ready\./,
-  );
-  assert.doesNotMatch(html, /Codex/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+
+  assert.match(html, /PORTFOLIO BACKED CASE STUDIES/);
+  assert.match(html, /Silverspace Inc/);
+  assert.match(html, /Key MedSolutions/);
+  assert.match(html, /Vizva Consultancy Services/);
+  assert.match(html, /CLIENT FEEDBACK/);
+  assert.match(html, /href="\/work"/);
+  assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
+  assert.doesNotMatch(html, /[—–]/);
 });
 
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
-  ]);
+test("work index renders all portfolio case routes", async () => {
+  const response = await render("/work");
+  assert.equal(response.status, 200);
+  const html = await response.text();
 
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
-
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
-  );
-
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
-
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
-  );
+  assert.match(html, /Proof before/);
+  assert.match(html, /\/work\/silverspace-organic-search-linkedin-growth/);
+  assert.match(html, /\/work\/key-medsolutions-search-authority/);
+  assert.match(html, /\/work\/vizva-linkedin-organic-growth/);
+  assert.match(html, /historical rankings/i);
+  assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/work"/);
 });
+
+test("case page exposes evidence, attribution and structured data", async () => {
+  const response = await render("/work/silverspace-organic-search-linkedin-growth");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /15,750/);
+  assert.match(html, /Google Search Console: 1\.56K to 3\.19K/);
+  assert.match(html, /Akash Dabhi/);
+  assert.match(html, /VERIFIED PORTFOLIO SOURCE/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /silverspace-search-evidence\.webp/);
+  assert.doesNotMatch(html, /current ranking guarantee/i);
+});
+
+test("service page separates real work from planning examples", async () => {
+  const response = await render("/services/seo-aeo-geo-sxo");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /RELATED CLIENT RESULTS/);
+  assert.match(html, /PLANNING EXAMPLE \/ CONCEPT/);
+  assert.match(html, /This is not client work/);
+  assert.match(html, /Planning benchmark, not client feedback/);
+});
+
+test("sitemap includes work and case study URLs", async () => {
+  const response = await render("/sitemap.xml");
+  assert.equal(response.status, 200);
+  const xml = await response.text();
+  assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work<\/loc>/);
+  assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/key-medsolutions-search-authority/);
+});
+

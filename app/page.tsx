@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { RKDMark } from "./components/BrandMark";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
+import { caseStudies } from "./data/caseStudies";
 import { services } from "./data/services";
 
 export const dynamic = "force-static";
@@ -46,21 +48,41 @@ export default function Home() {
     <div className="ticker coral-ticker"><div>{[...services, ...services].map((service, index) => <span key={`${service.name}-${index}`}>{service.name} <b>•</b></span>)}</div></div>
 
     <section className="home-capabilities shell">
-      <header><span className="eyebrow-small">15 CONNECTED SERVICES</span><h2>Specialists where needed.<br/><i>One system where it matters.</i></h2><p>Choose a service to see what it solves, what the work includes, how success is measured and which tools support delivery. The recommendation starts with your constraint—not a preselected channel package.</p></header>
+      <header><span className="eyebrow-small">15 CONNECTED SERVICES</span><h2>Specialists where needed.<br/><i>One system where it matters.</i></h2><p>Choose a service to see what it solves, what the work includes, how success is measured and which tools support delivery. The recommendation starts with your constraint, not a preselected channel package.</p></header>
       <div className="capability-rows">{services.map((service, index) => <Link href={`/services/${service.slug}`} className="hover-target capability-motion-row" key={service.name} style={{"--row-accent": service.accent, "--row-soft": service.accentSoft} as React.CSSProperties}>
         <span>{String(index + 1).padStart(2, "0")}</span><h3>{service.name}</h3><p>{service.summary}</p>
         <div className="mini-tool-orbit">{service.tools.slice(0, 4).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div><b>↗</b>
       </Link>)}</div>
     </section>
 
+    <section className="home-clients shell">
+      <span className="eyebrow-small">SELECTED CLIENT WORK</span>
+      <div>{caseStudies.map((study) => <Link href={`/work/${study.slug}`} key={study.client}><Image src={study.logo} alt={study.logoAlt} width={230} height={90}/></Link>)}</div>
+    </section>
+
     <section className="featured-work shell">
-      <header><span className="eyebrow-small">ILLUSTRATIVE CASE FORMATS</span><h2>See the thinking<br/><i>before the claim.</i></h2><p>These are clearly labelled concept studies, not invented client results. Each one shows the problem framing, proposed system and measurement plan a real engagement would require.</p></header>
-      <div className="work-grid">{services.slice(1, 4).map((service, index) => <Link href={`/services/${service.slug}#case-study`} className="work-card" key={service.slug} style={{"--work-accent": service.accent, "--work-soft": service.accentSoft} as React.CSSProperties}>
-        <div className="work-card-top"><span>0{index + 1}</span><b>{service.caseStudy.label}</b></div>
-        <h3>{service.caseStudy.title}</h3><p>{service.caseStudy.sector}</p>
-        <div className="work-card-logos">{service.tools.slice(0, 3).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div>
-        <span className="work-arrow">VIEW STUDY ↗</span>
+      <header><span className="eyebrow-small">PORTFOLIO BACKED CASE STUDIES</span><h2>Real work.<br/><i>Visible evidence.</i></h2><p>Client stories built from Raj&apos;s supplied portfolio, including platform captures, before and after snapshots and attributed feedback. Historical rankings are clearly identified as point in time evidence.</p></header>
+      <div className="work-grid">{caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} className="work-card verified-work-card" key={study.slug} style={{"--work-accent": study.accent, "--work-soft": study.accentSoft} as React.CSSProperties}>
+        <div className="work-card-image"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 33vw"/></div>
+        <div className="work-card-top"><span>0{index + 1}</span><b>VERIFIED PORTFOLIO CASE</b></div>
+        <Image className="work-client-logo" src={study.logo} alt={study.logoAlt} width={190} height={70}/>
+        <h3>{study.headline}</h3><p>{study.industry}</p>
+        <div className="work-card-metric">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong><small>{metric.label}</small></span>)}</div>
+        <span className="work-arrow">READ THE EVIDENCE ↗</span>
       </Link>)}</div>
+      <Link className="all-work-link" href="/work">VIEW ALL CLIENT WORK ↗</Link>
+    </section>
+
+    <section className="home-testimonials shell">
+      <header><span className="eyebrow-small">CLIENT FEEDBACK</span><h2>Trust is earned<br/><i>in the work.</i></h2></header>
+      <div>{caseStudies.map((study) => <blockquote key={study.client}><Image src={study.logo} alt={study.logoAlt} width={170} height={64}/><p>“{study.testimonial.quote}”</p><footer><strong>{study.testimonial.name}</strong><span>{study.testimonial.role}</span></footer></blockquote>)}</div>
+      <p className="testimonial-source-note">Feedback reproduced from Raj Kushwaha&apos;s 2025 portfolio.</p>
+    </section>
+
+    <section className="about-raj shell">
+      <span className="eyebrow-small">WHO LEADS THE WORK</span>
+      <div><strong>6</strong><small>YEARS OF HANDS ON DIGITAL MARKETING EXPERIENCE</small></div>
+      <article><h2>Raj Kushwaha works across search, social, content and analytics.</h2><p>His portfolio covers organic growth programs for staffing, medical billing and consulting brands. The work shown here combines strategy with execution: page planning, technical search, content production, LinkedIn publishing, measurement and the client conversations needed to keep each channel useful.</p><p>Before independent client work, the portfolio records experience with Autotech Nonwoven, Ages Pvt Ltd and Webtezz.</p></article>
     </section>
 
     <section className="method"><div className="shell"><span className="eyebrow-small">HOW THE WORK RUNS</span><h2>Evidence before activity.<br/><i>Learning before scale.</i></h2><div className="method-steps"><article><span>01</span><h3>Diagnose</h3><p>Review the offer, audience, journey, data and operating limits to identify the real constraint.</p></article><article><span>02</span><h3>Decide</h3><p>Set the outcome, channel roles, scope, ownership and success signals before production begins.</p></article><article><span>03</span><h3>Build</h3><p>Create the campaigns, content or product in testable parts with measurement attached.</p></article><article><span>04</span><h3>Improve</h3><p>Use customer behavior and commercial evidence to stop, repair or scale the right work.</p></article></div></div></section>
