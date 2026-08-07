@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
-import { GrowthStack } from "./components/GrowthStack";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
@@ -20,8 +19,6 @@ export default function Home() {
     </section>
 
     <div className="ticker coral-ticker"><div>{[...services, ...services].map((service, index) => <span key={`${service.name}-${index}`}>{service.name} <b>•</b></span>)}</div></div>
-
-    <GrowthStack/>
 
     <section className="home-capabilities shell">
       <header><span className="eyebrow-small">CAPABILITIES IN MOTION</span><h2>Every discipline.<br/><i>Moving as one.</i></h2><p>Move across a service to reveal the real tools and platforms that power it. Select any capability for its process, case study, proof and answers.</p></header>
