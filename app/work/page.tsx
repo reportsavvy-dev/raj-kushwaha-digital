@@ -34,7 +34,7 @@ export default function WorkPage() {
 
     <section className="work-index shell">
       {caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} className="portfolio-card" key={study.slug} style={{"--case-accent": study.accent, "--case-soft": study.accentSoft} as React.CSSProperties}>
-        <div className="portfolio-card-visual"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 55vw"/><span className="portfolio-visual-logo"><Image src={study.logo} alt="" width={170} height={62} unoptimized/></span></div>
+        <div className="portfolio-card-visual"><Image src={study.heroImage} alt={study.heroAlt} fill unoptimized sizes="(max-width: 900px) 100vw, 55vw"/><span className="portfolio-visual-logo"><Image src={study.logo} alt="" width={170} height={62} unoptimized/></span></div>
         <div className="portfolio-card-copy">
           <header><span>0{index + 1}</span><Image src={study.logo} alt={study.logoAlt} width={220} height={80} unoptimized/></header>
           <small>{study.industry}</small>

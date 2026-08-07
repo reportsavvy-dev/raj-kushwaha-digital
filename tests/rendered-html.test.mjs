@@ -27,6 +27,10 @@ test("home page renders verified portfolio proof", async () => {
   assert.match(html, /class="home-client-marquee"/);
   assert.match(html, /class="home-client-track"/);
   assert.match(html, /aria-hidden="true"/);
+  assert.match(html, /src="\/case-studies\/silverspace-card-illustration\.webp"/);
+  assert.match(html, /src="\/case-studies\/keymed-card-illustration\.webp"/);
+  assert.match(html, /src="\/case-studies\/vizva-card-illustration\.webp"/);
+  assert.doesNotMatch(html, /_vinext\/image\?url=%2Fcase-studies%2F(?:silverspace|keymed|vizva)-card-illustration/);
   assert.match(html, /href="\/work"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
   assert.doesNotMatch(html, /[—–]/);
@@ -83,6 +87,7 @@ test("case page exposes evidence, attribution and structured data", async () => 
 
   assert.match(html, /15,750/);
   assert.match(html, /src="\/clients\/silverspace\.svg"/);
+  assert.match(html, /src="\/case-studies\/silverspace-card-illustration\.webp"/);
   assert.match(html, /class="case-visual-logo"/);
   assert.match(html, /Google Search Console: 1\.56K to 3\.19K/);
   assert.match(html, /Akash Dabhi/);

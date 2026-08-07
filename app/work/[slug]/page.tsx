@@ -71,7 +71,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <h1>{study.headline}</h1>
         <p>{study.summary}</p>
       </div>
-      <div className="case-hero-visual"><Image src={study.heroImage} alt={study.heroAlt} fill priority sizes="(max-width: 900px) 100vw, 50vw"/><span className="case-visual-logo"><Image src={study.logo} alt="" width={190} height={72} unoptimized/></span></div>
+      <div className="case-hero-visual"><Image src={study.heroImage} alt={study.heroAlt} fill priority unoptimized sizes="(max-width: 900px) 100vw, 50vw"/><span className="case-visual-logo"><Image src={study.logo} alt="" width={190} height={72} unoptimized/></span></div>
     </section>
 
     <section className="case-metric-grid shell">{study.metrics.map((metric) => <article key={metric.label}><strong>{metric.value}</strong><h2>{metric.label}</h2><p>{metric.detail}</p></article>)}</section>
@@ -86,7 +86,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
     <section className="case-evidence shell">
       <header><span className="eyebrow-small">SUPPLIED EVIDENCE</span><h2>The screenshots<br/><i>behind the story.</i></h2></header>
-      <div>{study.evidence.map((item) => <figure key={item.src}><Image src={item.src} alt={item.alt} width={1400} height={788} sizes="(max-width: 900px) 100vw, 50vw"/><figcaption>{item.caption}</figcaption></figure>)}</div>
+      <div>{study.evidence.map((item) => <figure key={item.src}><Image src={item.src} alt={item.alt} width={1400} height={788} unoptimized sizes="(max-width: 900px) 100vw, 50vw"/><figcaption>{item.caption}</figcaption></figure>)}</div>
     </section>
 
     <section className="verified-testimonial shell">

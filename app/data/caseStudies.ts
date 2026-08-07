@@ -31,8 +31,8 @@ export const caseStudies: PortfolioCaseStudy[] = [
     industry: "IT staffing and business consulting",
     headline: "Organic search and LinkedIn growth built around one B2B story",
     summary: "Silverspace needed stronger inbound demand without paid media. Search architecture, expert content, LinkedIn publishing and a sharper identity were treated as one connected growth program.",
-    heroImage: "/case-studies/silverspace-organic-growth-visual.webp",
-    heroAlt: "Editorial analytics artwork representing organic search and LinkedIn growth for Silverspace Inc",
+    heroImage: "/case-studies/silverspace-card-illustration.webp",
+    heroAlt: "Connected search, content and professional audience illustration for Silverspace Inc",
     accent: "#635bff",
     accentSoft: "#e6e1ff",
     services: ["seo-aeo-geo-sxo", "social-media-management-marketing", "content-marketing", "branding", "logo-graphic-design", "lead-generation"],
@@ -78,8 +78,8 @@ export const caseStudies: PortfolioCaseStudy[] = [
     industry: "Medical billing and revenue cycle management",
     headline: "Search authority for a specialist medical billing company",
     summary: "Key MedSolutions needed to be discoverable for specific medical billing problems, not only broad category terms. Technical improvements, service page content, local search work and evidence rich answers created a more useful search footprint.",
-    heroImage: "/case-studies/keymed-search-evidence.webp",
-    heroAlt: "Key MedSolutions organic search before and after evidence",
+    heroImage: "/case-studies/keymed-card-illustration.webp",
+    heroAlt: "Healthcare billing search authority and analytics illustration for Key MedSolutions",
     accent: "#00a86b",
     accentSoft: "#d8f7e8",
     services: ["seo-aeo-geo-sxo", "content-marketing", "social-media-management-marketing", "lead-generation"],
@@ -125,8 +125,8 @@ export const caseStudies: PortfolioCaseStudy[] = [
     industry: "Staffing, consulting and software services",
     headline: "A 90 day LinkedIn growth program supported by search demand",
     summary: "Vizva served several audiences across staffing, consulting and technology. The work gave those services a clearer editorial structure, built a consistent LinkedIn presence and connected social attention to search ready service pages.",
-    heroImage: "/case-studies/vizva-social-evidence.webp",
-    heroAlt: "Vizva Consultancy Services LinkedIn growth evidence",
+    heroImage: "/case-studies/vizva-card-illustration.webp",
+    heroAlt: "Professional audience growth and search demand illustration for Vizva Consultancy Services",
     accent: "#19a8dd",
     accentSoft: "#d8f3ff",
     services: ["social-media-management-marketing", "seo-aeo-geo-sxo", "content-marketing", "lead-generation", "digital-marketing"],
@@ -166,4 +166,3 @@ export const caseStudies: PortfolioCaseStudy[] = [
 ];
 
 export const caseStudyBySlug = (slug: string) => caseStudies.find((study) => study.slug === slug);
-

@@ -77,9 +77,8 @@ export default function Home() {
     <section className="featured-work shell">
       <header><span className="eyebrow-small">PORTFOLIO BACKED CASE STUDIES</span><h2>Real work.<br/><i>Visible evidence.</i></h2><p>Client stories built from Raj&apos;s supplied portfolio, including platform captures, before and after snapshots and attributed feedback. Historical rankings are clearly identified as point in time evidence.</p></header>
       <div className="work-grid">{caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} className="work-card verified-work-card" key={study.slug} style={{"--work-accent": study.accent, "--work-soft": study.accentSoft} as React.CSSProperties}>
-        <div className="work-card-image"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 33vw"/><span className="work-visual-logo"><Image src={study.logo} alt="" width={145} height={54} unoptimized/></span></div>
+        <div className="work-card-image"><Image src={study.heroImage} alt={study.heroAlt} fill unoptimized sizes="(max-width: 900px) 100vw, 33vw"/><span className="work-visual-logo"><Image src={study.logo} alt="" width={145} height={54} unoptimized/></span></div>
         <div className="work-card-top"><span>0{index + 1}</span><b>VERIFIED PORTFOLIO CASE</b></div>
-        <Image className="work-client-logo" src={study.logo} alt={study.logoAlt} width={190} height={70} unoptimized/>
         <h3>{study.headline}</h3><p>{study.industry}</p>
         <div className="work-card-metric">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong><small>{metric.label}</small></span>)}</div>
         <span className="work-arrow">READ THE EVIDENCE ↗</span>
