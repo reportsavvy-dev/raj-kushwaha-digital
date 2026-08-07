@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Contact, Footer } from "../../page";
 import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
+import { RKDMark } from "../../components/BrandMark";
 import { ServiceOrbital } from "../../components/ServiceOrbital";
 import { ToolLogo } from "../../components/ToolLogo";
 import { caseStudies } from "../../data/caseStudies";
@@ -12,6 +13,24 @@ import { linkedinWorkSamples } from "../../data/linkedinWork";
 import { serviceBySlug, services } from "../../data/services";
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+const serviceCaseVisuals: Record<string, { src: string; alt: string }> = {
+  "digital-marketing": { src: "/case-studies/generated/growth-media.webp", alt: "Integrated digital growth and media system concept artwork" },
+  "seo-aeo-geo-sxo": { src: "/case-studies/generated/search-intelligence.webp", alt: "Search intelligence, technical SEO and content authority concept artwork" },
+  "social-media-management-marketing": { src: "/case-studies/generated/social-influence.webp", alt: "Social media publishing and community growth system concept artwork" },
+  "ppc-ads": { src: "/case-studies/generated/growth-media.webp", alt: "Paid media, landing page and conversion measurement concept artwork" },
+  branding: { src: "/case-studies/generated/brand-pr.webp", alt: "Brand identity system and campaign application concept artwork" },
+  "logo-graphic-design": { src: "/case-studies/generated/brand-pr.webp", alt: "Responsive logo construction and graphic design system concept artwork" },
+  "performance-marketing": { src: "/case-studies/generated/growth-media.webp", alt: "Performance marketing analytics and channel orchestration concept artwork" },
+  "email-marketing": { src: "/case-studies/generated/lifecycle-leads.webp", alt: "Email lifecycle journey and audience segmentation concept artwork" },
+  "lead-generation": { src: "/case-studies/generated/lifecycle-leads.webp", alt: "Lead capture, qualification and CRM handoff concept artwork" },
+  "public-relations": { src: "/case-studies/generated/brand-pr.webp", alt: "Public relations story, press kit and brand system concept artwork" },
+  "content-marketing": { src: "/case-studies/generated/search-intelligence.webp", alt: "Content authority, topic architecture and distribution concept artwork" },
+  "influencer-marketing": { src: "/case-studies/generated/social-influence.webp", alt: "Influencer collaboration, social content and audience system concept artwork" },
+  "web-development": { src: "/case-studies/generated/product-ai.webp", alt: "Responsive website system and performance monitoring concept artwork" },
+  "app-software-development": { src: "/case-studies/generated/product-ai.webp", alt: "Application workflow, database and software interface concept artwork" },
+  "ai-agent-automation": { src: "/case-studies/generated/product-ai.webp", alt: "AI agent workflow, approval gate and monitoring system concept artwork" },
+};
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -47,6 +66,7 @@ export default async function ServicePage({ params }: PageProps) {
   const relatedCases = caseStudies.filter((study) => study.services.includes(service.slug));
   const relatedLinkedIn = linkedinWorkSamples.filter((sample) => sample.services.includes(service.slug));
   const hasClientProof = relatedCases.length > 0 || relatedLinkedIn.length > 0;
+  const caseVisual = serviceCaseVisuals[service.slug];
   const orbitalService = { shortName: service.shortName, tools: service.tools, visual: service.visual, accent: service.accent, accentSoft: service.accentSoft };
   const canonicalUrl = `https://rajkushwahadigital.com/services/${service.slug}`;
   const structuredData = {
@@ -106,7 +126,7 @@ export default async function ServicePage({ params }: PageProps) {
     {relatedCases.length ? <section className="service-proof shell" id="client-work">
       <header><span className="eyebrow-small">RELATED CLIENT RESULTS</span><h2>Portfolio evidence for<br/><i>{service.shortName}.</i></h2><p>These cases use supplied screenshots, portfolio reporting and attributed client feedback.</p></header>
       <div>{relatedCases.map((study) => <Link href={`/work/${study.slug}`} key={study.slug} style={{"--proof-accent": study.accent, "--proof-soft": study.accentSoft} as React.CSSProperties}>
-        <span className="service-proof-logo"><Image src={study.logo} alt={study.logoAlt} width={180} height={68}/></span>
+        <span className="service-proof-logo"><Image src={study.logo} alt={study.logoAlt} width={180} height={68} unoptimized/></span>
         <h3>{study.headline}</h3>
         <p>{study.metrics[0].value}<small>{study.metrics[0].label}</small></p>
         <b>VIEW EVIDENCE ↗</b>
@@ -125,9 +145,9 @@ export default async function ServicePage({ params }: PageProps) {
 
     <section className="service-case shell" id="case-study">
       <div className="case-art">
-        <div className="case-art-top"><span>{service.caseStudy.label ?? "Case study"}</span><b>{service.caseStudy.sector}</b></div>
+        <Image className="case-art-image" src={caseVisual.src} alt={caseVisual.alt} fill unoptimized sizes="(max-width: 900px) 100vw, 55vw"/>
+        <div className="case-art-top"><span className="case-art-brand"><RKDMark/><b>RAJ KUSHWAHA DIGITAL</b></span><b>{service.caseStudy.sector}</b></div>
         <div className="case-art-core"><small>RKD / {service.visual.toUpperCase()}</small><strong>{service.caseStudy.title}</strong></div>
-        <div className="case-art-tools">{service.tools.slice(0, 5).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div>
       </div>
       <div className="case-copy">
         <span className="eyebrow-small">CAPABILITY CASE STUDY / CONCEPT</span><h2>{service.caseStudy.title}</h2>

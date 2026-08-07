@@ -60,16 +60,16 @@ export default function Home() {
       <span className="eyebrow-small">SELECTED CLIENT WORK</span>
       <div>
         {linkedinWorkSamples.map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={170} height={72} unoptimized loading="eager"/><small>{sample.client}</small></Link>)}
-        <Link href={`/work/${caseStudies[1].slug}`}><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={170} height={72}/></Link>
+        <Link href={`/work/${caseStudies[1].slug}`}><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={170} height={72} unoptimized loading="eager"/></Link>
       </div>
     </section>
 
     <section className="featured-work shell">
       <header><span className="eyebrow-small">PORTFOLIO BACKED CASE STUDIES</span><h2>Real work.<br/><i>Visible evidence.</i></h2><p>Client stories built from Raj&apos;s supplied portfolio, including platform captures, before and after snapshots and attributed feedback. Historical rankings are clearly identified as point in time evidence.</p></header>
       <div className="work-grid">{caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} className="work-card verified-work-card" key={study.slug} style={{"--work-accent": study.accent, "--work-soft": study.accentSoft} as React.CSSProperties}>
-        <div className="work-card-image"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 33vw"/></div>
+        <div className="work-card-image"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 33vw"/><span className="work-visual-logo"><Image src={study.logo} alt="" width={145} height={54} unoptimized/></span></div>
         <div className="work-card-top"><span>0{index + 1}</span><b>VERIFIED PORTFOLIO CASE</b></div>
-        <Image className="work-client-logo" src={study.logo} alt={study.logoAlt} width={190} height={70}/>
+        <Image className="work-client-logo" src={study.logo} alt={study.logoAlt} width={190} height={70} unoptimized/>
         <h3>{study.headline}</h3><p>{study.industry}</p>
         <div className="work-card-metric">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong><small>{metric.label}</small></span>)}</div>
         <span className="work-arrow">READ THE EVIDENCE ↗</span>
@@ -90,7 +90,7 @@ export default function Home() {
 
     <section className="home-testimonials shell">
       <header><span className="eyebrow-small">CLIENT FEEDBACK</span><h2>Trust is earned<br/><i>in the work.</i></h2></header>
-      <div>{caseStudies.map((study) => <blockquote key={study.client}><Image src={study.logo} alt={study.logoAlt} width={170} height={64}/><p>“{study.testimonial.quote}”</p><footer><strong>{study.testimonial.name}</strong><span>{study.testimonial.role}</span></footer></blockquote>)}</div>
+      <div>{caseStudies.map((study) => <blockquote key={study.client}><Image src={study.logo} alt={study.logoAlt} width={170} height={64} unoptimized/><p>“{study.testimonial.quote}”</p><footer><strong>{study.testimonial.name}</strong><span>{study.testimonial.role}</span></footer></blockquote>)}</div>
       <p className="testimonial-source-note">Feedback reproduced from Raj Kushwaha&apos;s 2025 portfolio.</p>
     </section>
 

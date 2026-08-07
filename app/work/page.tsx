@@ -28,15 +28,15 @@ export default function WorkPage() {
       <span>SELECTED CLIENTS</span>
       <div>
         {linkedinWorkSamples.map((sample) => <a href={sample.linkedin} target="_blank" rel="noreferrer" key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={180} height={80} unoptimized loading="eager"/><small>{sample.client}</small></a>)}
-        <a href={caseStudies[1].website} target="_blank" rel="noreferrer"><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={180} height={80}/></a>
+        <a href={caseStudies[1].website} target="_blank" rel="noreferrer"><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={180} height={80} unoptimized loading="eager"/></a>
       </div>
     </section>
 
     <section className="work-index shell">
       {caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} className="portfolio-card" key={study.slug} style={{"--case-accent": study.accent, "--case-soft": study.accentSoft} as React.CSSProperties}>
-        <div className="portfolio-card-visual"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 55vw"/></div>
+        <div className="portfolio-card-visual"><Image src={study.heroImage} alt={study.heroAlt} fill sizes="(max-width: 900px) 100vw, 55vw"/><span className="portfolio-visual-logo"><Image src={study.logo} alt="" width={170} height={62} unoptimized/></span></div>
         <div className="portfolio-card-copy">
-          <header><span>0{index + 1}</span><Image src={study.logo} alt={study.logoAlt} width={220} height={80}/></header>
+          <header><span>0{index + 1}</span><Image src={study.logo} alt={study.logoAlt} width={220} height={80} unoptimized/></header>
           <small>{study.industry}</small>
           <h2>{study.headline}</h2>
           <div className="portfolio-card-metrics">{study.metrics.map((metric) => <p key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></p>)}</div>

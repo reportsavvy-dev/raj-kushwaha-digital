@@ -79,6 +79,8 @@ test("case page exposes evidence, attribution and structured data", async () => 
   const html = await response.text();
 
   assert.match(html, /15,750/);
+  assert.match(html, /src="\/clients\/silverspace\.svg"/);
+  assert.match(html, /class="case-visual-logo"/);
   assert.match(html, /Google Search Console: 1\.56K to 3\.19K/);
   assert.match(html, /Akash Dabhi/);
   assert.match(html, /VERIFIED PORTFOLIO SOURCE/);
@@ -95,6 +97,8 @@ test("service page separates real work from planning examples", async () => {
   assert.match(html, /RELATED CLIENT RESULTS/);
   assert.match(html, /PUBLIC LINKEDIN WORK/);
   assert.match(html, /CAPABILITY CASE STUDY \/ CONCEPT/);
+  assert.match(html, /src="\/case-studies\/generated\/social-influence\.webp"/);
+  assert.match(html, /RAJ KUSHWAHA DIGITAL/);
   assert.match(html, /This is not client work/);
   assert.match(html, /Planning benchmark, not client feedback/);
 });

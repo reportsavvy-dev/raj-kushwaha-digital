@@ -78,7 +78,7 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
         <h1>{sample.headline}</h1>
         <p>{sample.summary}</p>
       </div>
-      <div className="case-hero-visual linkedin-post-visual"><Image src={sample.postImage} alt={sample.postAlt} fill priority sizes="(max-width: 900px) 100vw, 50vw"/></div>
+      <div className="case-hero-visual linkedin-post-visual"><Image src={sample.postImage} alt={sample.postAlt} fill priority sizes="(max-width: 900px) 100vw, 50vw"/><span className="case-visual-logo"><Image src={sample.logo} alt="" width={170} height={68} unoptimized/></span></div>
     </section>
 
     <section className="case-provenance shell">

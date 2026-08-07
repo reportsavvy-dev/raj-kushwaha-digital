@@ -66,12 +66,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <section className="case-hero shell">
       <div className="case-hero-copy">
         <span className="eyebrow-small">PORTFOLIO CASE / {String(index + 1).padStart(2, "0")}</span>
-        <Image src={study.logo} alt={study.logoAlt} width={280} height={110} priority/>
+        <Image src={study.logo} alt={study.logoAlt} width={280} height={110} priority unoptimized/>
         <small>{study.industry}</small>
         <h1>{study.headline}</h1>
         <p>{study.summary}</p>
       </div>
-      <div className="case-hero-visual"><Image src={study.heroImage} alt={study.heroAlt} fill priority sizes="(max-width: 900px) 100vw, 50vw"/></div>
+      <div className="case-hero-visual"><Image src={study.heroImage} alt={study.heroAlt} fill priority sizes="(max-width: 900px) 100vw, 50vw"/><span className="case-visual-logo"><Image src={study.logo} alt="" width={190} height={72} unoptimized/></span></div>
     </section>
 
     <section className="case-metric-grid shell">{study.metrics.map((metric) => <article key={metric.label}><strong>{metric.value}</strong><h2>{metric.label}</h2><p>{metric.detail}</p></article>)}</section>
@@ -99,4 +99,3 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <Contact/><Footer/>
   </main>;
 }
-
