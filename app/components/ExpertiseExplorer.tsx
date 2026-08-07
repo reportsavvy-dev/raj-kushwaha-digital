@@ -1,8 +1,39 @@
 "use client";
+
+import Link from "next/link";
 import { useState } from "react";
-import { services, type Service } from "../data/services";
+import { services } from "../data/services";
+import { ServiceOrbital } from "./ServiceOrbital";
 import { ToolLogo } from "./ToolLogo";
 
-export function ExpertiseExplorer(){const[active,setActive]=useState(0);const s=services[active];return <section className="expertise-explorer shell"><div className="service-index">{services.map((x,i)=><button key={x.name} className={active===i?"active":""} onMouseEnter={()=>setActive(i)} onFocus={()=>setActive(i)} onClick={()=>setActive(i)}><span>{String(i+1).padStart(2,"0")}</span><b>{x.name}</b><i>{active===i?"−":"+"}</i></button>)}</div><article className="expertise-panel" key={s.name}><div className="panel-copy"><span className="eyebrow-small">ACTIVE CAPABILITY</span><h2>{s.name}</h2><p>{s.summary}</p><ul>{s.deliverables.map(x=><li key={x}>{x}</li>)}</ul><small>TOOLS &amp; PLATFORMS</small><div className="tool-chips">{s.tools.map(x=><span key={x}>{x}</span>)}</div><div className="growth-note"><small>HOW THIS MOVES GROWTH</small><p>Focused strategy, connected execution and continuous learning—built around the role this service plays in your customer journey.</p></div></div><ServiceUniverse service={s}/></article></section>}
+export function ExpertiseExplorer() {
+  const [active, setActive] = useState(0);
+  const service = services[active];
 
-function ServiceUniverse({service}:{service:Service}){const a=service.tools.slice(0,2),b=service.tools.slice(2,5),c=service.tools.slice(5,8);return <div className={`cap-visual service-universe ${service.visual}`}><div className="cap-top"><span>{service.visual.toUpperCase()} SYSTEM</span><b>● ACTIVE</b></div><div className="universe-core"><small>CONNECTED</small><strong>{service.name}</strong><span>RKD</span></div>{a.length>0&&<div className="service-orbit so-a">{a.map(x=><ToolLogo name={x} key={x}/>)}</div>}{b.length>0&&<div className="service-orbit so-b">{b.map(x=><ToolLogo name={x} key={x}/>)}</div>}{c.length>0&&<div className="service-orbit so-c">{c.map(x=><ToolLogo name={x} key={x}/>)}</div>}<div className="cap-bottom"><span>STRATEGY</span><span>CREATIVE</span><span>TECHNOLOGY</span><span>GROWTH</span></div></div>}
+  return <section className="expertise-explorer shell" style={{"--service-accent": service.accent, "--service-soft": service.accentSoft} as React.CSSProperties}>
+    <div className="service-index">
+      {services.map((item, index) => <button
+        key={item.name}
+        className={active === index ? "active" : ""}
+        onMouseEnter={() => setActive(index)}
+        onFocus={() => setActive(index)}
+        onClick={() => setActive(index)}
+        style={{"--row-accent": item.accent} as React.CSSProperties}
+      >
+        <span>{String(index + 1).padStart(2, "0")}</span><b>{item.name}</b><i>{active === index ? "−" : "+"}</i>
+      </button>)}
+    </div>
+    <article className="expertise-panel" key={service.name}>
+      <div className="panel-copy">
+        <span className="eyebrow-small">ACTIVE CAPABILITY</span>
+        <h2>{service.name}</h2>
+        <p>{service.summary}</p>
+        <ul>{service.deliverables.map((item) => <li key={item}>{item}</li>)}</ul>
+        <small>TOOLS &amp; PLATFORMS</small>
+        <div className="tool-chips logo-tool-chips">{service.tools.map((tool) => <ToolLogo name={tool} key={tool}/>)}</div>
+        <Link className="service-deep-link magnetic" href={`/services/${service.slug}`}>EXPLORE FULL SERVICE <span>↗</span></Link>
+      </div>
+      <ServiceOrbital service={service} compact/>
+    </article>
+  </section>;
+}
