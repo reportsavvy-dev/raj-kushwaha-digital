@@ -95,7 +95,7 @@ export function Cursor() {
       (entries) => entries.forEach((entry) => entry.target.classList.toggle("motion-paused", !entry.isIntersecting)),
       { rootMargin: "140px 0px" },
     );
-    document.querySelectorAll(".ticker,.service-marquee").forEach((element) => motionObserver.observe(element));
+    document.querySelectorAll(".ticker,.service-marquee,.home-client-marquee").forEach((element) => motionObserver.observe(element));
 
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerover", over, { passive: true });

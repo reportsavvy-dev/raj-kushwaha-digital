@@ -358,6 +358,66 @@
     font-size: 49px;
   }
 }
+
+/* One-line client logo rail moving continuously to the right. */
+.home-clients > .home-client-marquee {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--ink);
+  border-radius: 9px;
+  background: var(--white);
+}
+.home-client-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: homeClientRight 34s linear infinite;
+}
+.home-client-set {
+  display: flex;
+  flex: 0 0 auto;
+}
+.home-clients .home-client-set > a {
+  flex: 0 0 clamp(205px, 17vw, 285px);
+  width: clamp(205px, 17vw, 285px);
+  min-height: 132px;
+  padding: 20px 24px;
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+}
+.home-clients .home-client-set > a:last-child {
+  border-right: 1px solid var(--line);
+}
+.home-client-marquee:hover .home-client-track,
+.home-client-marquee:focus-within .home-client-track,
+.home-client-marquee.motion-paused .home-client-track {
+  animation-play-state: paused;
+}
+@keyframes homeClientRight {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@media (max-width: 620px) {
+  .home-clients .home-client-set > a {
+    flex-basis: 205px;
+    width: 205px;
+    min-height: 112px;
+    padding: 15px 18px;
+  }
+  .home-client-track {
+    animation-duration: 27s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-client-track {
+    transform: none;
+    animation: none;
+  }
+  .home-client-marquee {
+    overflow-x: auto !important;
+  }
+}
 * {
   box-sizing: border-box;
 }

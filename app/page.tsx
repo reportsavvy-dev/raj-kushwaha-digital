@@ -26,6 +26,11 @@ const heroSignals = [
   { tool: "OpenAI", label: "AI", note: "INSIGHTS" },
 ];
 
+const homeClientLogos = [
+  ...linkedinWorkSamples.map((sample) => ({ href: `/work/linkedin/${sample.slug}`, src: sample.logo, alt: sample.logoAlt, name: sample.client })),
+  { href: `/work/${caseStudies[1].slug}`, src: caseStudies[1].logo, alt: caseStudies[1].logoAlt, name: caseStudies[1].client },
+];
+
 export default function Home() {
   return <main>
     <Cursor/><Nav/>
@@ -58,9 +63,14 @@ export default function Home() {
 
     <section className="home-clients shell">
       <span className="eyebrow-small">SELECTED CLIENT WORK</span>
-      <div>
-        {linkedinWorkSamples.map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={170} height={72} unoptimized loading="eager"/><small>{sample.client}</small></Link>)}
-        <Link href={`/work/${caseStudies[1].slug}`}><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={170} height={72} unoptimized loading="eager"/></Link>
+      <div className="home-client-marquee">
+        <div className="home-client-track">
+          {[0, 1].map((copy) => <div className="home-client-set" aria-hidden={copy === 1 ? true : undefined} key={copy}>
+            {homeClientLogos.map((client) => <Link href={client.href} key={`${copy}-${client.name}`} tabIndex={copy === 1 ? -1 : undefined}>
+              <Image src={client.src} alt={copy === 1 ? "" : client.alt} width={170} height={72} unoptimized loading="eager"/><small>{client.name}</small>
+            </Link>)}
+          </div>)}
+        </div>
       </div>
     </section>
 

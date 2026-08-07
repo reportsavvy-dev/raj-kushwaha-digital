@@ -24,6 +24,9 @@ test("home page renders verified portfolio proof", async () => {
   assert.match(html, /Key MedSolutions/);
   assert.match(html, /Vizva Consultancy Services/);
   assert.match(html, /CLIENT FEEDBACK/);
+  assert.match(html, /class="home-client-marquee"/);
+  assert.match(html, /class="home-client-track"/);
+  assert.match(html, /aria-hidden="true"/);
   assert.match(html, /href="\/work"/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
   assert.doesNotMatch(html, /[—–]/);
