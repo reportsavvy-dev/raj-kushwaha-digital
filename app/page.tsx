@@ -29,7 +29,8 @@ export default function Home() {
         </section>
         <span className="eyebrow-small">INDEPENDENT DIGITAL GROWTH AGENCY</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
-        <p>Strategy, creativity and technology—connected to grow your business.</p>
+        <p className="studio-hero-copy">Strategy, creativity and technology—connected to grow your business.</p>
+        <p className="antarctica-hero-copy">Data-driven strategies. Creative that connects.<br/>Performance that compounds.<br/>We help brands grow—sustainably.</p>
         <div><a className="primary-button magnetic" href="mailto:hello@rajkushwahadigital.com?subject=Start a project">START A PROJECT <span>→</span></a><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
       </div>
       <HeroSolarSystem/>

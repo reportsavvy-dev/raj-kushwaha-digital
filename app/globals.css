@@ -94,3 +94,61 @@ html[data-theme="antarctica"]{--paper:#061525;--ink:#eefcff;--coral:#59edff;--mu
 @media(max-width:900px){.theme-switcher{right:8px;width:88px}.theme-switcher button{min-height:68px}.theme-switcher-label{font-size:6px}}
 @media(max-width:650px){.theme-switcher{top:auto;right:12px;bottom:12px;width:auto;transform:none;grid-template-columns:auto 1fr 1fr;align-items:center;padding:5px;border-radius:14px}.theme-switcher-label{padding:0 4px;writing-mode:vertical-rl}.theme-switcher button{min-height:48px;min-width:66px;grid-template-columns:20px 1fr;gap:4px;padding:6px}.theme-switcher button>i{width:20px;height:20px}.theme-snow-icon{font-size:19px}.theme-switcher button.active:after{right:auto;left:50%;top:-8px;transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.aurora,.polar-stars,.snow-field i{animation-play-state:paused!important}.theme-switcher button{transition:none}}
+
+/* Antarctica reference composition: generated concept translated into live UI. */
+.antarctica-hero-copy{display:none}
+.ice-horizon:before,.ice-horizon:after{content:"";position:absolute;inset:0}.ice-horizon:before{background:linear-gradient(155deg,transparent 0 49%,#86cde245 49.3% 55%,transparent 55.4%) 8% 0/24% 100% no-repeat,linear-gradient(205deg,transparent 0 46%,#a9e2f05c 46.4% 54%,transparent 54.5%) 21% 0/27% 100% no-repeat,linear-gradient(155deg,transparent 0 47%,#6db9d84c 47.4% 56%,transparent 56.4%) 48% 0/28% 100% no-repeat,linear-gradient(205deg,transparent 0 44%,#bcefff63 44.4% 55%,transparent 55.4%) 70% 0/31% 100% no-repeat}.ice-horizon:after{top:54%;background:repeating-linear-gradient(172deg,transparent 0 12px,#b9f2ff18 13px 14px,transparent 15px 31px),linear-gradient(180deg,#8ed9ee24,#d9f7ff0f);filter:blur(.3px)}
+
+@media(min-width:1001px){
+html[data-theme="antarctica"] .shell{width:min(1540px,calc(100% - 108px))}
+html[data-theme="antarctica"] .nav{height:104px;background:linear-gradient(180deg,#020d1dd4,#0414268c);backdrop-filter:blur(14px);padding-inline:5px}
+html[data-theme="antarctica"] .nav .brand-line-mark{color:#e9fdff;filter:drop-shadow(0 0 8px #5cecff59)}
+html[data-theme="antarctica"] .nav .logo-name b{color:#f7fdff;letter-spacing:1.3px}
+html[data-theme="antarctica"] .nav .logo-name small{color:#79efff}
+html[data-theme="antarctica"] .nav nav{gap:31px}
+html[data-theme="antarctica"] .nav nav>a:last-child{border:1px solid #75eaff;border-radius:8px;padding:0 23px;box-shadow:inset 0 0 20px #59edff12,0 0 18px #59edff13}
+html[data-theme="antarctica"] .home-hero{min-height:calc(100svh - 104px);grid-template-columns:.82fr 1.18fr;align-items:center;padding-bottom:24px;isolation:isolate}
+html[data-theme="antarctica"] .hero-copy{align-self:center;padding:24px 0 0;display:flex;flex-direction:column;max-width:640px}
+html[data-theme="antarctica"] .hero-copy>.eyebrow-small{order:1;font-size:11px;letter-spacing:3px;color:#60efff;text-shadow:0 0 15px #32dfff61}
+html[data-theme="antarctica"] .hero-copy>.kinetic-title{order:2;margin:24px 0 25px;font-size:clamp(70px,5.9vw,104px);line-height:.93;letter-spacing:-.065em;text-shadow:0 10px 45px #0009}
+html[data-theme="antarctica"] .hero-copy>.kinetic-title span{display:block;color:#f7fdff}
+html[data-theme="antarctica"] .hero-copy>.kinetic-title i{font-family:var(--font-geist-sans),Arial,sans-serif;font-style:normal;font-weight:500;letter-spacing:-.06em;color:#8ddcff;text-transform:lowercase;text-shadow:0 0 28px #49ceff30}
+html[data-theme="antarctica"] .hero-copy>.studio-hero-copy{display:none}
+html[data-theme="antarctica"] .hero-copy>.antarctica-hero-copy{display:block;order:3;margin:0;color:#cee8f3;font-size:17px;line-height:1.55;max-width:520px}
+html[data-theme="antarctica"] .hero-copy>div:not(.hero-signal-strip){order:4;margin-top:28px}
+html[data-theme="antarctica"] .hero-copy>.hero-signal-strip{order:5;margin:34px 0 0;max-width:600px;padding:17px 20px 15px;border:1px solid #73cfe982;border-radius:13px;background:linear-gradient(145deg,#0b2a45c9,#06182bd9);box-shadow:inset 0 0 30px #7eeeff0b,0 20px 50px #0008,0 0 28px #4fdfff10;backdrop-filter:blur(18px)}
+html[data-theme="antarctica"] .hero-signal-strip>header{color:#d9f5ff;font-size:9px}
+html[data-theme="antarctica"] .hero-signal-strip>header span:after{content:" 〰 LIVE";color:#5cf5ff;margin-left:14px}
+html[data-theme="antarctica"] .hero-signal-strip>header i{border-color:#47768d}
+html[data-theme="antarctica"] .hero-signal-strip>div{gap:0;margin-top:13px}
+html[data-theme="antarctica"] .hero-signal-strip article{min-height:65px;padding:7px 12px;background:transparent;border:0;border-right:1px solid #466c80;border-radius:0;box-shadow:none;flex-direction:column;align-items:flex-start}
+html[data-theme="antarctica"] .hero-signal-strip article:last-child{border-right:0}
+html[data-theme="antarctica"] .hero-signal-strip article:hover{transform:translateY(-5px);background:#64eaff0b;box-shadow:none}
+html[data-theme="antarctica"] .hero-signal-strip article>.tool-logo{width:31px;height:31px;flex-basis:31px;border:0;background:transparent}
+html[data-theme="antarctica"] .hero-signal-strip article>.tool-logo svg{font-size:26px}
+html[data-theme="antarctica"] .hero-signal-strip article>span b{font-size:8px;color:#effcff;margin-top:5px}
+html[data-theme="antarctica"] .hero-signal-strip article>span small{font-size:5px;color:#9abcca}
+html[data-theme="antarctica"] .hero-signal-strip>footer{display:none}
+html[data-theme="antarctica"] .hero-solar-system{height:min(790px,calc(100svh - 125px));margin-left:-10px;overflow:visible}
+html[data-theme="antarctica"] .solar-stage{transform:scale(.96);filter:drop-shadow(0 22px 25px #0007)}
+html[data-theme="antarctica"] .solar-glow{width:570px;height:510px;background:radial-gradient(circle,#1d84ff2d 0,#01e4ca19 34%,transparent 69%);filter:blur(22px)}
+html[data-theme="antarctica"] .solar-orbit{border-color:#a8edff91;box-shadow:0 0 14px #57e3ff0d}
+html[data-theme="antarctica"] .solar-orbit.orbit-two{border-style:solid}
+html[data-theme="antarctica"] .solar-core{width:405px;min-height:370px;transform:translate(calc(-50% + var(--solar-x)),calc(-50% + var(--solar-y)));border-radius:15px;border:1px solid #8feeff;outline:1px solid #4fdfff3d;outline-offset:5px;background:linear-gradient(145deg,#09233be8,#041426f2);box-shadow:inset 0 0 40px #5deaff0c,0 35px 90px #000b,0 0 45px #38dfff26}
+html[data-theme="antarctica"] .solar-core>header span:after{content:" / MARKETING COMMAND CENTER";color:#8ab9c9}
+html[data-theme="antarctica"] .solar-planet{width:174px;min-height:113px;border:1px solid color-mix(in srgb,var(--planet-color) 68%,#c4f8ff);border-top:1px solid color-mix(in srgb,var(--planet-color) 80%,white);background:linear-gradient(145deg,#103654dc,#071a30ed);backdrop-filter:blur(15px);box-shadow:inset 0 0 24px color-mix(in srgb,var(--planet-color) 11%,transparent),0 20px 44px #0009,0 0 20px color-mix(in srgb,var(--planet-color) 24%,transparent)}
+html[data-theme="antarctica"] .solar-planet header>.tool-logo{background:#f6fbff}
+html[data-theme="antarctica"] .solar-signal{box-shadow:0 0 9px #fff,0 0 24px currentColor}
+html[data-theme="antarctica"] .theme-switcher{right:23px;width:93px;border-radius:20px;padding:8px 7px;background:#031328d9;border-color:#7ba9bd;box-shadow:inset 0 0 30px #60e9ff09,0 20px 60px #000b}
+html[data-theme="antarctica"] .theme-switcher-label{display:none}
+html[data-theme="antarctica"] .theme-switcher button{min-height:91px;border-radius:14px}
+}
+
+html[data-theme="antarctica"] .aurora-one{left:36vw;top:-34vh;width:78vw;opacity:.76;filter:blur(40px)}
+html[data-theme="antarctica"] .aurora-two{left:55vw;top:-32vh;width:63vw;opacity:.58;filter:blur(42px)}
+html[data-theme="antarctica"] .aurora-three{left:26vw;top:-20vh;opacity:.55;filter:blur(48px)}
+html[data-theme="antarctica"] .ice-horizon{left:-4%;right:-4%;bottom:-3vh;height:28vh;clip-path:none;background:linear-gradient(180deg,transparent 0 45%,#76cfe832 46%,#d6f6ff25 100%);opacity:.9}
+html[data-theme="antarctica"] .snow-field i:nth-child(3n){filter:blur(1.2px) drop-shadow(0 0 5px #fff)}
+html[data-theme="antarctica"] .snow-field i:nth-child(5n){box-shadow:0 -8px 11px #e9fcff7d}
+
+@media(max-width:1000px){html[data-theme="antarctica"] .hero-copy>.studio-hero-copy{display:none}html[data-theme="antarctica"] .hero-copy>.antarctica-hero-copy{display:block}html[data-theme="antarctica"] .hero-copy>.kinetic-title i{font-family:var(--font-geist-sans),Arial,sans-serif;font-style:normal;font-weight:500;color:#8ddcff}html[data-theme="antarctica"] .hero-copy>.hero-signal-strip{margin-top:30px;padding:16px;border:1px solid #73cfe982;border-radius:13px;background:#082139d9}html[data-theme="antarctica"] .hero-solar-system{overflow:hidden}html[data-theme="antarctica"] .home-hero{padding-bottom:30px}}
