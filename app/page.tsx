@@ -4,7 +4,6 @@ import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { RKDMark } from "./components/BrandMark";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
-import { ThemeSwitcher } from "./components/ThemeSystem";
 import { services } from "./data/services";
 
 export const dynamic = "force-static";
@@ -19,7 +18,7 @@ const heroSignals = [
 
 export default function Home() {
   return <main>
-    <Cursor/><Nav/><ThemeSwitcher/>
+    <Cursor/><Nav/>
     <section className="home-hero shell">
       <div className="hero-copy">
         <section className="hero-signal-strip" aria-label="Active marketing platforms">
@@ -32,7 +31,6 @@ export default function Home() {
         <span className="eyebrow-small">INDEPENDENT DIGITAL GROWTH AGENCY</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
         <p className="studio-hero-copy">Strategy, creativity and technology—connected to grow your business.</p>
-        <p className="antarctica-hero-copy">Data-driven strategies. Creative that connects.<br/>Performance that compounds.<br/>We help brands grow—sustainably.</p>
         <div><a className="primary-button magnetic" href="mailto:hello@rajkushwahadigital.com?subject=Start a project">START A PROJECT <span>→</span></a><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
       </div>
       <HeroSolarSystem/>
