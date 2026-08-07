@@ -27,7 +27,7 @@ export default function WorkPage() {
     <section className="client-logo-band shell" aria-label="Selected clients">
       <span>SELECTED CLIENTS</span>
       <div>
-        {linkedinWorkSamples.map((sample) => <a href={sample.linkedin} target="_blank" rel="noreferrer" key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={180} height={80}/></a>)}
+        {linkedinWorkSamples.map((sample) => <a href={sample.linkedin} target="_blank" rel="noreferrer" key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={180} height={80} unoptimized loading="eager"/><small>{sample.client}</small></a>)}
         <a href={caseStudies[1].website} target="_blank" rel="noreferrer"><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={180} height={80}/></a>
       </div>
     </section>
@@ -55,7 +55,7 @@ export default function WorkPage() {
         {linkedinWorkSamples.map((sample, index) => <Link href={`/work/linkedin/${sample.slug}`} className="linkedin-work-card" key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
           <div className="linkedin-work-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw"/></div>
           <div className="linkedin-work-copy">
-            <header><span>{String(index + 1).padStart(2, "0")}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52}/></header>
+            <header><span>{String(index + 1).padStart(2, "0")}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52} unoptimized/></header>
             <small>PUBLIC LINKEDIN SAMPLE</small>
             <h3>{sample.headline}</h3>
             <p>{sample.topic}</p>

@@ -117,7 +117,7 @@ export default async function ServicePage({ params }: PageProps) {
       <header><span className="eyebrow-small">PUBLIC LINKEDIN WORK</span><h2>Published work for<br/><i>real brands.</i></h2><p>These creatives are visible on the brands&apos; official LinkedIn pages. The work proves content and design delivery without inventing performance numbers.</p></header>
       <div className="service-linkedin-grid">{relatedLinkedIn.slice(0, 3).map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
         <div className="service-linkedin-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 900px) 100vw, 33vw"/></div>
-        <span><Image src={sample.logo} alt={sample.logoAlt} width={130} height={54}/><small>{sample.client}</small></span>
+        <span><Image src={sample.logo} alt={sample.logoAlt} width={130} height={54} unoptimized/><small>{sample.client}</small></span>
         <h3>{sample.headline}</h3><b>VIEW WORK SAMPLE ↗</b>
       </Link>)}</div>
       {relatedLinkedIn.length > 3 ? <Link className="all-work-link" href="/work#linkedin-work">VIEW ALL NINE BRAND SAMPLES ↗</Link> : null}

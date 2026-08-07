@@ -43,6 +43,20 @@ test("work index renders all portfolio case routes", async () => {
   assert.match(html, /Amoha RCM/);
   assert.match(html, /Vizva Consultancy Services UK/);
   assert.match(html, /\/work\/linkedin\/bridgepoint-careers-linkedin-content-system/);
+  assert.match(html, /src="\/clients\/linkedin\/amoha-rcm\.webp"/);
+  assert.match(html, /src="\/clients\/linkedin\/vizva-uk\.webp"/);
+  for (const logo of [
+    "amoha-rcm",
+    "amoha-recruitment",
+    "bridgepoint-careers",
+    "ipeople-career",
+    "the-dataflux",
+    "flawless-ed",
+    "silverspace-linkedin",
+    "vizva-usa-linkedin",
+    "vizva-uk",
+  ]) assert.match(html, new RegExp(`src="/clients/linkedin/${logo}\\.webp"`));
+  assert.doesNotMatch(html, /_vinext\/image\?url=%2Fclients%2Flinkedin/);
   assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/work"/);
 });
 
@@ -55,6 +69,7 @@ test("LinkedIn sample page separates visible work from unverified outcomes", asy
   assert.match(html, /Secondary claims need primary EOB evidence/);
   assert.match(html, /does not claim impressions, leads or revenue/i);
   assert.match(html, /VIEW LINKEDIN POST/);
+  assert.match(html, /src="\/clients\/linkedin\/amoha-rcm\.webp"/);
   assert.match(html, /"@type":"Article"/);
 });
 

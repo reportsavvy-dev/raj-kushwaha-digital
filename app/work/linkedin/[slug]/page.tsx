@@ -73,7 +73,7 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
     <section className="case-hero linkedin-case-hero shell">
       <div className="case-hero-copy">
         <span className="eyebrow-small">PUBLIC LINKEDIN WORK / {String(index + 1).padStart(2, "0")}</span>
-        <Image src={sample.logo} alt={sample.logoAlt} width={220} height={100} priority/>
+        <Image src={sample.logo} alt={sample.logoAlt} width={220} height={100} priority unoptimized/>
         <small>{sample.topic}</small>
         <h1>{sample.headline}</h1>
         <p>{sample.summary}</p>

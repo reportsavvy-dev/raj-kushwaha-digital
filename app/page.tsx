@@ -59,7 +59,7 @@ export default function Home() {
     <section className="home-clients shell">
       <span className="eyebrow-small">SELECTED CLIENT WORK</span>
       <div>
-        {linkedinWorkSamples.map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={170} height={72}/></Link>)}
+        {linkedinWorkSamples.map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={170} height={72} unoptimized loading="eager"/><small>{sample.client}</small></Link>)}
         <Link href={`/work/${caseStudies[1].slug}`}><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={170} height={72}/></Link>
       </div>
     </section>
@@ -82,7 +82,7 @@ export default function Home() {
       <div className="linkedin-work-grid">
         {linkedinWorkSamples.slice(0, 3).map((sample, index) => <Link href={`/work/linkedin/${sample.slug}`} className="linkedin-work-card" key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
           <div className="linkedin-work-image"><Image src={sample.postImage} alt={sample.postAlt} fill sizes="(max-width: 720px) 100vw, 33vw"/></div>
-          <div className="linkedin-work-copy"><header><span>0{index + 1}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52}/></header><small>PUBLIC LINKEDIN SAMPLE</small><h3>{sample.headline}</h3><b>VIEW THE WORK ↗</b></div>
+          <div className="linkedin-work-copy"><header><span>0{index + 1}</span><Image src={sample.logo} alt={sample.logoAlt} width={120} height={52} unoptimized/></header><small>PUBLIC LINKEDIN SAMPLE</small><h3>{sample.headline}</h3><b>VIEW THE WORK ↗</b></div>
         </Link>)}
       </div>
       <Link className="all-work-link" href="/work#linkedin-work">VIEW ALL NINE BRAND SAMPLES ↗</Link>
