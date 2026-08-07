@@ -13,7 +13,7 @@ type SnowStyle = CSSProperties & {
 };
 
 const THEME_KEY = "rkd-theme";
-const flakes: SnowStyle[] = Array.from({ length: 56 }, (_, index) => ({
+const flakes: SnowStyle[] = Array.from({ length: 36 }, (_, index) => ({
   "--snow-x": `${(index * 37 + 11) % 100}%`,
   "--snow-delay": `${-((index * 0.61) % 12).toFixed(2)}s`,
   "--snow-duration": `${5 + (index % 8)}s`,
@@ -29,10 +29,14 @@ function applyTheme(theme: SiteTheme) {
 }
 
 export function ThemeAtmosphere() {
+  const [active, setActive] = useState(false);
+
   useEffect(() => {
     const root = document.documentElement;
     const stored = localStorage.getItem(THEME_KEY);
-    root.dataset.theme = stored === "antarctica" ? "antarctica" : "studio";
+    const initial = stored === "antarctica" ? "antarctica" : "studio";
+    root.dataset.theme = initial;
+    const activationFrame = window.requestAnimationFrame(() => setActive(initial === "antarctica"));
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let frame = 0;
@@ -67,19 +71,30 @@ export function ThemeAtmosphere() {
     };
 
     const onScroll = () => {
-      if (reducedMotion) return;
+      if (reducedMotion || root.dataset.theme !== "antarctica") return;
       target = Math.min(1, window.scrollY / Math.max(window.innerHeight * 2.2, 1));
       if (!frame) frame = requestAnimationFrame(animate);
     };
 
+    const syncAtmosphere = (event: Event) => {
+      const nextTheme = (event as CustomEvent<SiteTheme>).detail;
+      setActive(nextTheme === "antarctica");
+      if (nextTheme === "antarctica") onScroll();
+    };
+
     paintAurora(0);
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("rkd-theme-change", syncAtmosphere);
     onScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("rkd-theme-change", syncAtmosphere);
+      window.cancelAnimationFrame(activationFrame);
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
+
+  if (!active) return null;
 
   return <div className="antarctica-atmosphere" aria-hidden="true">
     <div className="aurora-photo" />
@@ -89,12 +104,12 @@ export function ThemeAtmosphere() {
       <div className="aurora aurora-two" />
       <div className="aurora aurora-three" />
       <div className="aurora-travel-wave"><i/><i/><i/></div>
-      <div className="aurora-rays">{Array.from({ length: 14 }, (_, index) => <i key={index} style={{
+      <div className="aurora-rays">{Array.from({ length: 10 }, (_, index) => <i key={index} style={{
         "--ray-height": `${43 + (index % 8) * 6}%`,
         "--ray-duration": `${5.2 + index * 0.17}s`,
         "--ray-delay": `${index * -0.31}s`,
       } as CSSProperties} />)}</div>
-      <div className="aurora-diffuse-patches">{Array.from({ length: 7 }, (_, index) => <i key={index}/>)}</div>
+      <div className="aurora-diffuse-patches">{Array.from({ length: 5 }, (_, index) => <i key={index}/>)}</div>
     </div>
     <div className="snow-field">
       {flakes.map((style, index) => <i key={index} style={style} />)}
@@ -109,12 +124,15 @@ export function ThemeSwitcher() {
   useEffect(() => {
     const stored = localStorage.getItem(THEME_KEY);
     const initial = stored === "antarctica" ? "antarctica" : "studio";
-    setTheme(initial);
     document.documentElement.dataset.theme = initial;
+    const frame = window.requestAnimationFrame(() => setTheme(initial));
 
     const syncTheme = (event: Event) => setTheme((event as CustomEvent<SiteTheme>).detail);
     window.addEventListener("rkd-theme-change", syncTheme);
-    return () => window.removeEventListener("rkd-theme-change", syncTheme);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("rkd-theme-change", syncTheme);
+    };
   }, []);
 
   const choose = (nextTheme: SiteTheme) => {

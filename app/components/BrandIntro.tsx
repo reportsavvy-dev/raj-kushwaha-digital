@@ -9,14 +9,14 @@ export function BrandIntro() {
   useEffect(() => {
     const key = "rkd-brand-intro-seen";
     if (sessionStorage.getItem(key)) {
-      setVisible(false);
-      return;
+      const frame = window.requestAnimationFrame(() => setVisible(false));
+      return () => window.cancelAnimationFrame(frame);
     }
 
     sessionStorage.setItem(key, "1");
     document.body.classList.add("brand-intro-active");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = window.setTimeout(() => setVisible(false), reducedMotion ? 350 : 2600);
+    const timer = window.setTimeout(() => setVisible(false), reducedMotion ? 150 : 1200);
     return () => {
       window.clearTimeout(timer);
       document.body.classList.remove("brand-intro-active");
