@@ -13,7 +13,7 @@ type SnowStyle = CSSProperties & {
 };
 
 const THEME_KEY = "rkd-theme";
-const flakes: SnowStyle[] = Array.from({ length: 36 }, (_, index) => ({
+const flakes: SnowStyle[] = Array.from({ length: 20 }, (_, index) => ({
   "--snow-x": `${(index * 37 + 11) % 100}%`,
   "--snow-delay": `${-((index * 0.61) % 12).toFixed(2)}s`,
   "--snow-duration": `${5 + (index % 8)}s`,
@@ -64,12 +64,12 @@ export function ThemeAtmosphere() {
     };
 
     const animate = (time: number) => {
-      if (time - lastPaint < 32) {
+      if (time - lastPaint < 42) {
         frame = requestAnimationFrame(animate);
         return;
       }
       lastPaint = time;
-      current += (target - current) * 0.075;
+      current += (target - current) * 0.16;
       paintAurora(current);
       if (Math.abs(target - current) > 0.0005) frame = requestAnimationFrame(animate);
       else frame = 0;
@@ -119,13 +119,13 @@ export function ThemeAtmosphere() {
       <div className="aurora aurora-one" />
       <div className="aurora aurora-two" />
       <div className="aurora aurora-three" />
-      <div className="aurora-travel-wave"><i/><i/><i/></div>
-      <div className="aurora-rays">{Array.from({ length: 10 }, (_, index) => <i key={index} style={{
+      <div className="aurora-travel-wave"><i/><i/></div>
+      <div className="aurora-rays">{Array.from({ length: 6 }, (_, index) => <i key={index} style={{
         "--ray-height": `${43 + (index % 8) * 6}%`,
         "--ray-duration": `${5.2 + index * 0.17}s`,
         "--ray-delay": `${index * -0.31}s`,
       } as CSSProperties} />)}</div>
-      <div className="aurora-diffuse-patches">{Array.from({ length: 5 }, (_, index) => <i key={index}/>)}</div>
+      <div className="aurora-diffuse-patches">{Array.from({ length: 3 }, (_, index) => <i key={index}/>)}</div>
     </div>
     <div className="snow-field">
       {flakes.map((style, index) => <i key={index} style={style} />)}

@@ -5830,3 +5830,40 @@ html[data-theme="antarctica"] .antarctica-atmosphere:before {
     backdrop-filter: none;
   }
 }
+
+/* Antarctica performance mode: native pointer and fewer live compositing layers. */
+html[data-theme="antarctica"] body {
+  cursor: auto;
+}
+html[data-theme="antarctica"] .cursor-dot,
+html[data-theme="antarctica"] .cursor-ring {
+  display: none !important;
+}
+html[data-theme="antarctica"] body:before {
+  display: none;
+}
+html[data-theme="antarctica"] .magnetic {
+  transform: none !important;
+}
+html[data-theme="antarctica"] .aurora-photo {
+  will-change: transform, opacity;
+}
+html[data-theme="antarctica"] .polar-stars {
+  animation: none;
+}
+html[data-theme="antarctica"] .snow-field {
+  filter: none;
+}
+html[data-theme="antarctica"] .aurora-rays {
+  filter: blur(5px);
+}
+html[data-theme="antarctica"] .aurora-diffuse-patches {
+  filter: blur(20px);
+}
+html[data-theme="antarctica"] .nav,
+html[data-theme="antarctica"] .hero-copy > .hero-signal-strip,
+html[data-theme="antarctica"] .solar-core,
+html[data-theme="antarctica"] .solar-planet,
+html[data-theme="antarctica"] .theme-switcher {
+  backdrop-filter: none;
+}

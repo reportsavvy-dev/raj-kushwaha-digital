@@ -9,6 +9,7 @@ export function Cursor() {
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)").matches;
+    let cursorEnabled = finePointer && window.localStorage.getItem("rkd-theme") !== "antarctica";
     let x = 0;
     let y = 0;
     let ringX = 0;
@@ -29,7 +30,7 @@ export function Cursor() {
     };
 
     const move = (event: PointerEvent) => {
-      if (!finePointer) return;
+      if (!cursorEnabled) return;
       x = event.clientX;
       y = event.clientY;
       dot.current?.style.setProperty("transform", `translate3d(${x}px,${y}px,0)`);
@@ -37,13 +38,13 @@ export function Cursor() {
     };
 
     const over = (event: PointerEvent) => {
-      if (!finePointer) return;
+      if (!cursorEnabled) return;
       ring.current?.classList.toggle(
         "cursor-active",
         Boolean((event.target as HTMLElement).closest("a,button,.hover-target")),
       );
     };
-    const down = () => finePointer && ring.current?.classList.add("cursor-click");
+    const down = () => cursorEnabled && ring.current?.classList.add("cursor-click");
     const up = () => ring.current?.classList.remove("cursor-click");
 
     const renderScroll = () => {
@@ -68,6 +69,7 @@ export function Cursor() {
           element.style.transform = `translate3d(${offsetX}px,${offsetY}px,0)`;
         };
         const magneticMove = (event: PointerEvent) => {
+          if (!cursorEnabled) return;
           rect ??= element.getBoundingClientRect();
           offsetX = (event.clientX - rect.left - rect.width / 2) * 0.12;
           offsetY = (event.clientY - rect.top - rect.height / 2) * 0.16;
@@ -95,11 +97,22 @@ export function Cursor() {
     );
     document.querySelectorAll(".ticker,.service-marquee").forEach((element) => motionObserver.observe(element));
 
+    const syncCursorTheme = (event: Event) => {
+      cursorEnabled = finePointer && (event as CustomEvent<"studio" | "antarctica">).detail !== "antarctica";
+      if (!cursorEnabled) {
+        if (cursorFrame) window.cancelAnimationFrame(cursorFrame);
+        cursorFrame = 0;
+        ring.current?.classList.remove("cursor-active", "cursor-click");
+        document.querySelectorAll<HTMLElement>(".magnetic").forEach((element) => { element.style.transform = ""; });
+      }
+    };
+
     window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerover", over, { passive: true });
     window.addEventListener("pointerdown", down, { passive: true });
     window.addEventListener("pointerup", up, { passive: true });
     window.addEventListener("scroll", scroll, { passive: true });
+    window.addEventListener("rkd-theme-change", syncCursorTheme);
     renderScroll();
 
     return () => {
@@ -108,6 +121,7 @@ export function Cursor() {
       window.removeEventListener("pointerdown", down);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("scroll", scroll);
+      window.removeEventListener("rkd-theme-change", syncCursorTheme);
       magneticCleanups.forEach((cleanup) => cleanup());
       motionObserver.disconnect();
       if (cursorFrame) window.cancelAnimationFrame(cursorFrame);
