@@ -41,6 +41,8 @@ export function ThemeAtmosphere() {
 
     const paintAurora = (progress: number) => {
       const arc = Math.sin(progress * Math.PI);
+      const surge = Math.exp(-Math.pow((progress - 0.57) / 0.22, 2));
+      const diffuse = Math.max(0, (progress - 0.68) / 0.32);
       root.style.setProperty("--aurora-scroll-x", `${(-1 - progress * 15).toFixed(2)}vw`);
       root.style.setProperty("--aurora-scroll-y", `${(arc * 7 - progress * 3).toFixed(2)}vh`);
       root.style.setProperty("--aurora-scroll-scale", `${(1.045 + arc * 0.09 + progress * 0.035).toFixed(3)}`);
@@ -50,6 +52,11 @@ export function ThemeAtmosphere() {
       root.style.setProperty("--aurora-fold-shift", `${(progress * 10).toFixed(2)}vw`);
       root.style.setProperty("--aurora-fold-scale", `${(0.88 + arc * 0.28).toFixed(3)}`);
       root.style.setProperty("--aurora-reflection", `${(0.18 + arc * 0.2).toFixed(3)}`);
+      root.style.setProperty("--aurora-rays-opacity", `${(0.22 + surge * 0.48 - diffuse * 0.12).toFixed(3)}`);
+      root.style.setProperty("--aurora-wave-opacity", `${(0.16 + surge * 0.5).toFixed(3)}`);
+      root.style.setProperty("--aurora-wave-y", `${(8 + arc * 7).toFixed(2)}vh`);
+      root.style.setProperty("--aurora-patch-opacity", `${(diffuse * 0.42).toFixed(3)}`);
+      root.style.setProperty("--aurora-surge-glow", `${(0.08 + surge * 0.34).toFixed(3)}`);
     };
 
     const animate = () => {
@@ -81,11 +88,13 @@ export function ThemeAtmosphere() {
       <div className="aurora aurora-one" />
       <div className="aurora aurora-two" />
       <div className="aurora aurora-three" />
+      <div className="aurora-travel-wave"><i/><i/><i/></div>
       <div className="aurora-rays">{Array.from({ length: 14 }, (_, index) => <i key={index} style={{
         "--ray-height": `${43 + (index % 8) * 6}%`,
         "--ray-duration": `${5.2 + index * 0.17}s`,
         "--ray-delay": `${index * -0.31}s`,
       } as CSSProperties} />)}</div>
+      <div className="aurora-diffuse-patches">{Array.from({ length: 7 }, (_, index) => <i key={index}/>)}</div>
     </div>
     <div className="snow-field">
       {flakes.map((style, index) => <i key={index} style={style} />)}
