@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { services } from "../data/services";
+import { RKDMark } from "./BrandMark";
 
 export function Logo() {
   return <span className="logo-lockup">
-    <span className="logo-road-mark" aria-hidden="true"><b>RKD</b><i/><i/><i/></span>
-    <span className="logo-name"><b>RAJ KUSHWAHA</b><small>DIGITAL / GROWTH</small></span>
+    <RKDMark/>
+    <span className="logo-name"><b>RAJ KUSHWAHA</b><small>DIGITAL</small></span>
   </span>;
 }
 

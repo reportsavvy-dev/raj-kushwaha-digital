@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
+import { RKDMark } from "./components/BrandMark";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
 import { services } from "./data/services";
@@ -60,7 +61,7 @@ export default function Home() {
 }
 
 export function Contact() {
-  return <section className="contact shell" id="contact"><div className="logo-watermark">RKD</div><div><span className="eyebrow-small">READY WHEN YOU ARE</span><h2>Let&apos;s make your brand<br/><i>the next big signal.</i></h2><a href="mailto:hello@rajkushwahadigital.com">hello@rajkushwahadigital.com <span>↗</span></a></div></section>;
+  return <section className="contact shell" id="contact"><div className="contact-brandmark"><RKDMark/></div><div><span className="eyebrow-small">READY WHEN YOU ARE</span><h2>Let&apos;s make your brand<br/><i>the next big signal.</i></h2><a href="mailto:hello@rajkushwahadigital.com">hello@rajkushwahadigital.com <span>↗</span></a></div></section>;
 }
 
 export function Footer() {
