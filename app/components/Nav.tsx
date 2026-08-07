@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { services } from "../data/services";
+import { serviceIndex } from "../data/serviceIndex";
 import { RKDMark } from "./BrandMark";
 
 export function Logo() {
@@ -29,7 +29,7 @@ export function Nav() {
         </div>
         <div className="expertise-dropdown" aria-label="All services">
           <header><span>15 CONNECTED CAPABILITIES</span><b>Choose an expertise <i>↗</i></b></header>
-          <div>{services.map((service, index) => <Link href={`/services/${service.slug}`} key={service.slug} onClick={closeAll}>
+          <div>{serviceIndex.map((service, index) => <Link href={`/services/${service.slug}`} key={service.slug} onClick={closeAll}>
             <span>{String(index + 1).padStart(2, "0")}</span>
             <b>{service.name}</b>
             <i style={{background: service.accent}}/>

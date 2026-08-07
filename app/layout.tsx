@@ -8,11 +8,26 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rajkushwahadigital.com"),
-  title: { default: "Raj Kushwaha Digital — Growth, Creative & Technology", template: "%s | Raj Kushwaha Digital" },
-  description: "A full-service digital growth agency for marketing, SEO, social, performance, branding, web development and AI automation.",
+  title: { default: "Digital Marketing Agency | Raj Kushwaha Digital", template: "%s | Raj Kushwaha Digital" },
+  description: "Raj Kushwaha Digital connects SEO, paid media, social, branding, web development and AI automation into measurable growth systems.",
+  authors: [{ name: "Raj Kushwaha Digital", url: "https://rajkushwahadigital.com" }],
+  creator: "Raj Kushwaha Digital",
+  publisher: "Raj Kushwaha Digital",
+  category: "Digital Marketing",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Raj Kushwaha Digital — Move Attention. Build Momentum.",
-    description: "Strategy, creativity and technology—connected to grow your business.",
+    title: "Digital Marketing Agency | Raj Kushwaha Digital",
+    description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
     url: "https://rajkushwahadigital.com",
     siteName: "Raj Kushwaha Digital",
     images: [{ url: "/og.png", width: 1536, height: 1024, alt: "Raj Kushwaha Digital — Move Attention. Build Momentum." }],
@@ -20,12 +35,36 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Raj Kushwaha Digital — Move Attention. Build Momentum.",
-    description: "Strategy, creativity and technology—connected to grow your business.",
+    title: "Digital Marketing Agency | Raj Kushwaha Digital",
+    description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
     images: ["/og.png"],
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://rajkushwahadigital.com/#organization",
+      name: "Raj Kushwaha Digital",
+      alternateName: "RKD",
+      url: "https://rajkushwahadigital.com/",
+      email: "hello@rajkushwahadigital.com",
+      description: "Independent digital marketing agency covering strategy, search, media, creative, development and AI automation.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rajkushwahadigital.com/#website",
+      url: "https://rajkushwahadigital.com/",
+      name: "Raj Kushwaha Digital",
+      alternateName: "RKD",
+      publisher: { "@id": "https://rajkushwahadigital.com/#organization" },
+      inLanguage: "en",
+    },
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${geistSans.variable} ${geistMono.variable}`}><BrandIntro/>{children}</body></html>;
+  return <html lang="en"><body className={`${geistSans.variable} ${geistMono.variable}`}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}/><BrandIntro/>{children}</body></html>;
 }

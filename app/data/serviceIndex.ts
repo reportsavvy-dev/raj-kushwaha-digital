@@ -1,0 +1,17 @@
+export const serviceIndex = [
+  { name: "Digital Marketing", slug: "digital-marketing", accent: "#ff5a36" },
+  { name: "SEO · AEO · GEO · AIO · SXO", slug: "seo-aeo-geo-sxo", accent: "#635bff" },
+  { name: "Social Media Management / Marketing", slug: "social-media-management-marketing", accent: "#ff2f92" },
+  { name: "PPC Ads", slug: "ppc-ads", accent: "#1a73e8" },
+  { name: "Branding", slug: "branding", accent: "#ffb800" },
+  { name: "Logo Design + Graphic Designing", slug: "logo-graphic-design", accent: "#9d4edd" },
+  { name: "Performance Marketing", slug: "performance-marketing", accent: "#00a86b" },
+  { name: "Email Marketing", slug: "email-marketing", accent: "#00a4a6" },
+  { name: "Lead Generation", slug: "lead-generation", accent: "#f04444" },
+  { name: "PR (Public Relations)", slug: "public-relations", accent: "#ef476f" },
+  { name: "Content Marketing", slug: "content-marketing", accent: "#ff7a00" },
+  { name: "Influencer Marketing", slug: "influencer-marketing", accent: "#e1306c" },
+  { name: "Web Development", slug: "web-development", accent: "#2563eb" },
+  { name: "Development (App and Software)", slug: "app-software-development", accent: "#14b8a6" },
+  { name: "AI Agent & Automation", slug: "ai-agent-automation", accent: "#8b5cf6" },
+] as const;

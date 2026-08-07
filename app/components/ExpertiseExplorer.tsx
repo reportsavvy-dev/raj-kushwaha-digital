@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { services } from "../data/services";
+import type { Service } from "../data/services";
 import { ServiceOrbital } from "./ServiceOrbital";
 import { ToolLogo } from "./ToolLogo";
 
-export function ExpertiseExplorer() {
+export type ExpertiseExplorerService = Pick<Service, "name" | "shortName" | "slug" | "summary" | "deliverables" | "tools" | "visual" | "accent" | "accentSoft">;
+
+export function ExpertiseExplorer({ services }: { services: ExpertiseExplorerService[] }) {
   const [active, setActive] = useState(0);
   const service = services[active];
 
