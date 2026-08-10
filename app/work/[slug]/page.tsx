@@ -23,9 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonical = `/work/${study.slug}`;
   return {
     title: { absolute: `${study.client} Case Study | Raj Kushwaha Digital` },
-    description: study.summary,
+    description: study.metaDescription,
     alternates: { canonical },
-    openGraph: { title: study.headline, description: study.summary, url: canonical, type: "article", images: [{ url: study.heroImage }] },
+    openGraph: { title: study.headline, description: study.metaDescription, url: canonical, type: "article", images: [{ url: study.heroImage }] },
   };
 }
 
@@ -52,10 +52,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
         headline: study.headline,
         description: study.summary,
         url: canonicalUrl,
+        mainEntityOfPage: canonicalUrl,
+        inLanguage: "en",
         image: `https://rajkushwahadigital.com${study.heroImage}`,
-        author: { "@id": "https://rajkushwahadigital.com/#organization" },
+        author: { "@id": "https://rajkushwahadigital.com/#raj-kushwaha" },
         publisher: { "@id": "https://rajkushwahadigital.com/#organization" },
         about: study.client,
+        dateModified: "2026-08-10",
       },
     ],
   };

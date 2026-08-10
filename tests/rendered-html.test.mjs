@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -32,6 +34,8 @@ test("home page renders verified portfolio proof", async () => {
   assert.match(html, /src="\/case-studies\/vizva-card-illustration\.webp"/);
   assert.doesNotMatch(html, /_vinext\/image\?url=%2Fcase-studies%2F(?:silverspace|keymed|vizva)-card-illustration/);
   assert.match(html, /href="\/work"/);
+  assert.match(html, /twitter:image" content="https:\/\/rajkushwahadigital\.com\/og\.jpg"/);
+  assert.doesNotMatch(html, /brand-intro|C:\\Users\\|C:\/Users\//i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
   assert.doesNotMatch(html, /[—–]/);
 });
@@ -137,4 +141,45 @@ test("sitemap includes work and case study URLs", async () => {
   assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work<\/loc>/);
   assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/key-medsolutions-search-authority/);
   assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/linkedin\/vizva-uk-linkedin-content-system/);
+  assert.match(xml, /2026-08-10/);
+  assert.doesNotMatch(xml, /<(?:priority|changefreq)>/);
+});
+
+test("home and digital marketing service use distinct search titles", async () => {
+  const [homeResponse, serviceResponse] = await Promise.all([
+    render("/"),
+    render("/services/digital-marketing"),
+  ]);
+  const [home, service] = await Promise.all([homeResponse.text(), serviceResponse.text()]);
+  const getTitle = (html) => html.match(/<title>([^<]+)<\/title>/)?.[1];
+
+  assert.equal(getTitle(home), "Digital Marketing Agency | Raj Kushwaha Digital");
+  assert.equal(getTitle(service), "Integrated Digital Marketing Services | RKD");
+  assert.notEqual(getTitle(home), getTitle(service));
+});
+
+test("every sitemap page renders unique metadata and valid local images", async () => {
+  const sitemapResponse = await render("/sitemap.xml");
+  const sitemap = await sitemapResponse.text();
+  const paths = [...sitemap.matchAll(/<loc>https:\/\/rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
+  const titles = new Set();
+
+  assert.equal(paths.length, 30);
+  for (const pathname of paths) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+    const html = await response.text();
+    const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+    assert.ok(title, `${pathname} has a title`);
+    assert.ok(!titles.has(title), `${pathname} has a unique title: ${title}`);
+    titles.add(title);
+    assert.match(html, /<h1\b/i, `${pathname} has an h1`);
+    assert.match(html, new RegExp(`rel="canonical" href="https://rajkushwahadigital\\.com${pathname === "/" ? "/" : pathname}"`));
+    assert.doesNotMatch(html, /brand-intro|C:\\Users\\|C:\/Users\//i, pathname);
+
+    for (const match of html.matchAll(/<img[^>]+src="(\/[^"?]+)"/g)) {
+      const assetPath = fileURLToPath(new URL(`../public${match[1]}`, import.meta.url));
+      assert.ok(existsSync(assetPath), `${pathname} image exists: ${match[1]}`);
+    }
+  }
 });

@@ -7,6 +7,5 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://rajkushwahadigital.com/sitemap.xml",
-    host: "https://rajkushwahadigital.com",
   };
 }

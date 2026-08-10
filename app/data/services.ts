@@ -47,7 +47,7 @@ type ServiceEnhancement = Pick<Service, "metaTitle" | "metaDescription" | "direc
 
 const enhancements: Record<string, ServiceEnhancement> = {
   "digital-marketing": {
-    metaTitle: "Digital Marketing Agency | Raj Kushwaha Digital",
+    metaTitle: "Integrated Digital Marketing Services | RKD",
     metaDescription: "Integrated digital strategy, campaigns, content and analytics tied to qualified demand, conversion and customer value.",
     directAnswer: "Digital marketing should turn business priorities into a coordinated plan for search, media, content, social and conversion. Raj Kushwaha Digital assigns every channel a role, a measurable outcome and a clear decision cadence.",
     overviewHeading: "What does an integrated digital marketing system include?",

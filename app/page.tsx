@@ -68,7 +68,7 @@ export default function Home() {
         <div className="home-client-track">
           {[0, 1].map((copy) => <div className="home-client-set" aria-hidden={copy === 1 ? true : undefined} key={copy}>
             {homeClientLogos.map((client) => <Link href={client.href} key={`${copy}-${client.name}`} tabIndex={copy === 1 ? -1 : undefined}>
-              <Image src={client.src} alt={copy === 1 ? "" : client.alt} width={170} height={72} unoptimized loading="eager"/><small>{client.name}</small>
+              <Image src={client.src} alt={copy === 1 ? "" : client.alt} width={170} height={72} unoptimized/><small>{client.name}</small>
             </Link>)}
           </div>)}
         </div>

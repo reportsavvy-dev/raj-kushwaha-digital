@@ -24,7 +24,7 @@ export function HeroSolarSystem() {
     <div className="solar-signal signal-a"/><div className="solar-signal signal-b"/><div className="solar-signal signal-c"/><div className="solar-signal signal-d"/>
 
     <article className="solar-core">
-      <header><span>RKD GROWTH INTELLIGENCE</span><b>● DEMO SIGNAL</b></header>
+      <header><span>RKD GROWTH INTELLIGENCE</span><b>● ILLUSTRATIVE DATA</b></header>
       <div className="analytics-sources" aria-label="Analytics data sources">
         <ToolLogo name="GA4"/><ToolLogo name="Google Search Console"/><ToolLogo name="Meta Ads"/><ToolLogo name="HubSpot"/>
       </div>

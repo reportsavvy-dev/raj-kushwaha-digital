@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!sample) return {};
   const canonical = `/work/linkedin/${sample.slug}`;
   return {
-    title: { absolute: `${sample.client} LinkedIn Work | Raj Kushwaha Digital` },
+    title: { absolute: `${sample.client} LinkedIn Content Case | RKD` },
     description: sample.summary,
     alternates: { canonical },
     openGraph: {
@@ -58,10 +58,13 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
         headline: sample.headline,
         description: sample.summary,
         url: canonicalUrl,
+        mainEntityOfPage: canonicalUrl,
+        inLanguage: "en",
         image: `https://rajkushwahadigital.com${sample.postImage}`,
-        author: { "@id": "https://rajkushwahadigital.com/#person" },
+        author: { "@id": "https://rajkushwahadigital.com/#raj-kushwaha" },
         publisher: { "@id": "https://rajkushwahadigital.com/#organization" },
         about: sample.client,
+        dateModified: "2026-08-10",
       },
     ],
   };
@@ -83,7 +86,7 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
 
     <section className="case-provenance shell">
       <span>LIVE WORK SAMPLE</span>
-      <p>This page documents a publicly visible LinkedIn creative and the production system behind it. It demonstrates delivered content and design work. It does not claim impressions, leads or revenue that are not publicly verified.</p>
+      <p>This page documents {sample.client}&apos;s publicly visible LinkedIn creative about {sample.topic.toLowerCase()} and the production decisions behind it. It demonstrates delivered content and design work. It does not claim impressions, leads or revenue that are not publicly verified.</p>
       <a href={sample.postUrl} target="_blank" rel="noreferrer">VIEW LINKEDIN POST ↗</a>
     </section>
 

@@ -28,8 +28,8 @@ export default function WorkPage() {
     <section className="client-logo-band shell" aria-label="Selected clients">
       <span>SELECTED CLIENTS</span>
       <div>
-        {linkedinWorkSamples.map((sample) => <a href={sample.linkedin} target="_blank" rel="noreferrer" key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={180} height={80} unoptimized loading="eager"/><small>{sample.client}</small></a>)}
-        <a href={caseStudies[1].website} target="_blank" rel="noreferrer"><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={180} height={80} unoptimized loading="eager"/></a>
+        {linkedinWorkSamples.map((sample) => <a href={sample.linkedin} target="_blank" rel="noreferrer" key={sample.client}><Image src={sample.logo} alt={sample.logoAlt} width={180} height={80} unoptimized/><small>{sample.client}</small></a>)}
+        <a href={caseStudies[1].website} target="_blank" rel="noreferrer"><Image src={caseStudies[1].logo} alt={caseStudies[1].logoAlt} width={180} height={80} unoptimized/></a>
       </div>
     </section>
 

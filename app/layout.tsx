@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { BrandIntro } from "./components/BrandIntro";
 import "./globals.css";
-
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rajkushwahadigital.com"),
@@ -30,14 +25,14 @@ export const metadata: Metadata = {
     description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
     url: "https://rajkushwahadigital.com",
     siteName: "Raj Kushwaha Digital",
-    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "Raj Kushwaha Digital. Move Attention. Build Momentum." }],
+    images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Raj Kushwaha Digital. Move Attention. Build Momentum." }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Digital Marketing Agency | Raj Kushwaha Digital",
     description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
 };
 
@@ -75,5 +70,5 @@ const organizationSchema = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${geistSans.variable} ${geistMono.variable}`}><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}/><BrandIntro/>{children}</body></html>;
+  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}/>{children}</body></html>;
 }
