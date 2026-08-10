@@ -838,6 +838,7 @@ a {
 .method-steps article {
   padding: 30px;
   border-right: 1px solid #45423d;
+  background: var(--ink);
 }
 .method-steps span {
   font: 11px var(--font-geist-mono);
