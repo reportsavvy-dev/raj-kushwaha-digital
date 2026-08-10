@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://rajkushwahadigital.com/sitemap.xml",
+    sitemap: "https://www.rajkushwahadigital.com/sitemap.xml",
   };
 }

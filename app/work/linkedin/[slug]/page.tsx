@@ -41,15 +41,15 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
   if (!sample) notFound();
   const index = linkedinWorkSamples.findIndex((item) => item.slug === sample.slug);
   const next = linkedinWorkSamples[(index + 1) % linkedinWorkSamples.length];
-  const canonicalUrl = `https://rajkushwahadigital.com/work/linkedin/${sample.slug}`;
+  const canonicalUrl = `https://www.rajkushwahadigital.com/work/linkedin/${sample.slug}`;
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://rajkushwahadigital.com/" },
-          { "@type": "ListItem", position: 2, name: "Work", item: "https://rajkushwahadigital.com/work" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.rajkushwahadigital.com/" },
+          { "@type": "ListItem", position: 2, name: "Work", item: "https://www.rajkushwahadigital.com/work" },
           { "@type": "ListItem", position: 3, name: sample.client, item: canonicalUrl },
         ],
       },
@@ -60,11 +60,11 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
         url: canonicalUrl,
         mainEntityOfPage: canonicalUrl,
         inLanguage: "en",
-        image: `https://rajkushwahadigital.com${sample.postImage}`,
-        author: { "@id": "https://rajkushwahadigital.com/#raj-kushwaha" },
-        publisher: { "@id": "https://rajkushwahadigital.com/#organization" },
+        image: `https://www.rajkushwahadigital.com${sample.postImage}`,
+        author: { "@id": "https://www.rajkushwahadigital.com/#raj-kushwaha" },
+        publisher: { "@id": "https://www.rajkushwahadigital.com/#organization" },
         about: sample.client,
-        dateModified: "2026-08-10",
+        dateModified: "2026-08-11",
       },
     ],
   };

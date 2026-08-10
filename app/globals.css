@@ -1,8 +1,8 @@
 :root {
   --paper: #f4f0e7;
   --ink: #11110f;
-  --coral: #ff4f27;
-  --orange: #ff4f27;
+  --coral: #cc3311;
+  --orange: #cc3311;
   --muted: #6b6861;
   --line: #cbc5ba;
   --white: #fffdf8;
@@ -1252,7 +1252,7 @@ body:before {
   place-items: center;
   margin: 20px 0;
   background:
-    radial-gradient(circle, #ff4f271a 0 14%, transparent 45%),
+    radial-gradient(circle, #cc33111a 0 14%, transparent 45%),
     linear-gradient(90deg, transparent 49.9%, #c9c2b733 50%, transparent 50.1%),
     linear-gradient(transparent 49.9%, #c9c2b733 50%, transparent 50.1%);
   overflow: hidden;
@@ -1512,7 +1512,7 @@ body:before {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: radial-gradient(circle, #ff4f2722, transparent 44%);
+  background: radial-gradient(circle, #cc331122, transparent 44%);
 }
 .inline-hub {
   position: relative;
@@ -1840,7 +1840,7 @@ body:before {
   padding: 16px;
   box-shadow:
     0 0 0 12px #111,
-    0 0 0 13px #ff4f27;
+    0 0 0 13px #cc3311;
 }
 .universe-core small,
 .universe-core span {
@@ -3411,7 +3411,7 @@ body:before {
     calc(-50% + var(--solar-y))
   );
   border-radius: 50%;
-  background: radial-gradient(circle, #ff4f2730, transparent 60%);
+  background: radial-gradient(circle, #cc331130, transparent 60%);
   filter: blur(18px);
   transition: transform 0.25s;
 }
@@ -3469,7 +3469,7 @@ body:before {
   pointer-events: auto;
 }
 .solar-planet {
-  --planet-color: #ff4f27;
+  --planet-color: #cc3311;
   width: 166px;
   min-height: 105px;
   border: 1px solid color-mix(in srgb, var(--planet-color) 62%, #8d867b);
@@ -3650,7 +3650,7 @@ body:before {
 .signal-a {
   left: 10%;
   top: 33%;
-  color: #ff4f27;
+  color: #cc3311;
 }
 .signal-b {
   right: 9%;
@@ -3767,7 +3767,7 @@ body:before {
 }
 .hero-signal-strip article:hover {
   transform: translateY(-6px) scale(1.04);
-  box-shadow: 0 15px 30px #ff4f2730;
+  box-shadow: 0 15px 30px #cc331130;
   border-color: var(--coral);
 }
 .hero-signal-strip article > .tool-logo {
@@ -3886,7 +3886,7 @@ body:before {
     transform: translateY(-5px) scale(1.06);
     background: #fffaf3;
     color: var(--coral);
-    box-shadow: 0 12px 24px #ff4f2733;
+    box-shadow: 0 12px 24px #cc331133;
   }
   .nav > a .logo-lockup {
     transition: transform 0.24s ease;
@@ -3915,7 +3915,7 @@ body:before {
     transform: translateY(-5px) scale(1.06);
     background: #fffaf3;
     color: var(--coral);
-    box-shadow: 0 12px 24px #ff4f2733;
+    box-shadow: 0 12px 24px #cc331133;
     outline: 2px solid var(--coral);
     outline-offset: 2px;
   }
@@ -4253,7 +4253,7 @@ body:before {
   height: 7px;
   background: var(--coral);
   transform: rotate(45deg);
-  box-shadow: 0 0 12px #ff4f2780;
+  box-shadow: 0 0 12px #cc331180;
 }
 .cursor-ring {
   width: 48px;
@@ -4304,7 +4304,7 @@ body:before {
 .cursor-ring.cursor-active:before {
   background: var(--ink);
   border-color: var(--ink);
-  box-shadow: 0 0 0 5px #ff4f2724;
+  box-shadow: 0 0 0 5px #cc331124;
 }
 .cursor-ring.cursor-active > i {
   inset: 6px;
@@ -4420,7 +4420,7 @@ body:before {
   border-radius: 50%;
   background: var(--coral);
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 4px #ff4f2720;
+  box-shadow: 0 0 0 4px #cc331120;
   z-index: 5;
 }
 .logo-lockup:after {
@@ -4503,7 +4503,7 @@ footer .logo-lockup:hover .logo-name small {
 @keyframes footerNode {
   to {
     transform: translate(-50%, -50%) scale(1.8);
-    box-shadow: 0 0 0 9px #ff4f2723;
+    box-shadow: 0 0 0 9px #cc331123;
   }
 }
 
@@ -6232,7 +6232,7 @@ footer .logo-lockup:hover .logo-name small {
 .contact-field-grid input:focus,
 .contact-context textarea:focus {
   border-color: var(--coral);
-  box-shadow: 0 0 0 3px #ff4f2719;
+  box-shadow: 0 0 0 3px #cc331119;
 }
 .project-enquiry-form fieldset {
   min-width: 0;
@@ -6280,7 +6280,7 @@ footer .logo-lockup:hover .logo-name small {
   transform: translateY(-2px);
 }
 .contact-choice-grid input:focus-visible + span {
-  outline: 3px solid #ff4f2730;
+  outline: 3px solid #cc331130;
   outline-offset: 2px;
 }
 .contact-context {
@@ -6355,7 +6355,7 @@ footer .logo-lockup:hover .logo-name small {
 .contact-form-orbit b:nth-of-type(1) { top: 92px; left: 107px; }
 .contact-form-orbit b:nth-of-type(2) { top: 356px; left: 52px; background: #0f9f94; animation-delay: -2s; }
 @keyframes contactSignal {
-  to { transform: translate(18px, -12px) scale(1.25); box-shadow: 0 0 0 8px #ff4f2714; }
+  to { transform: translate(18px, -12px) scale(1.25); box-shadow: 0 0 0 8px #cc331114; }
 }
 
 @media (max-width: 1180px) {

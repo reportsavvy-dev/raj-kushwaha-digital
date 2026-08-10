@@ -68,15 +68,15 @@ export default async function ServicePage({ params }: PageProps) {
   const hasClientProof = relatedCases.length > 0 || relatedLinkedIn.length > 0;
   const caseVisual = serviceCaseVisuals[service.slug];
   const orbitalService = { shortName: service.shortName, tools: service.tools, visual: service.visual, accent: service.accent, accentSoft: service.accentSoft };
-  const canonicalUrl = `https://rajkushwahadigital.com/services/${service.slug}`;
+  const canonicalUrl = `https://www.rajkushwahadigital.com/services/${service.slug}`;
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://rajkushwahadigital.com/" },
-          { "@type": "ListItem", position: 2, name: "Expertise", item: "https://rajkushwahadigital.com/expertise" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.rajkushwahadigital.com/" },
+          { "@type": "ListItem", position: 2, name: "Expertise", item: "https://www.rajkushwahadigital.com/expertise" },
           { "@type": "ListItem", position: 3, name: service.name, item: canonicalUrl },
         ],
       },
@@ -89,8 +89,8 @@ export default async function ServicePage({ params }: PageProps) {
         url: canonicalUrl,
         mainEntityOfPage: canonicalUrl,
         inLanguage: "en",
-        image: `https://rajkushwahadigital.com${caseVisual}`,
-        provider: { "@id": "https://rajkushwahadigital.com/#organization" },
+        image: `https://www.rajkushwahadigital.com${caseVisual.src}`,
+        provider: { "@id": "https://www.rajkushwahadigital.com/#organization" },
         areaServed: "Worldwide",
       },
     ],

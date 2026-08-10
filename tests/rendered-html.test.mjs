@@ -34,7 +34,7 @@ test("home page renders verified portfolio proof", async () => {
   assert.match(html, /src="\/case-studies\/vizva-card-illustration\.webp"/);
   assert.doesNotMatch(html, /_vinext\/image\?url=%2Fcase-studies%2F(?:silverspace|keymed|vizva)-card-illustration/);
   assert.match(html, /href="\/work"/);
-  assert.match(html, /twitter:image" content="https:\/\/rajkushwahadigital\.com\/og\.jpg"/);
+  assert.match(html, /twitter:image" content="https:\/\/www\.rajkushwahadigital\.com\/og\.jpg"/);
   assert.doesNotMatch(html, /brand-intro|C:\\Users\\|C:\/Users\//i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
   assert.doesNotMatch(html, /[—–]/);
@@ -85,7 +85,7 @@ test("work index renders all portfolio case routes", async () => {
   assert.match(html, />03<\/b> DELIVERY/);
   assert.doesNotMatch(html, /_vinext\/image\?url=%2Fclients%2Flinkedin/);
   assert.doesNotMatch(html, /_vinext\/image\?url=%2Flinkedin-work%2Fgenerated/);
-  assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/work"/);
+  assert.match(html, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/work"/);
 });
 
 test("LinkedIn sample page separates visible work from unverified outcomes", async () => {
@@ -138,10 +138,10 @@ test("sitemap includes work and case study URLs", async () => {
   const response = await render("/sitemap.xml");
   assert.equal(response.status, 200);
   const xml = await response.text();
-  assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work<\/loc>/);
-  assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/key-medsolutions-search-authority/);
-  assert.match(xml, /https:\/\/rajkushwahadigital\.com\/work\/linkedin\/vizva-uk-linkedin-content-system/);
-  assert.match(xml, /2026-08-10/);
+  assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/work<\/loc>/);
+  assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/work\/key-medsolutions-search-authority/);
+  assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/work\/linkedin\/vizva-uk-linkedin-content-system/);
+  assert.match(xml, /2026-08-11/);
   assert.doesNotMatch(xml, /<(?:priority|changefreq)>/);
 });
 
@@ -161,7 +161,7 @@ test("home and digital marketing service use distinct search titles", async () =
 test("every sitemap page renders unique metadata and valid local images", async () => {
   const sitemapResponse = await render("/sitemap.xml");
   const sitemap = await sitemapResponse.text();
-  const paths = [...sitemap.matchAll(/<loc>https:\/\/rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
+  const paths = [...sitemap.matchAll(/<loc>https:\/\/www\.rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
   const titles = new Set();
 
   assert.equal(paths.length, 31);
@@ -174,7 +174,7 @@ test("every sitemap page renders unique metadata and valid local images", async 
     assert.ok(!titles.has(title), `${pathname} has a unique title: ${title}`);
     titles.add(title);
     assert.match(html, /<h1\b/i, `${pathname} has an h1`);
-    assert.match(html, new RegExp(`rel="canonical" href="https://rajkushwahadigital\\.com${pathname === "/" ? "/" : pathname}"`));
+    assert.match(html, new RegExp(`rel="canonical" href="https://www\\.rajkushwahadigital\\.com${pathname === "/" ? "/" : pathname}"`));
     assert.doesNotMatch(html, /brand-intro|C:\\Users\\|C:\/Users\//i, pathname);
 
     for (const match of html.matchAll(/<img[^>]+src="(\/[^"?]+)"/g)) {
@@ -198,5 +198,5 @@ test("contact page offers a clear and accessible project enquiry", async () => {
   assert.match(html, /OPEN PROJECT EMAIL/);
   assert.match(html, /information is not stored on this website/i);
   assert.match(html, /"@type":"ContactPage"/);
-  assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/contact"/);
+  assert.match(html, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/contact"/);
 });

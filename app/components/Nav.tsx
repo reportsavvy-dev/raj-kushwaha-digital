@@ -18,7 +18,7 @@ export function Nav() {
   const closeAll = () => { setOpen(false); setExpertiseOpen(false); };
 
   return <header className="nav shell">
-    <Link href="/" aria-label="Raj Kushwaha Digital home" onClick={closeAll}><Logo/></Link>
+    <Link href="/" onClick={closeAll}><Logo/></Link>
     <button className="menu" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="primary-navigation">{open ? "CLOSE" : "MENU"}</button>
     <nav id="primary-navigation" className={open ? "open" : ""}>
       <Link href="/" onClick={closeAll}>HOME</Link>

@@ -35,15 +35,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
   if (!study) notFound();
   const index = caseStudies.findIndex((item) => item.slug === study.slug);
   const next = caseStudies[(index + 1) % caseStudies.length];
-  const canonicalUrl = `https://rajkushwahadigital.com/work/${study.slug}`;
+  const canonicalUrl = `https://www.rajkushwahadigital.com/work/${study.slug}`;
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://rajkushwahadigital.com/" },
-          { "@type": "ListItem", position: 2, name: "Work", item: "https://rajkushwahadigital.com/work" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.rajkushwahadigital.com/" },
+          { "@type": "ListItem", position: 2, name: "Work", item: "https://www.rajkushwahadigital.com/work" },
           { "@type": "ListItem", position: 3, name: study.client, item: canonicalUrl },
         ],
       },
@@ -54,11 +54,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
         url: canonicalUrl,
         mainEntityOfPage: canonicalUrl,
         inLanguage: "en",
-        image: `https://rajkushwahadigital.com${study.heroImage}`,
-        author: { "@id": "https://rajkushwahadigital.com/#raj-kushwaha" },
-        publisher: { "@id": "https://rajkushwahadigital.com/#organization" },
+        image: `https://www.rajkushwahadigital.com${study.heroImage}`,
+        author: { "@id": "https://www.rajkushwahadigital.com/#raj-kushwaha" },
+        publisher: { "@id": "https://www.rajkushwahadigital.com/#organization" },
         about: study.client,
-        dateModified: "2026-08-10",
+        dateModified: "2026-08-11",
       },
     ],
   };

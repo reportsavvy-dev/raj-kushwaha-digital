@@ -25,18 +25,18 @@ const structuredData = {
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://rajkushwahadigital.com/" },
-        { "@type": "ListItem", position: 2, name: "Contact", item: "https://rajkushwahadigital.com/contact" },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.rajkushwahadigital.com/" },
+        { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.rajkushwahadigital.com/contact" },
       ],
     },
     {
       "@type": "ContactPage",
-      "@id": "https://rajkushwahadigital.com/contact#page",
-      url: "https://rajkushwahadigital.com/contact",
+      "@id": "https://www.rajkushwahadigital.com/contact#page",
+      url: "https://www.rajkushwahadigital.com/contact",
       name: "Contact Raj Kushwaha Digital",
       description: "Project enquiry page for Raj Kushwaha Digital.",
       inLanguage: "en",
-      mainEntity: { "@id": "https://rajkushwahadigital.com/#organization" },
+      mainEntity: { "@id": "https://www.rajkushwahadigital.com/#organization" },
     },
   ],
 };

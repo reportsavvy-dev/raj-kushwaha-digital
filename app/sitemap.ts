@@ -3,8 +3,8 @@ import { caseStudies } from "./data/caseStudies";
 import { linkedinWorkSamples } from "./data/linkedinWork";
 import { services } from "./data/services";
 
-const baseUrl = "https://rajkushwahadigital.com";
-const lastModified = new Date("2026-08-10T00:00:00.000Z");
+const baseUrl = "https://www.rajkushwahadigital.com";
+const lastModified = new Date("2026-08-11T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
