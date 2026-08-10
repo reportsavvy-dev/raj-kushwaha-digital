@@ -37,7 +37,7 @@ export function Nav() {
           </Link>)}</div>
         </div>
       </div>
-      <a href="mailto:hello@rajkushwahadigital.com">CONTACT</a>
+      <Link href="/contact" onClick={closeAll}>CONTACT</Link>
     </nav>
   </header>;
 }

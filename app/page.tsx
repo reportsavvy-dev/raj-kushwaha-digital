@@ -47,7 +47,7 @@ export default function Home() {
         <span className="eyebrow-small">INDEPENDENT DIGITAL MARKETING AGENCY</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
         <p className="studio-hero-copy">Raj Kushwaha Digital connects strategy, search, media, creative, development and automation around one job: turning qualified attention into measurable business progress.</p>
-        <div><a className="primary-button magnetic" href="mailto:hello@rajkushwahadigital.com?subject=Start a project">START A PROJECT <span>→</span></a><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
+        <div><Link className="primary-button magnetic" href="/contact">START A PROJECT <span>→</span></Link><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
       </div>
       <HeroSolarSystem/>
     </section>
@@ -114,7 +114,7 @@ export default function Home() {
 }
 
 export function Contact() {
-  return <section className="contact shell" id="contact"><div className="contact-brandmark"><RKDMark/></div><div><span className="eyebrow-small">START WITH THE REAL PROBLEM</span><h2>Tell us what must change.<br/><i>We&apos;ll map the next move.</i></h2><a href="mailto:hello@rajkushwahadigital.com?subject=Project enquiry">hello@rajkushwahadigital.com <span>↗</span></a></div></section>;
+  return <section className="contact shell" id="contact"><div className="contact-brandmark"><RKDMark/></div><div><span className="eyebrow-small">START WITH THE REAL PROBLEM</span><h2>Tell us what must change.<br/><i>We&apos;ll map the next move.</i></h2><Link href="/contact">START A PROJECT <span>↗</span></Link></div></section>;
 }
 
 export function Footer() {

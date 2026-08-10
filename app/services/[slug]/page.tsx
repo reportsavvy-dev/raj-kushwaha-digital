@@ -106,7 +106,7 @@ export default async function ServicePage({ params }: PageProps) {
         <h1>{service.name}</h1>
         <p className="service-direct-answer">{service.directAnswer}</p>
         <p>{service.intro}</p>
-        <div><a className="primary-button magnetic" href={`mailto:hello@rajkushwahadigital.com?subject=${encodeURIComponent(service.name)} project`}>START A {service.shortName.toUpperCase()} PROJECT <span>→</span></a><Link className="text-link" href={hasClientProof ? "#client-work" : "#case-study"}>{hasClientProof ? "SEE CLIENT WORK" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
+        <div><Link className="primary-button magnetic" href="/contact">START A {service.shortName.toUpperCase()} PROJECT <span>→</span></Link><Link className="text-link" href={hasClientProof ? "#client-work" : "#case-study"}>{hasClientProof ? "SEE CLIENT WORK" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
       </div>
       <ServiceOrbital service={orbitalService}/>
     </section>

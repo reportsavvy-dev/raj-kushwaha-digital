@@ -164,7 +164,7 @@ test("every sitemap page renders unique metadata and valid local images", async 
   const paths = [...sitemap.matchAll(/<loc>https:\/\/rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
   const titles = new Set();
 
-  assert.equal(paths.length, 30);
+  assert.equal(paths.length, 31);
   for (const pathname of paths) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
@@ -182,4 +182,21 @@ test("every sitemap page renders unique metadata and valid local images", async 
       assert.ok(existsSync(assetPath), `${pathname} image exists: ${match[1]}`);
     }
   }
+});
+
+test("contact page offers a clear and accessible project enquiry", async () => {
+  const response = await render("/contact");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Start with/);
+  assert.match(html, /the real/);
+  assert.match(html, /PROJECT ENQUIRY/);
+  assert.match(html, /<input(?=[^>]*name="name")(?=[^>]*required)[^>]*>/);
+  assert.match(html, /<input(?=[^>]*name="email")(?=[^>]*type="email")(?=[^>]*required)[^>]*>/);
+  assert.match(html, /<textarea(?=[^>]*name="context")(?=[^>]*required)[^>]*>/);
+  assert.match(html, /OPEN PROJECT EMAIL/);
+  assert.match(html, /information is not stored on this website/i);
+  assert.match(html, /"@type":"ContactPage"/);
+  assert.match(html, /rel="canonical" href="https:\/\/rajkushwahadigital\.com\/contact"/);
 });
