@@ -821,6 +821,9 @@ a {
   color: var(--white);
   padding: 120px 0;
 }
+.method .eyebrow-small {
+  color: #ff7656;
+}
 .method h2 {
   margin: 25px 0 70px;
 }
@@ -838,7 +841,7 @@ a {
 }
 .method-steps span {
   font: 11px var(--font-geist-mono);
-  color: var(--coral);
+  color: #ff7656;
 }
 .method-steps h3 {
   font-size: 23px;
