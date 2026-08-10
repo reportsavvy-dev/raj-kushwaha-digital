@@ -134,6 +134,22 @@ test("service page separates real work from planning examples", async () => {
   assert.match(html, /Planning benchmark, not client feedback/);
 });
 
+test("logo design service shows verified brand projects instead of a concept case", async () => {
+  const response = await render("/services/logo-graphic-design");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /SELECTED IDENTITY AND DESIGN WORK/);
+  assert.match(html, /Axiom Arise/);
+  assert.match(html, /34 validated files/);
+  assert.match(html, /Key MedSolutions/);
+  assert.match(html, /KH RCM/);
+  assert.match(html, /src="\/clients\/axiom-arise\.webp"/);
+  assert.match(html, /src="\/clients\/kh-rcm\.webp"/);
+  assert.doesNotMatch(html, /Hospitality/);
+  assert.doesNotMatch(html, /CAPABILITY CASE STUDY \/ CONCEPT/);
+});
+
 test("sitemap includes work and case study URLs", async () => {
   const response = await render("/sitemap.xml");
   assert.equal(response.status, 200);
