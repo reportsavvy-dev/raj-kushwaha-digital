@@ -18,26 +18,51 @@ const timelines = ["As soon as possible", "Within 2–4 weeks", "Within 1–2 mo
 
 export function ContactForm() {
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function submitProject(event: FormEvent<HTMLFormElement>) {
+  async function submitProject(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const selected = form.getAll("projectType").join(", ") || "Not selected";
-    const lines = [
-      `Name: ${form.get("name")}`,
-      `Work email: ${form.get("email")}`,
-      `Company / brand: ${form.get("company") || "Not provided"}`,
-      `Website: ${form.get("website") || "Not provided"}`,
-      `Project type: ${selected}`,
-      `Approximate budget: ${form.get("budget") || "Not selected"}`,
-      `Ideal timeline: ${form.get("timeline") || "Not selected"}`,
-      "",
-      "Project context:",
-      String(form.get("context") || ""),
-    ];
-    const subject = `Project enquiry from ${form.get("name")}`;
-    setStatus("Your email draft is opening. Review it, then press send in your email app.");
-    window.location.href = `mailto:hello@rajkushwahadigital.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+    const name = String(form.get("name") || "");
+
+    setIsSubmitting(true);
+    setStatus("Sending your enquiry...");
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/hello@rajkushwahadigital.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email: String(form.get("email") || ""),
+          "Company / brand": String(form.get("company") || "Not provided"),
+          Website: String(form.get("website") || "Not provided"),
+          "Project type": selected,
+          "Approximate budget": String(form.get("budget") || "Not selected"),
+          "Ideal timeline": String(form.get("timeline") || "Not selected"),
+          "Project context": String(form.get("context") || ""),
+          _subject: `Project enquiry from ${name}`,
+          _template: "table",
+          _url: window.location.href,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      formElement.reset();
+      setStatus("Thank you. Your enquiry has been submitted successfully.");
+    } catch {
+      setStatus("We could not send your enquiry. Please try again or email hello@rajkushwahadigital.com.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return <form className="project-enquiry-form" onSubmit={submitProject}>
@@ -66,8 +91,8 @@ export function ContactForm() {
     </fieldset>
 
     <label className="contact-context"><span>PROJECT CONTEXT *</span><textarea name="context" required maxLength={1500} rows={7} placeholder="What is stuck, what needs to change, who are you trying to reach, and what would a useful result look like?"/></label>
-    <button className="contact-submit" type="submit">OPEN PROJECT EMAIL <span>→</span></button>
-    <p className="contact-form-note">This opens a prefilled email in your default mail app. Your information is not stored on this website.</p>
+    <button className="contact-submit" type="submit" disabled={isSubmitting}>{isSubmitting ? "SENDING..." : "SUBMIT ENQUIRY"} <span>→</span></button>
+    <p className="contact-form-note">Your enquiry will be sent securely to hello@rajkushwahadigital.com.</p>
     <p className="contact-form-status" role="status" aria-live="polite">{status}</p>
   </form>;
 }
