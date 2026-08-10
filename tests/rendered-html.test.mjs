@@ -195,8 +195,8 @@ test("contact page offers a clear and accessible project enquiry", async () => {
   assert.match(html, /<input(?=[^>]*name="name")(?=[^>]*required)[^>]*>/);
   assert.match(html, /<input(?=[^>]*name="email")(?=[^>]*type="email")(?=[^>]*required)[^>]*>/);
   assert.match(html, /<textarea(?=[^>]*name="context")(?=[^>]*required)[^>]*>/);
-  assert.match(html, /OPEN PROJECT EMAIL/);
-  assert.match(html, /information is not stored on this website/i);
+  assert.match(html, /SUBMIT ENQUIRY/);
+  assert.match(html, /sent securely to hello@rajkushwahadigital\.com/i);
   assert.match(html, /"@type":"ContactPage"/);
   assert.match(html, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/contact"/);
 });
