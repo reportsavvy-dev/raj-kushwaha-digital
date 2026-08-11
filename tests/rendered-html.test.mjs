@@ -140,7 +140,8 @@ test("logo design service shows verified brand projects instead of a concept cas
 
   assert.match(html, /SELECTED IDENTITY SYSTEMS/);
   assert.match(html, /Three brands/);
-  assert.match(html, /Every slide visible/);
+  assert.match(html, /Presented separately/);
+  assert.match(html, /Individual Key MedSolutions and KH RCM identity slides/);
   assert.match(html, /src="\/case-studies\/axiom-guide\/page-01\.webp"/);
   assert.match(html, /src="\/case-studies\/axiom-guide\/page-08\.webp"/);
   assert.match(html, /Axiom_Arise_Brand_Guidelines\.pdf/);
