@@ -6775,36 +6775,12 @@ footer .logo-lockup:hover .logo-name small {
   object-fit: contain;
   object-position: center;
 }
-.brand-guide-logo {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 50%;
-  display: grid;
-  place-items: center;
-  width: min(48%, 520px);
-  min-height: 96px;
-  padding: 20px 26px;
-  transform: translate(-50%, -50%);
-  border: 1px solid #11110f22;
-  border-radius: 12px;
-  background: #fffdf8f2;
-  box-shadow: 0 20px 45px #11110f1c;
-  backdrop-filter: blur(8px);
+.brand-guide-art-pdf {
+  aspect-ratio: 4 / 3;
+  background: #e8edeb;
 }
-.brand-guide-logo img {
-  width: 100%;
-  height: auto;
-  max-height: 110px;
-  object-fit: contain;
-}
-.brand-guide-logo-axiom {
-  top: auto;
-  bottom: 5%;
-  width: min(44%, 480px);
-  min-height: 78px;
-  padding-block: 14px;
-  transform: translateX(-50%);
+.brand-guide-art-pdf > img {
+  padding: 14px 0;
 }
 .brand-guide-number {
   position: absolute;
@@ -6819,7 +6795,7 @@ footer .logo-lockup:hover .logo-name small {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: clamp(28px, 3.2vw, 52px);
 }
 .brand-guide-copy > small {
@@ -6860,6 +6836,22 @@ footer .logo-lockup:hover .logo-name small {
   text-decoration: none;
 }
 .brand-guide-links a span { color: var(--design-accent); }
+.brand-guide-copy-logo {
+  display: grid;
+  place-items: center start;
+  width: min(100%, 430px);
+  min-height: 82px;
+  margin-top: auto;
+  padding-top: 32px;
+  align-self: flex-start;
+}
+.brand-guide-copy-logo img {
+  width: 100%;
+  height: auto;
+  max-height: 78px;
+  object-fit: contain;
+  object-position: left center;
+}
 .brand-guide-controls {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr) 48px;
@@ -6876,13 +6868,23 @@ footer .logo-lockup:hover .logo-name small {
   color: var(--ink);
   cursor: pointer;
 }
-.brand-guide-controls > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.brand-guide-controls > div {
+  display: flex;
+  min-width: 0;
+  gap: 8px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scroll-snap-type: inline proximity;
+}
 .brand-guide-controls > div button {
   display: flex;
+  flex: 1 0 112px;
   align-items: center;
   justify-content: center;
   gap: 9px;
   padding: 8px 12px;
+  scroll-snap-align: start;
   font: 800 10px var(--font-geist-mono);
   text-transform: uppercase;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
@@ -6906,6 +6908,7 @@ footer .logo-lockup:hover .logo-name small {
 @media (max-width: 980px) {
   .brand-guide-slide { grid-template-columns: 1fr; }
   .brand-guide-art { border-right: 0; border-bottom: 1px solid var(--line); }
+  .brand-guide-art-pdf { aspect-ratio: 4 / 3; }
   .brand-guide-copy { min-height: 330px; }
 }
 @media (max-width: 650px) {
@@ -6915,13 +6918,14 @@ footer .logo-lockup:hover .logo-name small {
   .brand-guide-heading p { font-size: 13px; }
   .brand-guide-viewport { border-radius: 12px; }
   .brand-guide-art { aspect-ratio: 16 / 10; }
-  .brand-guide-logo { width: 55%; min-height: 62px; padding: 12px 15px; }
-  .brand-guide-logo-axiom { bottom: 4%; width: 58%; min-height: 52px; padding-block: 9px; }
-  .brand-guide-logo img { max-height: 74px; }
+  .brand-guide-art-pdf { aspect-ratio: 4 / 3; }
   .brand-guide-number { top: 13px; left: 14px; }
   .brand-guide-copy { min-height: 330px; padding: 26px 22px; }
   .brand-guide-copy h3 { font-size: 34px; }
+  .brand-guide-copy-logo { min-height: 68px; padding-top: 28px; }
+  .brand-guide-copy-logo img { max-height: 64px; }
   .brand-guide-controls { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .brand-guide-controls > div button { flex-basis: 44px; padding-inline: 8px; }
   .brand-guide-controls > div button b { display: none; }
 
   .nav nav.open {
