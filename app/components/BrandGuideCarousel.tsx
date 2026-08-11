@@ -63,7 +63,7 @@ export function BrandGuideCarousel() {
         >
           <div className="brand-guide-art">
             <Image src={project.slideImage} alt={project.slideAlt} fill sizes="(max-width: 760px) 100vw, 68vw" priority={index === 0} unoptimized style={{ objectFit: "contain" }}/>
-            <div className="brand-guide-logo"><Image src={project.logo} alt={project.logoAlt} width={560} height={190} unoptimized style={{ objectFit: "contain" }}/></div>
+            <div className={`brand-guide-logo ${index === 0 ? "brand-guide-logo-axiom" : ""}`}><Image src={project.logo} alt={project.logoAlt} width={560} height={190} unoptimized style={{ objectFit: "contain" }}/></div>
             <span className="brand-guide-number">0{index + 1}</span>
           </div>
           <div className="brand-guide-copy">

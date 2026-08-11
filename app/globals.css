@@ -6798,6 +6798,14 @@ footer .logo-lockup:hover .logo-name small {
   max-height: 110px;
   object-fit: contain;
 }
+.brand-guide-logo-axiom {
+  top: auto;
+  bottom: 5%;
+  width: min(44%, 480px);
+  min-height: 78px;
+  padding-block: 14px;
+  transform: translateX(-50%);
+}
 .brand-guide-number {
   position: absolute;
   z-index: 3;
@@ -6908,6 +6916,7 @@ footer .logo-lockup:hover .logo-name small {
   .brand-guide-viewport { border-radius: 12px; }
   .brand-guide-art { aspect-ratio: 16 / 10; }
   .brand-guide-logo { width: 55%; min-height: 62px; padding: 12px 15px; }
+  .brand-guide-logo-axiom { bottom: 4%; width: 58%; min-height: 52px; padding-block: 9px; }
   .brand-guide-logo img { max-height: 74px; }
   .brand-guide-number { top: 13px; left: 14px; }
   .brand-guide-copy { min-height: 330px; padding: 26px 22px; }
