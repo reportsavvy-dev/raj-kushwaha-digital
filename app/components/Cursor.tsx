@@ -39,9 +39,11 @@ export function Cursor() {
 
     const over = (event: PointerEvent) => {
       if (!cursorEnabled) return;
+      const target = event.target as HTMLElement;
+      const isHeaderNavigation = Boolean(target.closest(".nav"));
       ring.current?.classList.toggle(
         "cursor-active",
-        Boolean((event.target as HTMLElement).closest("a,button,.hover-target")),
+        !isHeaderNavigation && Boolean(target.closest("a,button,.hover-target")),
       );
     };
     const down = () => cursorEnabled && ring.current?.classList.add("cursor-click");
@@ -120,6 +122,6 @@ export function Cursor() {
   return <>
     <div className="page-progress"><small>01</small><i><span ref={progress}/></i><b>RKD</b></div>
     <div ref={dot} className="cursor-dot"><i/></div>
-    <div ref={ring} className="cursor-ring"><i/><b>+</b><span>SIGNAL</span></div>
+    <div ref={ring} className="cursor-ring"><i/><b>+</b></div>
   </>;
 }

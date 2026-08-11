@@ -50,7 +50,7 @@ test("work index renders all portfolio case routes", async () => {
   assert.match(html, /\/work\/key-medsolutions-search-authority/);
   assert.match(html, /\/work\/vizva-linkedin-organic-growth/);
   assert.match(html, /historical rankings/i);
-  assert.match(html, /PUBLISHED LINKEDIN WORK/);
+  assert.match(html, /LINKEDIN WORK ARCHIVE/);
   assert.match(html, /Amoha RCM/);
   assert.match(html, /Vizva Consultancy Services UK/);
   assert.match(html, /\/work\/linkedin\/bridgepoint-careers-linkedin-content-system/);
@@ -78,8 +78,7 @@ test("work index renders all portfolio case routes", async () => {
     "vizva-usa-case-visual",
     "vizva-uk-case-visual",
   ]) assert.match(html, new RegExp(`src="/linkedin-work/generated/${visual}\\.webp"`));
-  assert.match(html, /CASE <!-- -->01<!-- --> \/ 09/);
-  assert.match(html, /LIVE POST/);
+  assert.match(html, /OFFICIAL CLIENT POST/);
   assert.match(html, />01<\/b> STRATEGY/);
   assert.match(html, />02<\/b> CREATIVE/);
   assert.match(html, />03<\/b> DELIVERY/);
@@ -126,7 +125,7 @@ test("service page separates real work from planning examples", async () => {
   const html = await response.text();
 
   assert.match(html, /RELATED CLIENT RESULTS/);
-  assert.match(html, /PUBLIC LINKEDIN WORK/);
+  assert.match(html, /RECENT LINKEDIN WORK/);
   assert.match(html, /CAPABILITY CASE STUDY \/ CONCEPT/);
   assert.match(html, /src="\/case-studies\/generated\/social-influence\.webp"/);
   assert.match(html, /RAJ KUSHWAHA DIGITAL/);

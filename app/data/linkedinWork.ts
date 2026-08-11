@@ -241,3 +241,13 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
 ];
 
 export const linkedinWorkBySlug = (slug: string) => linkedinWorkSamples.find((sample) => sample.slug === slug);
+
+// Verified on the clients' official LinkedIn pages on 11 August 2026.
+// LinkedIn showed these posts as three to four days old at review time.
+const recentLinkedInSlugs = new Set([
+  "amoha-rcm-linkedin-content-system",
+  "bridgepoint-careers-linkedin-content-system",
+  "silverspace-linkedin-content-system",
+]);
+
+export const recentLinkedInWorkSamples = linkedinWorkSamples.filter((sample) => recentLinkedInSlugs.has(sample.slug));

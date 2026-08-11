@@ -8,7 +8,7 @@ import { RKDMark } from "./components/BrandMark";
 import { Logo, Nav } from "./components/Nav";
 import { ToolLogo } from "./components/ToolLogo";
 import { caseStudies } from "./data/caseStudies";
-import { linkedinWorkSamples } from "./data/linkedinWork";
+import { linkedinWorkSamples, recentLinkedInWorkSamples } from "./data/linkedinWork";
 import { services } from "./data/services";
 
 export const dynamic = "force-static";
@@ -88,11 +88,11 @@ export default function Home() {
     </section>
 
     <section className="home-linkedin-work shell">
-      <header><span className="eyebrow-small">PUBLISHED LINKEDIN CREATIVE</span><h2>Content people can see.<br/><i>Work they can inspect.</i></h2><p>These samples are live on official client LinkedIn pages. Each breakdown shows the audience, editorial decision and delivered creative without attaching unverified performance figures.</p></header>
+      <header><span className="eyebrow-small">RECENT LINKEDIN WORK</span><h2>Current client work.<br/><i>Visible on LinkedIn.</i></h2><p>Three recent posts from official client pages, reviewed in August 2026. The cards are static here to keep the page light; each link opens the supporting work sample.</p></header>
       <div className="linkedin-work-grid">
-        {linkedinWorkSamples.slice(0, 3).map((sample, index) => <LinkedInWorkCard sample={sample} index={index} key={sample.slug}/>)}
+        {recentLinkedInWorkSamples.map((sample, index) => <LinkedInWorkCard sample={sample} index={index} recent key={sample.slug}/>)}
       </div>
-      <Link className="all-work-link" href="/work#linkedin-work">VIEW ALL NINE BRAND SAMPLES ↗</Link>
+      <Link className="all-work-link" href="/work#linkedin-work">VIEW THE LINKEDIN WORK ARCHIVE <span aria-hidden="true">↗</span></Link>
     </section>
 
     <section className="home-testimonials shell">
@@ -103,7 +103,7 @@ export default function Home() {
 
     <section className="about-raj shell">
       <span className="eyebrow-small">WHO LEADS THE WORK</span>
-      <div><strong>6</strong><small>YEARS OF HANDS ON DIGITAL MARKETING EXPERIENCE</small></div>
+      <div className="experience-orbit" aria-label="Six years of hands on digital marketing experience"><strong>06</strong><i aria-hidden="true"/><small>YEARS OF HANDS ON DIGITAL MARKETING EXPERIENCE</small></div>
       <article><h2>Raj Kushwaha works across search, social, content and analytics.</h2><p>His portfolio covers organic growth programs for staffing, medical billing and consulting brands. The work shown here combines strategy with execution: page planning, technical search, content production, LinkedIn publishing, measurement and the client conversations needed to keep each channel useful.</p><p>Before independent client work, the portfolio records experience with Autotech Nonwoven, Ages Pvt Ltd and Webtezz.</p></article>
     </section>
 

@@ -48,9 +48,9 @@ export default function WorkPage() {
 
     <section className="linkedin-work-section shell" id="linkedin-work">
       <header>
-        <span className="eyebrow-small">PUBLISHED LINKEDIN WORK</span>
+        <span className="eyebrow-small">LINKEDIN WORK ARCHIVE</span>
         <h2>Nine brands.<br/><i>Nine distinct systems.</i></h2>
-        <p>Each card links to a public client post and a breakdown of the audience, problem, content decision and final delivery. These are work samples, not fabricated performance claims.</p>
+        <p>Each static card links to a client post and a breakdown of the audience, problem, content decision and final delivery. These are work samples, not fabricated performance claims.</p>
       </header>
       <div className="linkedin-work-grid">
         {linkedinWorkSamples.map((sample, index) => <LinkedInWorkCard sample={sample} index={index} key={sample.slug}/>)}

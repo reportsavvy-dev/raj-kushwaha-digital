@@ -5796,6 +5796,248 @@ footer .logo-lockup:hover .logo-name small {
   }
 }
 
+/* 2026 homepage motion refresh: complete hero orbit, lightweight 3D client rail. */
+.home-hero {
+  overflow: clip;
+}
+
+.hero-solar-system {
+  height: 660px;
+  margin-left: 0;
+  overflow: visible;
+  contain: layout paint;
+}
+
+.solar-stage {
+  transform: scale(0.72);
+  transform-origin: center;
+}
+
+.solar-glow {
+  filter: none;
+  background: radial-gradient(circle, #cc331128, transparent 68%);
+}
+
+.solar-orbit.orbit-one {
+  width: 340px;
+  height: 205px;
+}
+
+.solar-orbit.orbit-two {
+  width: 470px;
+  height: 315px;
+}
+
+.solar-orbit.orbit-three {
+  width: 610px;
+  height: 430px;
+}
+
+.solar-runner.orbit-one {
+  width: 335px;
+  height: 335px;
+}
+
+.solar-runner.orbit-two {
+  width: 460px;
+  height: 460px;
+}
+
+.solar-runner.orbit-three {
+  width: 595px;
+  height: 595px;
+}
+
+.solar-anchor {
+  right: -16px;
+}
+
+.solar-planet {
+  width: 142px;
+  min-height: 94px;
+  padding: 9px;
+  box-shadow: 0 12px 26px #20160f24;
+}
+
+.solar-core {
+  width: 380px;
+  min-height: 345px;
+  box-shadow: 0 24px 52px #0003, 0 0 0 8px #f4f0e7cc;
+}
+
+.home-clients > .home-client-marquee {
+  position: relative;
+  min-height: 190px;
+  padding: 20px 0;
+  overflow: hidden;
+  perspective: 950px;
+  background-color: #fbf8f1;
+  background-image: radial-gradient(#9c958a40 0.75px, transparent 0.75px);
+  background-size: 8px 8px;
+}
+
+.home-client-track {
+  align-items: center;
+  transform-style: preserve-3d;
+  animation-duration: 42s;
+}
+
+.home-client-set {
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.home-clients .home-client-set > a {
+  flex: 0 0 230px;
+  width: 230px;
+  min-height: 140px;
+  margin: 4px 7px;
+  padding: 18px 20px;
+  border: 1px solid #211f1b;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fffefa, #eee8dd);
+  box-shadow: 0 14px 24px #21180f1f;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.home-clients .home-client-set > a:nth-child(4n + 1) {
+  transform: rotateY(13deg) rotateZ(-1.6deg) translateZ(-18px);
+}
+
+.home-clients .home-client-set > a:nth-child(4n + 2) {
+  transform: rotateY(-9deg) rotateZ(1.2deg) translateY(-7px) translateZ(12px);
+}
+
+.home-clients .home-client-set > a:nth-child(4n + 3) {
+  transform: rotateY(7deg) rotateZ(-0.7deg) translateY(5px) translateZ(24px);
+}
+
+.home-clients .home-client-set > a:nth-child(4n) {
+  transform: rotateY(-14deg) rotateZ(1.5deg) translateZ(-8px);
+}
+
+.home-clients .home-client-set > a:hover,
+.home-clients .home-client-set > a:focus-visible {
+  z-index: 3;
+  transform: translateY(-9px) translateZ(45px) scale(1.035);
+  box-shadow: 0 22px 38px #21180f2b;
+}
+
+.home-clients .home-client-set img {
+  height: 66px;
+  transform: translateZ(18px);
+}
+
+.home-clients .home-client-set small {
+  transform: translateZ(12px);
+}
+
+.linkedin-work-card,
+.service-linkedin-grid > a {
+  animation: none !important;
+}
+
+.linkedin-visual-status b {
+  color: var(--sample-accent);
+}
+
+.experience-orbit {
+  position: relative;
+  min-height: 235px;
+  isolation: isolate;
+}
+
+.about-raj > .experience-orbit strong {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(92px, 10vw, 158px);
+  letter-spacing: -0.1em;
+}
+
+.experience-orbit > i {
+  position: absolute;
+  left: 8px;
+  top: -28px;
+  width: 178px;
+  height: 178px;
+  border: 1px dashed #8c8479;
+  border-radius: 50%;
+  animation: experienceOrbit 11s linear infinite;
+  pointer-events: none;
+}
+
+.experience-orbit > i::before,
+.experience-orbit > i::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.experience-orbit > i::before {
+  right: 15px;
+  top: 13px;
+  width: 12px;
+  height: 12px;
+  background: var(--coral);
+  box-shadow: 0 0 0 7px #cc331120;
+}
+
+.experience-orbit > i::after {
+  left: 20px;
+  bottom: 8px;
+  width: 7px;
+  height: 7px;
+  background: #14b8a6;
+}
+
+@keyframes experienceOrbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (min-width: 1920px) {
+  .solar-stage { transform: scale(0.9); }
+}
+
+@media (min-width: 2560px) {
+  .solar-stage { transform: scale(1.15); }
+}
+
+@media (min-width: 3400px) {
+  .solar-stage { transform: scale(1.5); }
+}
+
+@media (max-width: 900px) {
+  .hero-solar-system { height: 610px; }
+  .solar-stage { transform: scale(0.68); }
+}
+
+@media (max-width: 650px) {
+  .hero-solar-system {
+    height: 480px;
+    margin: 10px -16px 30px;
+  }
+  .solar-stage { transform: scale(0.48); }
+  .home-clients > .home-client-marquee { min-height: 158px; }
+  .home-clients .home-client-set > a {
+    flex-basis: 185px;
+    width: 185px;
+    min-height: 118px;
+  }
+  .home-client-track { animation-duration: 34s; }
+  .experience-orbit { min-height: 205px; }
+  .experience-orbit > i {
+    width: 150px;
+    height: 150px;
+    top: -20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-orbit > i { animation: none; }
+  .home-clients .home-client-set > a { transform: none; }
+}
+
 /* Case-study imagery and guaranteed logo badges */
 .case-art {
   background: var(--service-soft);

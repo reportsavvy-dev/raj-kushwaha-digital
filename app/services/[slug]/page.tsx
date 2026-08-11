@@ -10,7 +10,7 @@ import { ServiceOrbital } from "../../components/ServiceOrbital";
 import { ToolLogo } from "../../components/ToolLogo";
 import { caseStudies } from "../../data/caseStudies";
 import { designProjects } from "../../data/designProjects";
-import { linkedinWorkSamples } from "../../data/linkedinWork";
+import { recentLinkedInWorkSamples } from "../../data/linkedinWork";
 import { serviceBySlug, services } from "../../data/services";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -65,7 +65,7 @@ export default async function ServicePage({ params }: PageProps) {
   const index = services.findIndex((item) => item.slug === service.slug);
   const related = [services[(index + 1) % services.length], services[(index + 5) % services.length], services[(index + 10) % services.length]];
   const relatedCases = caseStudies.filter((study) => study.services.includes(service.slug));
-  const relatedLinkedIn = linkedinWorkSamples.filter((sample) => sample.services.includes(service.slug));
+  const relatedLinkedIn = recentLinkedInWorkSamples.filter((sample) => sample.services.includes(service.slug));
   const hasClientProof = relatedCases.length > 0 || relatedLinkedIn.length > 0;
   const caseVisual = serviceCaseVisuals[service.slug];
   const isDesignService = service.slug === "logo-graphic-design";
@@ -139,13 +139,13 @@ export default async function ServicePage({ params }: PageProps) {
     </section> : null}
 
     {relatedLinkedIn.length ? <section className="service-linkedin-proof shell" id={relatedCases.length ? undefined : "client-work"}>
-      <header><span className="eyebrow-small">PUBLIC LINKEDIN WORK</span><h2>Published work for<br/><i>real brands.</i></h2><p>These {service.shortName.toLowerCase()} related creatives are visible on the brands&apos; official LinkedIn pages. Each example shows a distinct editorial and design decision without attaching unverified performance numbers.</p></header>
+      <header><span className="eyebrow-small">RECENT LINKEDIN WORK</span><h2>Recent work for<br/><i>real brands.</i></h2><p>These {service.shortName.toLowerCase()} related posts were reviewed on the brands&apos; official LinkedIn pages in August 2026. Each static example shows a distinct editorial and design decision without attaching unverified performance numbers.</p></header>
       <div className="service-linkedin-grid">{relatedLinkedIn.slice(0, 3).map((sample) => <Link href={`/work/linkedin/${sample.slug}`} key={sample.slug} style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as React.CSSProperties}>
         <div className="service-linkedin-image"><Image src={sample.cardImage} alt={sample.cardAlt} fill unoptimized sizes="(max-width: 900px) 100vw, 33vw"/></div>
         <span><Image src={sample.logo} alt={sample.logoAlt} width={130} height={54} unoptimized/><small>{sample.client}</small></span>
         <h3>{sample.headline}</h3><b>VIEW WORK SAMPLE ↗</b>
       </Link>)}</div>
-      {relatedLinkedIn.length > 3 ? <Link className="all-work-link" href="/work#linkedin-work">VIEW ALL NINE BRAND SAMPLES ↗</Link> : null}
+      <Link className="all-work-link" href="/work#linkedin-work">VIEW THE LINKEDIN WORK ARCHIVE <span aria-hidden="true">↗</span></Link>
     </section> : null}
 
     {isDesignService ? <section className="design-projects shell" id="case-study">
