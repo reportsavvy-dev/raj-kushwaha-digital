@@ -64,13 +64,20 @@ export default function Home() {
 
     <section className="home-clients shell">
       <span className="eyebrow-small">SELECTED CLIENT WORK</span>
-      <div className="home-client-marquee">
-        <div className="home-client-track">
-          {[0, 1].map((copy) => <div className="home-client-set" aria-hidden={copy === 1 ? true : undefined} key={copy}>
-            {homeClientLogos.map((client) => <Link href={client.href} key={`${copy}-${client.name}`} tabIndex={copy === 1 ? -1 : undefined}>
-              <Image src={client.src} alt={copy === 1 ? "" : client.alt} width={170} height={72} unoptimized/><small>{client.name}</small>
-            </Link>)}
-          </div>)}
+      <div className="home-client-carousel" aria-label="Selected client work moving in a three dimensional carousel">
+        <div className="home-client-arc">
+          {homeClientLogos.map((client, index) => <Link
+            className="home-client-motion"
+            href={client.href}
+            key={client.name}
+            style={{"--client-delay": `${index * -3}s`, "--client-mobile-delay": `${index * -2.4}s`} as React.CSSProperties}
+            aria-label={`View work for ${client.name}`}
+          >
+            <span className="home-client-card">
+              <Image src={client.src} alt={client.alt} width={170} height={72} unoptimized/>
+              <small>{client.name}</small>
+            </span>
+          </Link>)}
         </div>
       </div>
     </section>

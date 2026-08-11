@@ -26,9 +26,9 @@ test("home page renders verified portfolio proof", async () => {
   assert.match(html, /Key MedSolutions/);
   assert.match(html, /Vizva Consultancy Services/);
   assert.match(html, /CLIENT FEEDBACK/);
-  assert.match(html, /class="home-client-marquee"/);
-  assert.match(html, /class="home-client-track"/);
-  assert.match(html, /aria-hidden="true"/);
+  assert.match(html, /class="home-client-carousel"/);
+  assert.match(html, /class="home-client-arc"/);
+  assert.equal((html.match(/class="home-client-motion"/g) ?? []).length, 10);
   assert.match(html, /src="\/case-studies\/silverspace-card-illustration\.webp"/);
   assert.match(html, /src="\/case-studies\/keymed-card-illustration\.webp"/);
   assert.match(html, /src="\/case-studies\/vizva-card-illustration\.webp"/);

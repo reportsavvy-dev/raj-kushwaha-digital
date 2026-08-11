@@ -474,66 +474,6 @@
   }
 }
 
-/* One-line client logo rail moving continuously to the right. */
-.home-clients > .home-client-marquee {
-  display: block;
-  overflow: hidden;
-  width: 100%;
-  border: 1px solid var(--ink);
-  border-radius: 9px;
-  background: var(--white);
-}
-.home-client-track {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-  animation: homeClientRight 34s linear infinite;
-}
-.home-client-set {
-  display: flex;
-  flex: 0 0 auto;
-}
-.home-clients .home-client-set > a {
-  flex: 0 0 clamp(205px, 17vw, 285px);
-  width: clamp(205px, 17vw, 285px);
-  min-height: 132px;
-  padding: 20px 24px;
-  border-right: 1px solid var(--line);
-  border-bottom: 0;
-}
-.home-clients .home-client-set > a:last-child {
-  border-right: 1px solid var(--line);
-}
-.home-client-marquee:hover .home-client-track,
-.home-client-marquee:focus-within .home-client-track,
-.home-client-marquee.motion-paused .home-client-track {
-  animation-play-state: paused;
-}
-@keyframes homeClientRight {
-  from { transform: translate3d(-50%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-@media (max-width: 620px) {
-  .home-clients .home-client-set > a {
-    flex-basis: 205px;
-    width: 205px;
-    min-height: 112px;
-    padding: 15px 18px;
-  }
-  .home-client-track {
-    animation-duration: 27s;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .home-client-track {
-    transform: none;
-    animation: none;
-  }
-  .home-client-marquee {
-    overflow-x: auto !important;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
@@ -2994,6 +2934,13 @@ body:before {
 .service-sources {
   padding: 0 0 120px;
 }
+.service-sources > h2 {
+  max-width: 760px;
+  margin: 16px 0 0;
+  font-size: clamp(32px, 4.2vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
 .service-sources > p {
   max-width: 620px;
   margin: 18px 0 28px;
@@ -3006,7 +2953,7 @@ body:before {
   border-top: 1px solid var(--ink);
 }
 .service-sources a {
-  min-height: 96px;
+  min-height: 132px;
   padding: 20px 18px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -3017,6 +2964,21 @@ body:before {
   font-weight: 700;
   line-height: 1.4;
   transition: 0.25s ease;
+}
+.service-sources .source-copy {
+  display: grid;
+  gap: 10px;
+  color: inherit;
+}
+.service-sources .source-copy strong {
+  font-size: 15px;
+}
+.service-sources .source-copy small {
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.55;
 }
 .service-sources a:hover {
   background: var(--service-soft);
@@ -5865,72 +5827,139 @@ footer .logo-lockup:hover .logo-name small {
   box-shadow: 0 24px 52px #0003, 0 0 0 8px #f4f0e7cc;
 }
 
-.home-clients > .home-client-marquee {
+.home-clients > .home-client-carousel {
   position: relative;
-  min-height: 190px;
-  padding: 20px 0;
+  display: block;
+  width: 100%;
+  min-height: 285px;
   overflow: hidden;
-  perspective: 950px;
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  perspective: 1200px;
+  perspective-origin: 50% 44%;
   background-color: #fbf8f1;
   background-image: radial-gradient(#9c958a40 0.75px, transparent 0.75px);
   background-size: 8px 8px;
+  isolation: isolate;
 }
 
-.home-client-track {
-  align-items: center;
+.home-client-carousel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: -218px;
+  width: min(1160px, 92%);
+  height: 390px;
+  border: 1px solid #7e776d66;
+  border-radius: 50%;
+  transform: translateX(-50%) rotateX(66deg);
+}
+
+.home-client-arc {
+  position: absolute;
+  inset: 0;
   transform-style: preserve-3d;
-  animation-duration: 42s;
 }
 
-.home-client-set {
-  align-items: center;
+.home-clients .home-client-motion {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: clamp(168px, 14vw, 224px);
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
+  backface-visibility: hidden;
   transform-style: preserve-3d;
+  will-change: transform, opacity;
+  animation: clientCarousel3D 30s linear infinite;
+  animation-delay: var(--client-delay);
 }
 
-.home-clients .home-client-set > a {
-  flex: 0 0 230px;
-  width: 230px;
-  min-height: 140px;
-  margin: 4px 7px;
-  padding: 18px 20px;
+.home-clients .home-client-card {
+  display: flex;
+  min-height: 142px;
+  padding: 19px 17px 14px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   border: 1px solid #211f1b;
   border-radius: 12px;
   background: linear-gradient(145deg, #fffefa, #eee8dd);
-  box-shadow: 0 14px 24px #21180f1f;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
+  box-shadow: 0 20px 34px #21180f26;
+  transform: translate3d(-50%, -50%, 0);
+  transition: filter 0.2s, box-shadow 0.2s;
 }
 
-.home-clients .home-client-set > a:nth-child(4n + 1) {
-  transform: rotateY(13deg) rotateZ(-1.6deg) translateZ(-18px);
+.home-clients .home-client-motion:hover,
+.home-clients .home-client-motion:focus-visible {
+  z-index: 5;
+  background: transparent;
+  animation-play-state: paused;
 }
 
-.home-clients .home-client-set > a:nth-child(4n + 2) {
-  transform: rotateY(-9deg) rotateZ(1.2deg) translateY(-7px) translateZ(12px);
+.home-clients .home-client-motion:hover .home-client-card,
+.home-clients .home-client-motion:focus-visible .home-client-card {
+  filter: brightness(1.025);
+  box-shadow: 0 28px 48px #21180f38;
 }
 
-.home-clients .home-client-set > a:nth-child(4n + 3) {
-  transform: rotateY(7deg) rotateZ(-0.7deg) translateY(5px) translateZ(24px);
-}
-
-.home-clients .home-client-set > a:nth-child(4n) {
-  transform: rotateY(-14deg) rotateZ(1.5deg) translateZ(-8px);
-}
-
-.home-clients .home-client-set > a:hover,
-.home-clients .home-client-set > a:focus-visible {
-  z-index: 3;
-  transform: translateY(-9px) translateZ(45px) scale(1.035);
-  box-shadow: 0 22px 38px #21180f2b;
-}
-
-.home-clients .home-client-set img {
-  height: 66px;
+.home-clients .home-client-motion img {
+  width: min(100%, 170px);
+  height: 68px;
+  object-fit: contain;
   transform: translateZ(18px);
 }
 
-.home-clients .home-client-set small {
+.home-clients .home-client-motion small {
+  color: var(--muted);
+  font: 700 8px/1.25 var(--font-geist-mono);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
   transform: translateZ(12px);
+}
+
+.home-client-carousel.motion-paused .home-client-motion {
+  animation-play-state: paused;
+}
+
+@keyframes clientCarousel3D {
+  0% {
+    opacity: 0;
+    transform: translate3d(calc(-50vw - 240px), 34px, -190px) rotateY(40deg) scale(0.62);
+  }
+  7% { opacity: 0.72; }
+  22% {
+    opacity: 1;
+    transform: translate3d(-30vw, 9px, -85px) rotateY(25deg) scale(0.8);
+  }
+  40% {
+    transform: translate3d(-10vw, -15px, 38px) rotateY(10deg) scale(1.02);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -25px, 92px) rotateY(0) scale(1.16);
+  }
+  60% {
+    transform: translate3d(10vw, -15px, 38px) rotateY(-10deg) scale(1.02);
+  }
+  78% {
+    opacity: 1;
+    transform: translate3d(30vw, 9px, -85px) rotateY(-25deg) scale(0.8);
+  }
+  93% { opacity: 0.72; }
+  100% {
+    opacity: 0;
+    transform: translate3d(calc(50vw + 240px), 34px, -190px) rotateY(-40deg) scale(0.62);
+  }
 }
 
 .linkedin-work-card,
@@ -6018,13 +6047,17 @@ footer .logo-lockup:hover .logo-name small {
     margin: 10px -16px 30px;
   }
   .solar-stage { transform: scale(0.48); }
-  .home-clients > .home-client-marquee { min-height: 158px; }
-  .home-clients .home-client-set > a {
-    flex-basis: 185px;
-    width: 185px;
-    min-height: 118px;
+  .home-clients > .home-client-carousel { min-height: 225px; }
+  .home-clients .home-client-motion {
+    width: 164px;
+    animation-duration: 24s;
+    animation-delay: var(--client-mobile-delay);
   }
-  .home-client-track { animation-duration: 34s; }
+  .home-clients .home-client-card {
+    min-height: 116px;
+    padding: 13px;
+  }
+  .home-clients .home-client-motion img { height: 54px; }
   .experience-orbit { min-height: 205px; }
   .experience-orbit > i {
     width: 150px;
@@ -6035,7 +6068,27 @@ footer .logo-lockup:hover .logo-name small {
 
 @media (prefers-reduced-motion: reduce) {
   .experience-orbit > i { animation: none; }
-  .home-clients .home-client-set > a { transform: none; }
+  .home-clients > .home-client-carousel {
+    min-height: 178px;
+    overflow-x: auto;
+  }
+  .home-client-arc {
+    position: relative;
+    display: flex;
+    width: max-content;
+    padding: 20px;
+    gap: 12px;
+  }
+  .home-clients .home-client-motion {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 200px;
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+  .home-clients .home-client-card { transform: none; }
 }
 
 /* Case-study imagery and guaranteed logo badges */
