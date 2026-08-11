@@ -9,7 +9,6 @@ const AUTOPLAY_DELAY = 6000;
 
 export function BrandGuideCarousel() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [interacting, setInteracting] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -22,12 +21,12 @@ export function BrandGuideCarousel() {
   }, []);
 
   useEffect(() => {
-    if (paused || interacting || reducedMotion) return;
+    if (interacting || reducedMotion) return;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % designProjects.length);
     }, AUTOPLAY_DELAY);
     return () => window.clearInterval(timer);
-  }, [paused, interacting, reducedMotion]);
+  }, [interacting, reducedMotion]);
 
   const goTo = (index: number) => setActive((index + designProjects.length) % designProjects.length);
 
@@ -52,7 +51,7 @@ export function BrandGuideCarousel() {
       </div>
     </header>
 
-    <div className="brand-guide-viewport" aria-live={paused ? "polite" : "off"}>
+    <div className="brand-guide-viewport" aria-live="off">
       <div className="brand-guide-track" style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}>
         {designProjects.map((project, index) => <article
           className="brand-guide-slide"
@@ -92,7 +91,6 @@ export function BrandGuideCarousel() {
         aria-current={index === active ? "true" : undefined}
       ><span>0{index + 1}</span><b>{project.client}</b></button>)}</div>
       <button type="button" onClick={() => goTo(active + 1)} aria-label="Show next brand slide">→</button>
-      {!reducedMotion ? <button className="brand-guide-pause" type="button" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Start automatic slide rotation" : "Pause automatic slide rotation"}>{paused ? "PLAY" : "PAUSE"}</button> : null}
     </div>
     <p className="brand-guide-disclosure">Axiom Arise delivery details come from the approved project handoff. Key MedSolutions and KH RCM use verified brand assets; no unverified performance result is claimed.</p>
   </section>;

@@ -6854,7 +6854,7 @@ footer .logo-lockup:hover .logo-name small {
 .brand-guide-links a span { color: var(--design-accent); }
 .brand-guide-controls {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 48px auto;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
   gap: 8px;
   align-items: stretch;
   margin-top: 12px;
@@ -6885,12 +6885,6 @@ footer .logo-lockup:hover .logo-name small {
   color: #fffdf8;
   transform: translateY(-2px);
 }
-.brand-guide-controls .brand-guide-pause {
-  min-width: 74px;
-  padding: 0 14px;
-  font: 800 9px var(--font-geist-mono);
-  letter-spacing: .08em;
-}
 .brand-guide-disclosure {
   margin: 14px 0 0;
   padding: 13px 16px;
@@ -6920,7 +6914,6 @@ footer .logo-lockup:hover .logo-name small {
   .brand-guide-copy h3 { font-size: 34px; }
   .brand-guide-controls { grid-template-columns: 44px minmax(0, 1fr) 44px; }
   .brand-guide-controls > div button b { display: none; }
-  .brand-guide-controls .brand-guide-pause { grid-column: 1 / -1; min-height: 44px; }
 
   .nav nav.open {
     overflow-x: hidden;
