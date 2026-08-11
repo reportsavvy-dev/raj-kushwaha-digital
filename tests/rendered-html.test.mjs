@@ -140,15 +140,19 @@ test("logo design service shows verified brand projects instead of a concept cas
 
   assert.match(html, /SELECTED IDENTITY SYSTEMS/);
   assert.match(html, /Three brands/);
-  assert.match(html, /Presented separately/);
-  assert.match(html, /Individual Key MedSolutions and KH RCM identity slides/);
+  assert.match(html, /Three complete stories/);
+  assert.match(html, /Axiom Arise brand guide/);
+  assert.match(html, /Key MedSolutions brand guide/);
+  assert.match(html, /KH RCM brand guide/);
   assert.match(html, /src="\/case-studies\/axiom-guide\/page-01\.webp"/);
   assert.match(html, /src="\/case-studies\/axiom-guide\/page-08\.webp"/);
   assert.match(html, /Axiom_Arise_Brand_Guidelines\.pdf/);
   assert.match(html, /Master logo/);
   assert.match(html, /Application previews/);
-  assert.match(html, /src="\/case-studies\/generated\/key-medsolutions-brand-slide-v1\.webp"/);
-  assert.match(html, /src="\/case-studies\/generated\/kh-rcm-brand-slide-v1\.webp"/);
+  assert.match(html, /src="\/case-studies\/key-medsolutions-guide\/page-01\.webp"/);
+  assert.match(html, /src="\/case-studies\/key-medsolutions-guide\/page-06\.webp"/);
+  assert.match(html, /src="\/case-studies\/khrcm-guide\/page-01\.webp"/);
+  assert.match(html, /src="\/case-studies\/khrcm-guide\/page-06\.webp"/);
   assert.match(html, /Axiom Arise/);
   assert.match(html, /34 validated files/);
   assert.match(html, /Key MedSolutions/);
