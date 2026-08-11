@@ -138,10 +138,12 @@ test("logo design service shows verified brand projects instead of a concept cas
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /SELECTED IDENTITY AND DESIGN WORK/);
-  assert.match(html, /AXIOM ARISE \/ CONSTRUCTION STUDY/);
-  assert.match(html, /GOLDEN RATIO · CLEAR SPACE · RESPONSIVE LOCKUPS/);
-  assert.match(html, /src="\/case-studies\/generated\/axiom-arise-golden-ratio-brand-guide-v2\.webp"/);
+  assert.match(html, /SELECTED IDENTITY SYSTEMS/);
+  assert.match(html, /Three brands/);
+  assert.match(html, /Every slide visible/);
+  assert.match(html, /src="\/case-studies\/generated\/axiom-arise-brand-slide-v3\.webp"/);
+  assert.match(html, /src="\/case-studies\/generated\/key-medsolutions-brand-slide-v1\.webp"/);
+  assert.match(html, /src="\/case-studies\/generated\/kh-rcm-brand-slide-v1\.webp"/);
   assert.match(html, /Axiom Arise/);
   assert.match(html, /34 validated files/);
   assert.match(html, /Key MedSolutions/);

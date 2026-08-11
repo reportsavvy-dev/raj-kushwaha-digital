@@ -6,10 +6,10 @@ import { Contact, Footer } from "../../page";
 import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { RKDMark } from "../../components/BrandMark";
+import { BrandGuideCarousel } from "../../components/BrandGuideCarousel";
 import { ServiceOrbital } from "../../components/ServiceOrbital";
 import { ToolLogo } from "../../components/ToolLogo";
 import { caseStudies } from "../../data/caseStudies";
-import { designProjects } from "../../data/designProjects";
 import { recentLinkedInWorkSamples } from "../../data/linkedinWork";
 import { serviceBySlug, services } from "../../data/services";
 
@@ -148,53 +148,7 @@ export default async function ServicePage({ params }: PageProps) {
       <Link className="all-work-link" href="/work#linkedin-work">VIEW THE LINKEDIN WORK ARCHIVE <span aria-hidden="true">↗</span></Link>
     </section> : null}
 
-    {isDesignService ? <>
-    <section className="golden-ratio-study shell" id="case-study" aria-labelledby="golden-ratio-title">
-      <div className="golden-ratio-copy">
-        <span className="eyebrow-small">AXIOM ARISE / CONSTRUCTION STUDY</span>
-        <h2 id="golden-ratio-title">Good geometry<br/><i>earns its place.</i></h2>
-        <p>Golden Ratio and Fibonacci proportions can help refine scale, clear space and responsive lockups. They are used as construction aids when they improve the idea and reproduction, never as decoration or a shortcut to originality.</p>
-        <dl>
-          <div><dt>1.618</dt><dd>Proportion reference</dd></div>
-          <div><dt>8</dt><dd>Brand-guide pages</dd></div>
-          <div><dt>34</dt><dd>Validated delivery files</dd></div>
-        </dl>
-        <p className="golden-ratio-note">This visual explains the working method using the approved Axiom Arise identity. Ratio alone does not make a logo distinctive; concept, legibility, category context and trademark review still matter.</p>
-      </div>
-      <figure className="golden-ratio-board">
-        <Image src="/case-studies/generated/axiom-arise-golden-ratio-brand-guide-v2.webp" alt="Axiom Arise logo construction study showing a Golden Ratio spiral, proportion grid, clear-space guides, colour variants and responsive lockups" fill unoptimized sizes="(max-width: 900px) 100vw, 62vw"/>
-        <figcaption><span>01</span><b>GOLDEN RATIO · CLEAR SPACE · RESPONSIVE LOCKUPS</b></figcaption>
-      </figure>
-    </section>
-
-    <section className="design-projects shell">
-      <header className="design-projects-heading">
-        <span className="eyebrow-small">SELECTED IDENTITY AND DESIGN WORK</span>
-        <h2>Real brands.<br/><i>Usable systems.</i></h2>
-        <p>Each project is labelled by the work that can be supported. Logo authorship is not implied where the engagement covered brand application rather than the original mark.</p>
-      </header>
-      <div className="design-project-grid">
-        {designProjects.map((project, projectIndex) => <article className={`design-project-card ${projectIndex === 0 ? "design-project-card-featured" : ""}`} key={project.client} style={{"--design-accent": project.accent, "--design-soft": project.soft} as React.CSSProperties}>
-          <div className="design-project-visual">
-            <span className="design-project-index">0{projectIndex + 1}</span>
-            <div className="design-project-logo"><Image src={project.logo} alt={project.logoAlt} width={760} height={300} unoptimized/></div>
-            <span className="design-project-sector">{project.sector}</span>
-          </div>
-          <div className="design-project-copy">
-            <span className="eyebrow-small">{project.eyebrow}</span>
-            <h3>{project.title}</h3>
-            <p>{project.summary}</p>
-            <ul className="design-project-scope">{project.scope.map((item) => <li key={item}>{item}</li>)}</ul>
-            <div className="design-project-proof">{project.proof.map((item) => <span key={item}>{item}</span>)}</div>
-            <div className="design-project-links">
-              {project.caseHref ? <Link href={project.caseHref}>READ THE EVIDENCE <span aria-hidden="true">↗</span></Link> : null}
-              {project.sourceHref ? <a href={project.sourceHref} target="_blank" rel="noreferrer">{project.sourceLabel} <span aria-hidden="true">↗</span></a> : null}
-            </div>
-          </div>
-        </article>)}
-      </div>
-      <p className="design-project-disclosure">Axiom Arise delivery details come from the approved project handoff. Key MedSolutions results remain documented in its separate portfolio case. KH RCM brand information and logo were verified against the official website.</p>
-    </section></> : <section className="service-case shell" id="case-study">
+    {isDesignService ? <BrandGuideCarousel/> : <section className="service-case shell" id="case-study">
       <div className="case-art">
         <Image className="case-art-image" src={caseVisual.src} alt={caseVisual.alt} fill unoptimized sizes="(max-width: 900px) 100vw, 55vw"/>
         <div className="case-art-top"><span className="case-art-brand"><RKDMark/><b>RAJ KUSHWAHA DIGITAL</b></span><b>{service.caseStudy.sector}</b></div>

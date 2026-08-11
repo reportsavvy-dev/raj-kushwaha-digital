@@ -2,6 +2,8 @@ export type DesignProject = {
   client: string;
   logo: string;
   logoAlt: string;
+  slideImage: string;
+  slideAlt: string;
   sector: string;
   eyebrow: string;
   title: string;
@@ -20,6 +22,8 @@ export const designProjects: DesignProject[] = [
     client: "Axiom Arise",
     logo: "/clients/axiom-arise.webp",
     logoAlt: "Axiom Arise Recruitment and Talent Solutions approved master logo",
+    slideImage: "/case-studies/generated/axiom-arise-brand-slide-v3.webp",
+    slideAlt: "Axiom Arise identity construction board with proportion grid, colour variants and responsive logo studies",
     sector: "Recruitment and talent solutions",
     eyebrow: "COMPLETE IDENTITY DELIVERY",
     title: "One approved mark, prepared for every real-world format",
@@ -39,6 +43,8 @@ export const designProjects: DesignProject[] = [
     client: "Key MedSolutions",
     logo: "/clients/key-medsolutions.webp",
     logoAlt: "Key MedSolutions official logo",
+    slideImage: "/case-studies/generated/key-medsolutions-brand-slide-v1.webp",
+    slideAlt: "Key MedSolutions healthcare identity board with construction grid, colours, icons, stationery and social applications",
     sector: "Medical billing and revenue cycle management",
     eyebrow: "HIGH-RESOLUTION BRAND GUIDE",
     title: "A blurred source logo rebuilt as a practical healthcare brand system",
@@ -61,6 +67,8 @@ export const designProjects: DesignProject[] = [
     client: "KH RCM",
     logo: "/clients/kh-rcm.webp",
     logoAlt: "KH RCM official logo",
+    slideImage: "/case-studies/generated/kh-rcm-brand-slide-v1.webp",
+    slideAlt: "KH RCM healthcare revenue identity board with logo construction, colour system and digital applications",
     sector: "Medical and dental billing",
     eyebrow: "VERIFIED BRAND APPLICATION",
     title: "A healthcare identity organised around trust, accuracy and access",
