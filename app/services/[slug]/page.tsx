@@ -148,7 +148,26 @@ export default async function ServicePage({ params }: PageProps) {
       <Link className="all-work-link" href="/work#linkedin-work">VIEW THE LINKEDIN WORK ARCHIVE <span aria-hidden="true">↗</span></Link>
     </section> : null}
 
-    {isDesignService ? <section className="design-projects shell" id="case-study">
+    {isDesignService ? <>
+    <section className="golden-ratio-study shell" id="case-study" aria-labelledby="golden-ratio-title">
+      <div className="golden-ratio-copy">
+        <span className="eyebrow-small">AXIOM ARISE / CONSTRUCTION STUDY</span>
+        <h2 id="golden-ratio-title">Good geometry<br/><i>earns its place.</i></h2>
+        <p>Golden Ratio and Fibonacci proportions can help refine scale, clear space and responsive lockups. They are used as construction aids when they improve the idea and reproduction, never as decoration or a shortcut to originality.</p>
+        <dl>
+          <div><dt>1.618</dt><dd>Proportion reference</dd></div>
+          <div><dt>8</dt><dd>Brand-guide pages</dd></div>
+          <div><dt>34</dt><dd>Validated delivery files</dd></div>
+        </dl>
+        <p className="golden-ratio-note">This visual explains the working method using the approved Axiom Arise identity. Ratio alone does not make a logo distinctive; concept, legibility, category context and trademark review still matter.</p>
+      </div>
+      <figure className="golden-ratio-board">
+        <Image src="/case-studies/generated/axiom-arise-golden-ratio-brand-guide-v2.webp" alt="Axiom Arise logo construction study showing a Golden Ratio spiral, proportion grid, clear-space guides, colour variants and responsive lockups" fill unoptimized sizes="(max-width: 900px) 100vw, 62vw"/>
+        <figcaption><span>01</span><b>GOLDEN RATIO · CLEAR SPACE · RESPONSIVE LOCKUPS</b></figcaption>
+      </figure>
+    </section>
+
+    <section className="design-projects shell">
       <header className="design-projects-heading">
         <span className="eyebrow-small">SELECTED IDENTITY AND DESIGN WORK</span>
         <h2>Real brands.<br/><i>Usable systems.</i></h2>
@@ -175,7 +194,7 @@ export default async function ServicePage({ params }: PageProps) {
         </article>)}
       </div>
       <p className="design-project-disclosure">Axiom Arise delivery details come from the approved project handoff. Key MedSolutions results remain documented in its separate portfolio case. KH RCM brand information and logo were verified against the official website.</p>
-    </section> : <section className="service-case shell" id="case-study">
+    </section></> : <section className="service-case shell" id="case-study">
       <div className="case-art">
         <Image className="case-art-image" src={caseVisual.src} alt={caseVisual.alt} fill unoptimized sizes="(max-width: 900px) 100vw, 55vw"/>
         <div className="case-art-top"><span className="case-art-brand"><RKDMark/><b>RAJ KUSHWAHA DIGITAL</b></span><b>{service.caseStudy.sector}</b></div>
