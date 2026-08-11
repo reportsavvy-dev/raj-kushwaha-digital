@@ -30,7 +30,7 @@ export type Service = {
   caseStudy: CaseStudy;
   testimonial: { quote: string; attribution: string; label: string };
   faqs: { question: string; answer: string }[];
-  sources?: { label: string; href: string }[];
+  sources?: { label: string; href: string; note: string }[];
 };
 
 type ServiceInput = Omit<Service, "metaTitle" | "metaDescription" | "directAnswer" | "overviewHeading" | "processHeading" | "successSignals" | "sources" | "benefits" | "process" | "testimonial" | "faqs"> & {
@@ -84,9 +84,12 @@ const enhancements: Record<string, ServiceEnhancement> = {
     ],
     extraFaqs: [["Which Google algorithms do you optimize for?", "We do not optimize for one named update. Google uses systems including BERT, neural matching, RankBrain, passage ranking, link analysis and page level quality signals. The durable response is useful original content, clear site structure and compliant technical SEO."], ["Are Core Web Vitals a ranking guarantee?", "No. Core Web Vitals are page experience signals, not a guarantee of rankings. We target good field thresholds: LCP within 2.5 seconds, INP at 200 milliseconds or less and CLS at 0.1 or less at the 75th percentile for mobile and desktop."]],
     sources: [
-      { label: "Google: AI features and your website", href: "https://developers.google.com/search/docs/appearance/ai-features" },
-      { label: "Google: Search ranking systems", href: "https://developers.google.com/search/docs/appearance/ranking-systems-guide" },
-      { label: "web.dev: Core Web Vitals", href: "https://web.dev/articles/vitals" },
+      { label: "Google Search Essentials", href: "https://developers.google.com/search/docs/essentials", note: "Technical eligibility, people-first content and crawlable discovery." },
+      { label: "Google: AI features and your website", href: "https://developers.google.com/search/docs/appearance/ai-features", note: "How normal SEO foundations support AI Overviews and AI Mode." },
+      { label: "Google: Search ranking systems", href: "https://developers.google.com/search/docs/appearance/ranking-systems-guide", note: "Official context for the systems used to understand and rank results." },
+      { label: "Google: Structured data guidelines", href: "https://developers.google.com/search/docs/appearance/structured-data/sd-policies", note: "Accuracy, visibility and quality requirements for eligible markup." },
+      { label: "Bing Webmaster Guidelines", href: "https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a", note: "Discovery and content guidance for Bing, Copilot and grounding results." },
+      { label: "web.dev: Core Web Vitals", href: "https://web.dev/articles/vitals", note: "Definitions and field thresholds for LCP, INP and CLS." },
     ],
   },
   "social-media-management-marketing": {
@@ -126,6 +129,10 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "Optimize downstream", text: "Search terms, lead feedback and conversion quality guide bids, budgets and creative. Click through rate alone is not enough." },
     ],
     extraFaqs: [["When should we stop a PPC test?", "A test should stop when tracking is unreliable, the offer is not converting, traffic quality is persistently poor or the spend has produced enough evidence to reject the hypothesis."], ["Will you need access to our analytics?", "Yes. Useful optimization usually requires appropriate access to the ad platform, analytics, tag management, landing pages and any CRM data used to confirm lead quality."]],
+    sources: [
+      { label: "Google Ads: Conversion tracking", href: "https://support.google.com/google-ads/answer/6308", note: "Official definition of meaningful conversion actions and measurement." },
+      { label: "Google Ads: Web conversions", href: "https://support.google.com/google-ads/answer/16560108", note: "Implementation guidance for website conversion measurement." },
+    ],
   },
   "branding": {
     metaTitle: "Brand Strategy & Identity Services | RKD",
@@ -183,6 +190,10 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "Scale verified patterns", text: "Winning patterns receive more budget while fatigue, incrementality and downstream quality remain under review." },
     ],
     extraFaqs: [["Do you use last-click attribution?", "Last click is one useful view, not a complete truth. We combine platform data, analytics, CRM or commerce outcomes and controlled tests where the available data supports them."], ["How much data is needed before making a decision?", "It depends on conversion frequency, spend and the size of the expected effect. We document decision thresholds so the team does not overreact to normal variation."]],
+    sources: [
+      { label: "Google Ads: Conversion tracking", href: "https://support.google.com/google-ads/answer/6308", note: "A first-party reference for tying campaign interactions to valuable actions." },
+      { label: "Google Ads: Ways to track conversions", href: "https://support.google.com/google-ads/answer/1722054", note: "Measurement options across websites, apps, calls and offline outcomes." },
+    ],
   },
   "email-marketing": {
     metaTitle: "Email Marketing & Automation Services | RKD",
@@ -202,6 +213,10 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "QA and optimize", text: "Links, rendering, tracking and logic are tested before launch; results then shape subject lines, content, timing and segmentation." },
     ],
     extraFaqs: [["Which email automations should we build first?", "Usually the highest-value starting points are welcome or onboarding, lead nurture, cart or enquiry recovery, post-purchase education and re-engagement. The right order depends on your customer journey."], ["Can you improve an existing email account?", "Yes. We can audit deliverability, data hygiene, templates, automations, reporting and campaign rhythm, then repair the parts with the clearest business impact."]],
+    sources: [
+      { label: "Google: Email sender guidelines", href: "https://support.google.com/mail/answer/81126", note: "Authentication, spam-rate and unsubscribe requirements for Gmail delivery." },
+      { label: "Google: Bulk email best practices", href: "https://support.google.com/mail/answer/10979322", note: "Consent, honest messaging, sender identity and unsubscribe guidance." },
+    ],
   },
   "lead-generation": {
     metaTitle: "Lead Generation Services | Raj Kushwaha Digital",
@@ -259,6 +274,10 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "Distribute and maintain", text: "The asset is published, internally linked, repurposed where useful and reviewed as performance or facts change." },
     ],
     extraFaqs: [["How do you avoid generic AI-written content?", "We start with a specific reader decision, gather first-hand business input, verify factual claims and edit for a recognizable point of view. AI may assist workflow, but it does not replace expertise or accountability."], ["How long should an article be for SEO?", "There is no ideal word count. The page should be long enough to answer the intent with useful depth and short enough to avoid repetition, filler and sections that exist only for keywords."]],
+    sources: [
+      { label: "Google Search Essentials", href: "https://developers.google.com/search/docs/essentials", note: "Official guidance for helpful, reliable and people-first web content." },
+      { label: "Google Search spam policies", href: "https://developers.google.com/search/docs/essentials/spam-policies", note: "Boundaries for scaled, deceptive and manipulative publishing practices." },
+    ],
   },
   "influencer-marketing": {
     metaTitle: "Influencer Marketing & Creator Campaigns | RKD",
@@ -278,6 +297,9 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "Launch and learn", text: "Content is checked for accuracy and disclosure, tracked after publication and assessed for both media value and reuse." },
     ],
     extraFaqs: [["Should we choose micro- or macro-influencers?", "Choose based on the campaign job. Smaller creators may offer stronger niche credibility; larger creators may provide faster reach. Audience quality, content fit and economics matter more than the label."], ["How do you identify fake engagement?", "We review audience distribution, comment quality, growth patterns, reach consistency and available first-party creator analytics. No single ratio proves authenticity, so signals are considered together."]],
+    sources: [
+      { label: "FTC: Disclosures for social media influencers", href: "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers", note: "Clear disclosure guidance for paid, gifted and other material connections." },
+    ],
   },
   "web-development": {
     metaTitle: "Web Development & Website Design | RKD",
@@ -297,7 +319,11 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "Test, release, observe", text: "Devices, browsers, forms, analytics, crawlability and redirects are verified; field data then guides post-launch improvements." },
     ],
     extraFaqs: [["How do you protect Core Web Vitals?", "We minimize render-blocking work, reserve layout space, control animation and JavaScript cost, optimize media and measure both lab diagnostics and real-user field data after launch."], ["Will you submit the site to Google?", "We can provide crawlable pages, robots rules, canonicals and an XML sitemap. Search Console ownership and URL inspection are then used to submit and monitor the site; Google alone decides when and whether a page is indexed."]],
-    sources: [{ label: "web.dev: Core Web Vitals", href: "https://web.dev/articles/vitals" }],
+    sources: [
+      { label: "web.dev: Core Web Vitals", href: "https://web.dev/articles/vitals", note: "Field performance definitions and recommended thresholds." },
+      { label: "W3C: How to meet WCAG 2.2", href: "https://www.w3.org/WAI/WCAG22/quickref/", note: "Success criteria and techniques for accessible web experiences." },
+      { label: "Google: Structured data guidelines", href: "https://developers.google.com/search/docs/appearance/structured-data/sd-policies", note: "Rules for accurate, visible and eligible structured data." },
+    ],
   },
   "app-software-development": {
     metaTitle: "Custom App & Software Development | RKD",
@@ -336,6 +362,9 @@ const enhancements: Record<string, ServiceEnhancement> = {
       { step: "03", title: "Pilot under observation", text: "The workflow runs on representative cases, exceptions are logged and autonomy expands only when evidence supports it." },
     ],
     extraFaqs: [["What should not be delegated to an AI agent?", "Avoid unsupervised decisions where errors create legal, financial, safety, privacy or reputation harm. Sensitive actions need clear human authority and appropriate controls."], ["How do you measure whether automation is worth it?", "We compare implementation and operating cost with time saved, quality, throughput, error handling and the value of faster work. A demo is not counted as a successful deployment."]],
+    sources: [
+      { label: "NIST: AI Risk Management Framework", href: "https://www.nist.gov/itl/ai-risk-management-framework", note: "A voluntary framework for governing, mapping, measuring and managing AI risk." },
+    ],
   },
 };
 

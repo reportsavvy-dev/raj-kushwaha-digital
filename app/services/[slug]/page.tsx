@@ -200,7 +200,12 @@ export default async function ServicePage({ params }: PageProps) {
       <div>{service.faqs.map((faq, faqIndex) => <details key={faq.question}><summary><span>0{faqIndex + 1}</span><b>{faq.question}</b><i>+</i></summary><p>{faq.answer}</p></details>)}</div>
     </section>
 
-    {service.sources?.length ? <section className="service-sources shell"><span className="eyebrow-small">PRIMARY GUIDANCE</span><p>These sources inform the standards described on this page.</p><div>{service.sources.map((source) => <a href={source.href} rel="noreferrer" target="_blank" key={source.href}>{source.label}<span>↗</span></a>)}</div></section> : null}
+    {service.sources?.length ? <section className="service-sources shell" aria-labelledby="service-sources-title">
+      <span className="eyebrow-small">STANDARDS &amp; PRIMARY SOURCES</span>
+      <h2 id="service-sources-title">Check the guidance behind the work.</h2>
+      <p>These first-party and standards-body references support the measurable, technical or compliance-sensitive guidance on this page. They do not imply certification or a platform partnership.</p>
+      <div>{service.sources.map((source) => <a href={source.href} rel="noopener noreferrer" target="_blank" key={source.href}><span className="source-copy"><strong>{source.label}</strong><small>{source.note}</small></span><span aria-hidden="true">↗</span></a>)}</div>
+    </section> : null}
 
     <section className="related-services shell"><header><span className="eyebrow-small">CONNECTED EXPERTISE</span><h2>Keep moving.</h2></header><div>{related.map((item) => <Link href={`/services/${item.slug}`} key={item.slug} style={{"--related-accent": item.accent, "--related-soft": item.accentSoft} as React.CSSProperties}><span>{item.shortName}</span><div>{item.tools.slice(0, 3).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div><b>↗</b></Link>)}</div></section>
 
