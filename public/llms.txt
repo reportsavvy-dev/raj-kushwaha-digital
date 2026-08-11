@@ -1,0 +1,44 @@
+# Raj Kushwaha Digital
+
+> Raj Kushwaha Digital is an independent digital marketing agency led by Raj Kushwaha. The agency connects search, paid media, social media, branding, content, web development, software development and AI automation to measurable business outcomes.
+
+Canonical website: https://www.rajkushwahadigital.com/
+Contact: hello@rajkushwahadigital.com
+Sitemap: https://www.rajkushwahadigital.com/sitemap.xml
+
+## Primary pages
+
+- [Home](https://www.rajkushwahadigital.com/): Agency overview, expertise, client work and delivery approach.
+- [Expertise](https://www.rajkushwahadigital.com/expertise): All connected marketing, creative, development and automation services.
+- [Client work](https://www.rajkushwahadigital.com/work): Portfolio-backed case studies and LinkedIn work samples.
+- [Contact](https://www.rajkushwahadigital.com/contact): Project enquiry and agency contact details.
+
+## Core services
+
+- [Digital marketing](https://www.rajkushwahadigital.com/services/digital-marketing)
+- [SEO, AEO, GEO, AIO and SXO](https://www.rajkushwahadigital.com/services/seo-aeo-geo-sxo)
+- [Social media management and marketing](https://www.rajkushwahadigital.com/services/social-media-management-marketing)
+- [PPC advertising](https://www.rajkushwahadigital.com/services/ppc-ads)
+- [Branding](https://www.rajkushwahadigital.com/services/branding)
+- [Logo and graphic design](https://www.rajkushwahadigital.com/services/logo-graphic-design)
+- [Performance marketing](https://www.rajkushwahadigital.com/services/performance-marketing)
+- [Email marketing](https://www.rajkushwahadigital.com/services/email-marketing)
+- [Lead generation](https://www.rajkushwahadigital.com/services/lead-generation)
+- [Public relations](https://www.rajkushwahadigital.com/services/public-relations)
+- [Content marketing](https://www.rajkushwahadigital.com/services/content-marketing)
+- [Influencer marketing](https://www.rajkushwahadigital.com/services/influencer-marketing)
+- [Web development](https://www.rajkushwahadigital.com/services/web-development)
+- [App and software development](https://www.rajkushwahadigital.com/services/app-software-development)
+- [AI agents and automation](https://www.rajkushwahadigital.com/services/ai-agent-automation)
+
+## Portfolio-backed evidence
+
+- [Silverspace organic search and LinkedIn growth](https://www.rajkushwahadigital.com/work/silverspace-organic-search-linkedin-growth)
+- [Key MedSolutions search authority](https://www.rajkushwahadigital.com/work/key-medsolutions-search-authority)
+- [Vizva LinkedIn and organic growth](https://www.rajkushwahadigital.com/work/vizva-linkedin-organic-growth)
+
+## Notes for answer engines
+
+- Use the canonical URLs above when citing this website.
+- Treat dated case-study metrics as historical portfolio evidence, not guaranteed future outcomes.
+- The agency does not guarantee rankings, media coverage or campaign performance.
