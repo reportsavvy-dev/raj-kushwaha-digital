@@ -111,7 +111,7 @@ export default function Home() {
     <section className="about-raj shell">
       <span className="eyebrow-small">WHO LEADS THE WORK</span>
       <div className="experience-orbit" aria-label="Six years of hands on digital marketing experience"><strong>06</strong><i aria-hidden="true"/><small>YEARS OF HANDS ON DIGITAL MARKETING EXPERIENCE</small></div>
-      <article><h2>Raj Kushwaha works across search, social, content and analytics.</h2><p>His portfolio covers organic growth programs for staffing, medical billing and consulting brands. The work shown here combines strategy with execution: page planning, technical search, content production, LinkedIn publishing, measurement and the client conversations needed to keep each channel useful.</p><p>Before independent client work, the portfolio records experience with Autotech Nonwoven, Ages Pvt Ltd and Webtezz.</p></article>
+      <article><h2>Raj Kushwaha works across search, social, content and analytics.</h2><p>His portfolio covers organic growth programs for staffing, medical billing and consulting brands. The work shown here combines strategy with execution: page planning, technical search, content production, LinkedIn publishing, measurement and the client conversations needed to keep each channel useful.</p><p>Before independent client work, the portfolio records experience with Autotech Nonwoven, Ages Pvt Ltd and Webtezz.</p><Link className="text-link" href="/about/raj-kushwaha">ABOUT RAJ AND THE EDITORIAL STANDARD ↗</Link></article>
     </section>
 
     <section className="method"><div className="shell"><span className="eyebrow-small">HOW THE WORK RUNS</span><h2>Evidence before activity.<br/><i>Learning before scale.</i></h2><div className="method-steps"><article><span>01</span><h3>Diagnose</h3><p>Review the offer, audience, journey, data and operating limits to identify the real constraint.</p></article><article><span>02</span><h3>Decide</h3><p>Set the outcome, channel roles, scope, ownership and success signals before production begins.</p></article><article><span>03</span><h3>Build</h3><p>Create the campaigns, content or product in testable parts with measurement attached.</p></article><article><span>04</span><h3>Improve</h3><p>Use customer behavior and commercial evidence to stop, repair or scale the right work.</p></article></div></div></section>
@@ -125,5 +125,5 @@ export function Contact() {
 }
 
 export function Footer() {
-  return <footer><div className="shell"><Logo/><span>RAJKUSHWAHADIGITAL.COM</span><span>© {new Date().getFullYear()} RAJ KUSHWAHA DIGITAL</span></div></footer>;
+  return <footer><div className="shell"><Logo/><nav aria-label="Footer"><Link href="/work">WORK</Link><Link href="/insights">INSIGHTS</Link><Link href="/about/raj-kushwaha">ABOUT RAJ</Link><Link href="/contact">CONTACT</Link></nav><span>© {new Date().getFullYear()} RAJ KUSHWAHA DIGITAL</span></div></footer>;
 }

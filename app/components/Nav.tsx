@@ -23,6 +23,7 @@ export function Nav() {
     <nav id="primary-navigation" className={open ? "open" : ""}>
       <Link href="/" onClick={closeAll}>HOME</Link>
       <Link href="/work" onClick={closeAll}>WORK</Link>
+      <Link href="/insights" onClick={closeAll}>INSIGHTS</Link>
       <div className={`expertise-nav ${expertiseOpen ? "is-open" : ""}`} onMouseLeave={() => setExpertiseOpen(false)}>
         <div className="expertise-nav-trigger">
           <Link href="/expertise" onMouseEnter={() => setExpertiseOpen(true)} onFocus={() => setExpertiseOpen(true)} onClick={() => setOpen(false)}>EXPERTISE</Link>

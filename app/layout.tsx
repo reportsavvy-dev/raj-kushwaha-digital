@@ -5,10 +5,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.rajkushwahadigital.com"),
   title: { default: "Digital Marketing Agency | Raj Kushwaha Digital", template: "%s | Raj Kushwaha Digital" },
   description: "Raj Kushwaha Digital connects SEO, paid media, social, branding, web development and AI automation into measurable growth systems.",
-  authors: [{ name: "Raj Kushwaha Digital", url: "https://www.rajkushwahadigital.com" }],
+  authors: [{ name: "Raj Kushwaha", url: "https://www.rajkushwahadigital.com/about/raj-kushwaha" }],
   creator: "Raj Kushwaha Digital",
   publisher: "Raj Kushwaha Digital",
   category: "Digital Marketing",
+  alternates: {
+    types: { "application/rss+xml": "https://www.rajkushwahadigital.com/feed.xml" },
+  },
   robots: {
     index: true,
     follow: true,
@@ -54,14 +57,17 @@ const organizationSchema = {
         email: "hello@rajkushwahadigital.com",
         contactType: "sales",
       },
+      knowsAbout: ["Digital marketing", "Search engine optimization", "Answer engine optimization", "Social media marketing", "Content marketing", "Web analytics", "AI automation"],
     },
     {
       "@type": "Person",
       "@id": "https://www.rajkushwahadigital.com/#raj-kushwaha",
       name: "Raj Kushwaha",
+      url: "https://www.rajkushwahadigital.com/about/raj-kushwaha",
       jobTitle: "Digital Marketing Strategist",
       description: "Digital marketing strategist with six years of hands on experience across SEO, social media, content, analytics and organic growth.",
       worksFor: { "@id": "https://www.rajkushwahadigital.com/#organization" },
+      knowsAbout: ["SEO", "AEO", "GEO", "Social media marketing", "Content strategy", "Web analytics"],
       sameAs: ["https://www.linkedin.com/in/rajkumarkushwaha014"],
     },
     {

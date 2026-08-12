@@ -12,6 +12,13 @@ Sitemap: https://www.rajkushwahadigital.com/sitemap.xml
 - [Expertise](https://www.rajkushwahadigital.com/expertise): All connected marketing, creative, development and automation services.
 - [Client work](https://www.rajkushwahadigital.com/work): Portfolio-backed case studies and LinkedIn work samples.
 - [Contact](https://www.rajkushwahadigital.com/contact): Project enquiry and agency contact details.
+- [Insights](https://www.rajkushwahadigital.com/insights): Primary-source-led articles on search, AI discovery and digital growth.
+- [Raj Kushwaha](https://www.rajkushwahadigital.com/about/raj-kushwaha): Author profile, working principles and portfolio context.
+
+## Featured insights
+
+- [SEO, AEO, GEO and AIO: what actually changes?](https://www.rajkushwahadigital.com/insights/seo-aeo-geo-aio-difference)
+- [How to make a website eligible for AI search citations](https://www.rajkushwahadigital.com/insights/how-to-appear-in-ai-search-citations)
 
 ## Core services
 

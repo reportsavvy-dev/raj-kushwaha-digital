@@ -171,7 +171,9 @@ test("sitemap includes work and case study URLs", async () => {
   assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/work<\/loc>/);
   assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/work\/key-medsolutions-search-authority/);
   assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/work\/linkedin\/vizva-uk-linkedin-content-system/);
-  assert.match(xml, /2026-08-11/);
+  assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/insights\/seo-aeo-geo-aio-difference/);
+  assert.match(xml, /https:\/\/www\.rajkushwahadigital\.com\/about\/raj-kushwaha/);
+  assert.match(xml, /2026-08-12/);
   assert.doesNotMatch(xml, /<(?:priority|changefreq)>/);
 });
 
@@ -194,7 +196,7 @@ test("every sitemap page renders unique metadata and valid local images", async 
   const paths = [...sitemap.matchAll(/<loc>https:\/\/www\.rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
   const titles = new Set();
 
-  assert.equal(paths.length, 31);
+  assert.equal(paths.length, 35);
   for (const pathname of paths) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
@@ -212,6 +214,38 @@ test("every sitemap page renders unique metadata and valid local images", async 
       assert.ok(existsSync(assetPath), `${pathname} image exists: ${match[1]}`);
     }
   }
+});
+
+test("insights publish citation-ready articles with accurate structured data", async () => {
+  const [indexResponse, articleResponse, authorResponse, feedResponse, robotsResponse] = await Promise.all([
+    render("/insights"),
+    render("/insights/how-to-appear-in-ai-search-citations"),
+    render("/about/raj-kushwaha"),
+    render("/feed.xml"),
+    render("/robots.txt"),
+  ]);
+  assert.equal(indexResponse.status, 200);
+  assert.equal(articleResponse.status, 200);
+  assert.equal(authorResponse.status, 200);
+  assert.equal(feedResponse.status, 200);
+  assert.equal(robotsResponse.status, 200);
+
+  const [index, article, author, feed, robots] = await Promise.all([
+    indexResponse.text(), articleResponse.text(), authorResponse.text(), feedResponse.text(), robotsResponse.text(),
+  ]);
+  assert.match(index, /Useful answers/);
+  assert.match(index, /"@type":"CollectionPage"/);
+  assert.match(article, /DIRECT ANSWER/);
+  assert.match(article, /PRIMARY SOURCES/);
+  assert.match(article, /"@type":"Article"/);
+  assert.match(article, /"datePublished":"2026-08-12"/);
+  assert.match(article, /href="\/about\/raj-kushwaha" rel="author"/);
+  assert.match(author, /"@type":"ProfilePage"/);
+  assert.match(author, /Work that can be inspected/);
+  assert.match(feed, /<rss version="2.0">/);
+  assert.match(feed, /how-to-appear-in-ai-search-citations/);
+  assert.match(robots, /OAI-SearchBot/);
+  assert.match(robots, /ChatGPT-User/);
 });
 
 test("contact page offers a clear and accessible project enquiry", async () => {

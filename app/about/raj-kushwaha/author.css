@@ -1,0 +1,20 @@
+.author-page{background:var(--paper);color:var(--ink)}
+.author-hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:60px;align-items:end;padding-top:clamp(110px,14vw,190px);padding-bottom:100px}
+.author-hero>.eyebrow-small{grid-column:1/-1}
+.author-hero h1{margin:18px 0 0;font-size:clamp(90px,14vw,210px);line-height:.75;letter-spacing:-.075em;text-transform:uppercase}
+.author-hero h1 i{color:var(--coral);font-family:Georgia,serif;font-weight:400;text-transform:none}
+.author-hero>div{padding-bottom:12px}
+.author-hero p{color:var(--muted);font-size:clamp(18px,2vw,24px);line-height:1.6}
+.author-hero a{display:inline-block;margin-top:20px;padding:15px 18px;border:1px solid var(--ink);color:var(--ink);font:700 10px var(--font-geist-mono)}
+.author-body{display:grid;grid-template-columns:320px minmax(0,780px);justify-content:space-between;gap:80px;padding-top:90px;padding-bottom:130px;border-top:1px solid var(--ink)}
+.author-body>div{display:flex;height:280px;flex-direction:column;justify-content:space-between;padding:26px;border:1px solid var(--ink);background:#111;color:var(--paper)}
+.author-body>div span{color:var(--coral);font-size:130px;line-height:.8;font-weight:800;letter-spacing:-.08em}
+.author-body>div small{max-width:190px;font:700 10px/1.5 var(--font-geist-mono);letter-spacing:.08em}
+.author-body article h2{margin:0 0 22px;font-size:clamp(44px,6vw,76px);line-height:.92;letter-spacing:-.05em}
+.author-body article h2:not(:first-child){margin-top:70px}
+.author-body article p{color:var(--muted);font-size:18px;line-height:1.75}
+.author-body article>div{display:flex;flex-wrap:wrap;gap:12px;margin-top:42px}
+.author-body article a{padding:15px 18px;border:1px solid var(--ink);color:var(--ink);font:700 10px var(--font-geist-mono)}
+.author-body article a:hover,.author-hero a:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:900px){.author-hero,.author-body{grid-template-columns:1fr}.author-body>div{height:240px}.author-hero h1{font-size:clamp(76px,19vw,145px)}}
+@media(max-width:620px){.author-hero{padding-top:95px;padding-bottom:75px}.author-hero h1{font-size:72px}.author-body{padding-top:60px;padding-bottom:85px}.author-body>div span{font-size:100px}.author-body article p{font-size:16px}}
