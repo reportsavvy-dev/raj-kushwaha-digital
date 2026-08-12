@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: { absolute: "Digital Marketing Insights | Raj Kushwaha Digital" },
   description: "Evidence-led guidance on SEO, AEO, GEO, AI search, content, demand generation and digital marketing measurement.",
-  alternates: { canonical: "/insights" },
+  alternates: { canonical: "/insights", types: { "application/rss+xml": "/feed.xml" } },
   openGraph: {
     title: "Digital Marketing Insights | Raj Kushwaha Digital",
     description: "Practical search and growth guidance built from primary sources, real work and explicit limitations.",

@@ -235,6 +235,7 @@ test("insights publish citation-ready articles with accurate structured data", a
   ]);
   assert.match(index, /Useful answers/);
   assert.match(index, /"@type":"CollectionPage"/);
+  assert.match(index, /type="application\/rss\+xml" href="https:\/\/www\.rajkushwahadigital\.com\/feed\.xml"/);
   assert.match(article, /DIRECT ANSWER/);
   assert.match(article, /PRIMARY SOURCES/);
   assert.match(article, /"@type":"Article"/);
