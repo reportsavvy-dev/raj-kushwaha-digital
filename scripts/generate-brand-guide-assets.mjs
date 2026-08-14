@@ -146,9 +146,7 @@ function applications(brand, logoUri) {
 async function overview(brand, logo, out) {
   const reference = new URL(brand.reference, root);
   const source = sharp(fileURLToPath(reference)).resize(1600, 1067, { fit: "fill", kernel: sharp.kernel.lanczos3 });
-  const logoMeta = await sharp(fileURLToPath(logo)).metadata();
   const logoWidth = brand.slug === "key-medsolutions-guide" ? 620 : 720;
-  const logoHeight = Math.round(logoWidth * (logoMeta.height / logoMeta.width));
   const top = brand.slug === "key-medsolutions-guide" ? 165 : 150;
   const exactLogo = await sharp(fileURLToPath(logo)).resize({ width: logoWidth }).png().toBuffer();
   const board = await source.composite([{ input: exactLogo, left: Math.round((1600 - logoWidth) / 2), top }]).webp({ quality: 90, effort: 6 }).toBuffer();
