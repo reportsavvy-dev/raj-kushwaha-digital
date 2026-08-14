@@ -19,6 +19,44 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
+const ALLOWED_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
+
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'none'",
+  "frame-src 'none'",
+  "form-action 'self' https://formsubmit.co",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data:",
+  "connect-src 'self' https://formsubmit.co",
+  "media-src 'self'",
+  "manifest-src 'self'",
+  "worker-src 'self' blob:",
+  "upgrade-insecure-requests",
+].join("; ");
+
+function secureResponse(response: Response): Response {
+  const headers = new Headers(response.headers);
+  headers.set("Content-Security-Policy", CONTENT_SECURITY_POLICY);
+  headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=(), payment=(), usb=(), browsing-topics=()");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.delete("X-Powered-By");
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 // Image security config. SVG sources with .svg extension auto-skip the
 // optimization endpoint on the client side (served directly, no proxy).
 // To route SVGs through the optimizer (with security headers), set
@@ -29,18 +67,30 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
+    if (!ALLOWED_METHODS.has(request.method)) {
+      return secureResponse(new Response("Method Not Allowed", {
+        status: 405,
+        headers: {
+          Allow: "GET, HEAD, OPTIONS",
+          "Cache-Control": "no-store",
+          "Content-Type": "text/plain; charset=utf-8",
+        },
+      }));
+    }
+
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
-      return handleImageOptimization(request, {
+      const response = await handleImageOptimization(request, {
         fetchAsset: (path) => env.ASSETS.fetch(new Request(new URL(path, request.url))),
         transformImage: async (body, { width, format, quality }) => {
           const result = await env.IMAGES.input(body).transform(width > 0 ? { width } : {}).output({ format, quality });
           return result.response();
         },
       }, allowedWidths);
+      return secureResponse(response);
     }
 
-    return handler.fetch(request, env, ctx);
+    return secureResponse(await handler.fetch(request, env, ctx));
   },
 };
 
