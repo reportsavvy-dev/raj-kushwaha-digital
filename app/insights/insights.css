@@ -27,6 +27,8 @@
 .article-byline{margin-top:54px;padding-top:22px;border-top:1px solid var(--line)}
 .article-byline>*:last-child{margin-left:auto}
 .article-byline a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+.article-hero-image{overflow:hidden;margin:48px 0 0;border:1px solid var(--ink);border-radius:18px;background:#f5f0e7}
+.article-hero-image img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .article-answer{display:grid;grid-template-columns:180px 280px minmax(0,1fr);gap:30px;padding-top:50px;padding-bottom:58px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
 .article-answer>span,.article-layout aside>span,.article-sources>span,.article-next span{color:var(--coral);font:700 10px var(--font-geist-mono);letter-spacing:.1em}
 .article-answer h2{margin:0;font-size:32px;line-height:1}
@@ -55,5 +57,5 @@
 .article-next>a{padding:18px 22px;border:1px solid var(--ink);color:var(--ink);font:700 11px var(--font-geist-mono)}
 .article-next>a:hover{background:var(--ink);color:var(--paper)}
 @media(max-width:900px){.insight-index{grid-template-columns:1fr}.insight-card:nth-child(even){border-left:1px solid var(--ink);border-top:0}.article-answer{grid-template-columns:1fr}.article-layout{grid-template-columns:1fr;gap:50px}.article-layout aside{position:static}.article-next{grid-template-columns:1fr}}
-@media(max-width:620px){.insights-hero,.article-hero{padding-top:95px}.insights-hero h1{font-size:58px}.insight-index{padding-top:50px}.insight-card{min-height:470px;padding:24px}.insight-card h2{margin-top:50px;font-size:43px}.article-hero h1{font-size:50px}.article-byline>*:last-child{margin-left:0}.article-answer{padding-top:36px;padding-bottom:40px}.article-layout{padding-top:60px;padding-bottom:80px}.article-body p,.article-body li{font-size:16px}.article-next{padding-top:55px}}
+@media(max-width:620px){.insights-hero,.article-hero{padding-top:95px}.insights-hero h1{font-size:58px}.insight-index{padding-top:50px}.insight-card{min-height:470px;padding:24px}.insight-card h2{margin-top:50px;font-size:43px}.article-hero h1{font-size:50px}.article-byline>*:last-child{margin-left:0}.article-hero-image{margin-top:34px;border-radius:10px}.article-answer{padding-top:36px;padding-bottom:40px}.article-layout{padding-top:60px;padding-bottom:80px}.article-body p,.article-body li{font-size:16px}.article-next{padding-top:55px}}
 @media(prefers-reduced-motion:reduce){.insight-card,.article-next>a{transition:none}}

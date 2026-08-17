@@ -14,6 +14,7 @@ export type Insight = {
   published: string;
   modified: string;
   readTime: string;
+  image?: { src: string; alt: string; width: number; height: number };
   directAnswer: string;
   takeaways: string[];
   sections: InsightSection[];
@@ -22,6 +23,92 @@ export type Insight = {
 };
 
 export const insights: Insight[] = [
+  {
+    slug: "seo-aeo-geo-aio-one-search-visibility-system",
+    title: "SEO, AEO, GEO and AIO in 2026: build one search visibility system",
+    metaTitle: "SEO, AEO, GEO & AIO in 2026: One Search System",
+    description: "A practical 2026 framework for SEO, AEO, GEO and AIO covering crawlability, answer clarity, evidence, structured data, UX and measurement.",
+    excerpt: "The labels are useful, but four disconnected strategies create duplicate work. Build one discoverability system that search engines, AI products and buyers can understand.",
+    category: "SEARCH OPERATIONS",
+    published: "2026-08-17",
+    modified: "2026-08-17",
+    readTime: "11 MIN READ",
+    image: {
+      src: "/insights/seo-aeo-geo-aio-one-system.webp",
+      alt: "SEO, AEO, GEO and AIO shown as one connected search visibility system",
+      width: 1440,
+      height: 810,
+    },
+    directAnswer: "SEO, AEO, GEO and AIO should not run as four separate programs. They are overlapping views of the same job: make useful information accessible, easy to interpret, well supported, pleasant to use and measurable. Build one search visibility system, then observe how it performs across conventional results, Google AI features, Bing and Copilot, and ChatGPT search.",
+    takeaways: [
+      "Start with indexability and useful main content. No answer format or AI file can compensate for an inaccessible page.",
+      "Give important claims a clear source, author, date and context so people and retrieval systems can evaluate them.",
+      "Use structured data to clarify visible information, not to manufacture reviews, expertise or results.",
+      "Measure qualified enquiries and assisted discovery alongside clicks, citations and query visibility.",
+    ],
+    sections: [
+      {
+        heading: "Four labels, one operating system",
+        paragraphs: [
+          "SEO is the foundation: discovery, crawling, indexing, relevance and page experience. AEO describes content that answers a question clearly. GEO describes content that generative systems can retrieve, interpret and cite. AIO is a broader label for coordinating visibility across AI-assisted discovery. These are industry terms, not four independent Google ranking systems.",
+          "Google's current guidance is unusually direct. It says that SEO remains relevant for AI features and that the same core requirements still apply. For Google, a page must be indexed and eligible to appear with a snippet before it can be shown as a supporting link in an AI experience. That is why separate microsites or near-duplicate pages for each acronym usually add complexity rather than visibility.",
+        ],
+      },
+      {
+        heading: "The six layers that make the system work",
+        paragraphs: [
+          "A durable program connects six layers. Access covers status codes, robots rules, rendering, canonicals and sitemaps. Meaning covers titles, headings, entities, internal links and structured data. Evidence covers firsthand experience, source links, authorship and dates. Answerability covers direct definitions, useful comparisons and passages that retain meaning outside the full page. Experience covers mobile usability, accessibility and speed. Measurement connects all of that work to qualified business outcomes.",
+          "The order matters. A concise answer on a blocked URL is invisible. Valid schema cannot repair unsupported claims. A fast page with generic content is still replaceable. Each layer supports the next one.",
+        ],
+        bullets: [
+          "Access: return a clean 200 response, use one canonical URL and keep important content in crawlable HTML.",
+          "Meaning: give every page one clear purpose, one descriptive H1 and internal links that explain its place in the site.",
+          "Evidence: cite primary sources, identify the author and label client proof separately from examples or plans.",
+          "Answerability: state the answer early, then explain criteria, tradeoffs, examples and limitations.",
+          "Experience: keep controls usable on mobile and target good Core Web Vitals at the 75th percentile.",
+          "Measurement: track enquiries, assisted conversions, non-brand clicks and cited appearances without claiming causation too quickly.",
+        ],
+      },
+      {
+        heading: "What Google, Bing and ChatGPT actually need",
+        paragraphs: [
+          "Google does not require special AI schema or an llms.txt file for its search features. Normal technical SEO, high quality content and snippet eligibility remain the relevant controls. Standard structured data can still reduce ambiguity when it matches the visible page, but it is not an AI citation switch.",
+          "Bing Webmaster Tools now reports AI citation activity, cited pages and grounding queries. Microsoft describes these as sampled observations, not rankings or proof that one optimization caused a citation. Use them to find topics that deserve stronger evidence, clearer sections or fresher information.",
+          "OpenAI separates OAI-SearchBot, which supports ChatGPT search, from GPTBot, which is used for potential model training. A publisher can make those choices independently. Allowing OAI-SearchBot removes an access barrier; it does not guarantee that ChatGPT will cite the site.",
+        ],
+      },
+      {
+        heading: "A practical 90 day implementation plan",
+        paragraphs: [
+          "During the first month, fix access and measurement. Verify canonicals, robots rules, XML sitemaps, server responses, analytics events and conversion paths. Map every indexable page to a real buyer question and merge pages that compete for the same purpose.",
+          "During the second month, strengthen the pages closest to revenue. Add a direct answer, decision criteria, source notes, author context, relevant proof and links to the next useful page. Update structured data only after the visible content is accurate.",
+          "During the third month, publish one genuinely useful article for an unanswered buyer question. Distribute it through the channels where the audience already pays attention. Review Search Console, Bing AI Performance and analytics together, then improve the passages and paths that attract the right visitors.",
+        ],
+      },
+      {
+        heading: "Technical thresholds worth protecting",
+        paragraphs: [
+          "Core Web Vitals are experience guardrails, not a substitute for relevance. Google's current thresholds for a good experience are Largest Contentful Paint at 2.5 seconds or less, Interaction to Next Paint at 200 milliseconds or less and Cumulative Layout Shift at 0.1 or less. Field performance should be assessed at the 75th percentile on both mobile and desktop.",
+          "Keep article images compressed and dimensioned, reserve space for media, limit client-side animation and respect reduced-motion preferences. A readable article that responds quickly is more useful than a decorative interface that delays the answer.",
+        ],
+      },
+      {
+        heading: "What not to turn into a growth tactic",
+        paragraphs: [
+          "Do not create thin pages for every wording of the same question. Do not publish invented testimonials, citation badges or performance graphs. Do not add review markup for feedback that is not visible and verifiable. Do not treat keyword repetition, an AI detector score or an llms.txt file as evidence of quality.",
+          "The useful standard is simpler: can a buyer understand the answer, inspect the evidence, identify who is responsible and complete the next step without friction? If the answer is yes, the page is doing the work that SEO, AEO, GEO, AIO and SXO are all trying to describe.",
+        ],
+      },
+    ],
+    relatedService: { href: "/services/seo-aeo-geo-sxo", label: "Build one connected search visibility system" },
+    sources: [
+      { label: "Google Search Central: succeeding in AI search", href: "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide", note: "Google's July 2026 guidance on SEO, AI features, content, controls and measurement." },
+      { label: "Google Search Central: structured data policies", href: "https://developers.google.com/search/docs/appearance/structured-data/sd-policies", note: "Requirements for accurate, visible and representative structured data." },
+      { label: "Bing Webmaster Tools: AI Performance", href: "https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c", note: "Microsoft's explanation of citations, cited pages, grounding queries and reporting limits." },
+      { label: "OpenAI: overview of OpenAI crawlers", href: "https://developers.openai.com/api/docs/bots", note: "Official distinction between OAI-SearchBot, GPTBot and ChatGPT-User." },
+      { label: "web.dev: Web Vitals", href: "https://web.dev/articles/vitals", note: "Current LCP, INP and CLS thresholds and 75th-percentile assessment guidance." },
+    ],
+  },
   {
     slug: "seo-aeo-geo-aio-difference",
     title: "SEO, AEO, GEO and AIO: what actually changes?",

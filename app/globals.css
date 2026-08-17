@@ -6032,6 +6032,20 @@ footer .logo-lockup:hover .logo-name small {
 @keyframes experienceOrbit {
   to { transform: rotate(360deg); }
 }
+@media (min-width: 651px) and (max-width: 900px) {
+  .nav nav {
+    gap: 14px;
+    font-size: 11px;
+  }
+  .nav > nav > a,
+  .expertise-nav-trigger {
+    padding-inline: 6px;
+  }
+  .nav > a .logo-lockup {
+    transform: scale(0.88);
+    transform-origin: left center;
+  }
+}
 
 @media (min-width: 1920px) {
   .solar-stage { transform: scale(0.9); }

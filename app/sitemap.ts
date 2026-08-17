@@ -5,7 +5,7 @@ import { services } from "./data/services";
 import { insights } from "./data/insights";
 
 const baseUrl = "https://www.rajkushwahadigital.com";
-const lastModified = new Date("2026-08-12T00:00:00.000Z");
+const lastModified = new Date("2026-08-17T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

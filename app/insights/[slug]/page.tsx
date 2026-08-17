@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -34,7 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: insight.published,
       modifiedTime: insight.modified,
       authors: [`${baseUrl}/about/raj-kushwaha`],
+      images: insight.image ? [{ url: insight.image.src, width: insight.image.width, height: insight.image.height, alt: insight.image.alt }] : undefined,
     },
+    twitter: insight.image ? { card: "summary_large_image", title: insight.metaTitle, description: insight.description, images: [insight.image.src] } : undefined,
   };
 }
 
@@ -59,6 +62,7 @@ export default async function InsightPage({ params }: PageProps) {
         publisher: { "@id": `${baseUrl}/#organization` },
         isPartOf: { "@id": `${baseUrl}/#website` },
         about: insight.category,
+        image: insight.image ? `${baseUrl}${insight.image.src}` : undefined,
       },
       {
         "@type": "BreadcrumbList",
@@ -84,6 +88,7 @@ export default async function InsightPage({ params }: PageProps) {
           <time dateTime={insight.published}>PUBLISHED {new Date(`${insight.published}T00:00:00Z`).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).toUpperCase()}</time>
           <span>{insight.readTime}</span>
         </div>
+        {insight.image ? <figure className="article-hero-image">{/* A pre-compressed static WebP avoids an image-proxy request on the edge. */}<img src={insight.image.src} alt={insight.image.alt} width={insight.image.width} height={insight.image.height} fetchPriority="high" decoding="async"/></figure> : null}
       </header>
       <section className="article-answer shell" aria-labelledby="direct-answer-title">
         <span>DIRECT ANSWER</span><h2 id="direct-answer-title">The short version</h2><p>{insight.directAnswer}</p>
@@ -101,7 +106,7 @@ export default async function InsightPage({ params }: PageProps) {
           </section>)}
           <section className="article-sources" aria-labelledby="article-sources-heading">
             <span>PRIMARY SOURCES</span><h2 id="article-sources-heading">Check the platform guidance</h2>
-            <p>Accessed 12 August 2026. These links support the platform-specific statements above; they do not imply a partnership or endorsement.</p>
+            <p>Sources reviewed {new Date(`${insight.modified}T00:00:00Z`).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" })}. These links support the platform-specific statements above; they do not imply a partnership or endorsement.</p>
             <ol>{insight.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noopener noreferrer"><b>{source.label}</b><small>{source.note}</small><i>↗</i></a></li>)}</ol>
           </section>
         </div>
