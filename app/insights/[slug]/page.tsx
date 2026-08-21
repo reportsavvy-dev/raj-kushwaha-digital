@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { insightBySlug, insights } from "../../data/insights";
-import { Contact, Footer } from "../../page";
+import { Contact, Footer } from "../../components/SiteSections";
 
 type PageProps = { params: Promise<{ slug: string }> };
 const baseUrl = "https://www.rajkushwahadigital.com";

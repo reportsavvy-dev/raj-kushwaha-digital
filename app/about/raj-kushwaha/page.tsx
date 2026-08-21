@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
-import { Contact, Footer } from "../../page";
+import { Contact, Footer } from "../../components/SiteSections";
 
 export const dynamic = "force-static";
 
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: { absolute: "Raj Kushwaha | Digital Marketing Strategist" },
   description: "Meet Raj Kushwaha, the strategist behind Raj Kushwaha Digital, with hands-on work across SEO, LinkedIn, content, analytics and digital growth.",
   alternates: { canonical: "/about/raj-kushwaha" },
-  openGraph: { title: "Raj Kushwaha | Digital Marketing Strategist", description: "The experience, working principles and portfolio evidence behind Raj Kushwaha Digital.", url: "/about/raj-kushwaha", type: "profile" },
+  openGraph: { title: "Raj Kushwaha | Digital Marketing Strategist", description: "The experience, working principles and portfolio evidence behind Raj Kushwaha Digital.", url: "/about/raj-kushwaha", type: "profile", images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Raj Kushwaha, digital marketing strategist" }] },
+  twitter: { card: "summary_large_image", title: "Raj Kushwaha | Digital Marketing Strategist", description: "The experience, working principles and portfolio evidence behind Raj Kushwaha Digital.", images: ["/og.jpg"] },
 };
 
 const baseUrl = "https://www.rajkushwahadigital.com";

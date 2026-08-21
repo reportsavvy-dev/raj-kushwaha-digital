@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Cursor } from "./components/Cursor";
+import { DeferredToolOrbit } from "./components/DeferredToolOrbit";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { LinkedInWorkCard } from "./components/LinkedInWorkCard";
-import { RKDMark } from "./components/BrandMark";
-import { Logo, Nav } from "./components/Nav";
+import { Nav } from "./components/Nav";
+import { Contact, Footer } from "./components/SiteSections";
 import { ToolLogo } from "./components/ToolLogo";
 import { caseStudies } from "./data/caseStudies";
 import { linkedinWorkSamples, recentLinkedInWorkSamples } from "./data/linkedinWork";
@@ -17,6 +18,20 @@ export const metadata: Metadata = {
   title: { absolute: "Digital Marketing Agency | Raj Kushwaha Digital" },
   description: "Raj Kushwaha Digital connects SEO, paid media, social, branding, web development and AI automation into measurable growth systems.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Digital Marketing Agency | Raj Kushwaha Digital",
+    description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
+    url: "/",
+    siteName: "Raj Kushwaha Digital",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Raj Kushwaha Digital. Move Attention. Build Momentum." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Marketing Agency | Raj Kushwaha Digital",
+    description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
+    images: ["/og.jpg"],
+  },
 };
 
 const heroSignals = [
@@ -58,7 +73,7 @@ export default function Home() {
       <header><span className="eyebrow-small">15 CONNECTED SERVICES</span><h2>Specialists where needed.<br/><i>One system where it matters.</i></h2><p>Choose a service to see what it solves, what the work includes, how success is measured and which tools support delivery. The recommendation starts with your constraint, not a preselected channel package.</p></header>
       <div className="capability-rows">{services.map((service, index) => <Link href={`/services/${service.slug}`} className="hover-target capability-motion-row" key={service.name} style={{"--row-accent": service.accent, "--row-soft": service.accentSoft} as React.CSSProperties}>
         <span>{String(index + 1).padStart(2, "0")}</span><h3>{service.name}</h3><p>{service.summary}</p>
-        <div className="mini-tool-orbit">{service.tools.slice(0, 4).map((tool) => <ToolLogo name={tool} key={tool}/>)}</div><b>↗</b>
+        <DeferredToolOrbit tools={service.tools.slice(0, 4)}/><b>↗</b>
       </Link>)}</div>
     </section>
 
@@ -118,12 +133,4 @@ export default function Home() {
     <section className="real-growth shell"><h2>No ranking guarantees.<br/><i>No invented results.</i></h2><p>Raj Kushwaha Digital documents assumptions, labels concept work honestly and reports the signals that support an actual business decision.</p></section>
     <Contact/><Footer/>
   </main>;
-}
-
-export function Contact() {
-  return <section className="contact shell" id="contact"><div className="contact-brandmark"><RKDMark/></div><div><span className="eyebrow-small">START WITH THE REAL PROBLEM</span><h2>Tell us what must change.<br/><i>We&apos;ll map the next move.</i></h2><Link href="/contact">START A PROJECT <span>↗</span></Link></div></section>;
-}
-
-export function Footer() {
-  return <footer><div className="shell"><Logo/><nav aria-label="Footer"><Link href="/work">WORK</Link><Link href="/insights">INSIGHTS</Link><Link href="/about/raj-kushwaha">ABOUT RAJ</Link><Link href="/contact">CONTACT</Link></nav><span>© {new Date().getFullYear()} RAJ KUSHWAHA DIGITAL</span></div></footer>;
 }

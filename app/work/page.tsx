@@ -6,7 +6,7 @@ import { LinkedInWorkCard } from "../components/LinkedInWorkCard";
 import { Nav } from "../components/Nav";
 import { caseStudies } from "../data/caseStudies";
 import { linkedinWorkSamples } from "../data/linkedinWork";
-import { Contact, Footer } from "../page";
+import { Contact, Footer } from "../components/SiteSections";
 
 export const dynamic = "force-static";
 
@@ -14,6 +14,19 @@ export const metadata: Metadata = {
   title: { absolute: "Digital Marketing Case Studies | Raj Kushwaha Digital" },
   description: "Portfolio backed SEO, LinkedIn, content and organic growth case studies with client evidence, methods and dated performance snapshots.",
   alternates: { canonical: "/work" },
+  openGraph: {
+    title: "Digital Marketing Case Studies | Raj Kushwaha Digital",
+    description: "Portfolio backed SEO, LinkedIn, content and organic growth case studies with client evidence, methods and dated performance snapshots.",
+    url: "/work",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Raj Kushwaha Digital case studies and portfolio evidence" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Marketing Case Studies | Raj Kushwaha Digital",
+    description: "Portfolio backed SEO, LinkedIn, content and organic growth case studies with client evidence, methods and dated performance snapshots.",
+    images: ["/og.jpg"],
+  },
 };
 
 export default function WorkPage() {

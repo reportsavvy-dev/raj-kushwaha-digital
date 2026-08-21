@@ -1707,6 +1707,7 @@ body:before {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 49px;
 }
 .mini-tool-orbit .tool-logo {
   width: 49px;
@@ -5765,6 +5766,7 @@ footer .logo-lockup:hover .logo-name small {
   .client-logo-band > div {
     grid-template-columns: 1fr;
   }
+  .mini-tool-orbit { min-height: 34px; }
 }
 
 /* 2026 homepage motion refresh: complete hero orbit, lightweight 3D client rail. */
@@ -7033,4 +7035,48 @@ footer .logo-lockup:hover .logo-name small {
 @media (prefers-reduced-motion: reduce) {
   .brand-guide-track { transition: none; }
   .brand-guide-controls > div button { transition: none; }
+}
+
+/* Keep long editorial and portfolio pages light without removing crawlable content. */
+.home-capabilities,
+.home-clients,
+.featured-work,
+.home-linkedin-work,
+.home-testimonials,
+.about-raj,
+.method,
+.real-growth,
+.service-overview,
+.service-benefits,
+.service-process,
+.service-case-study,
+.service-client-work,
+.service-faq,
+.work-index,
+.linkedin-work-archive,
+.contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+@media (max-width: 720px) {
+  .home-capabilities,
+  .home-clients,
+  .featured-work,
+  .home-linkedin-work,
+  .home-testimonials,
+  .about-raj,
+  .method,
+  .real-growth,
+  .service-overview,
+  .service-benefits,
+  .service-process,
+  .service-case-study,
+  .service-client-work,
+  .service-faq,
+  .work-index,
+  .linkedin-work-archive,
+  .contact {
+    contain-intrinsic-size: auto 1100px;
+  }
 }

@@ -119,6 +119,12 @@ export const insights: Insight[] = [
     published: "2026-08-12",
     modified: "2026-08-12",
     readTime: "8 MIN READ",
+    image: {
+      src: "/case-studies/generated/search-intelligence.webp",
+      alt: "Search intelligence dashboard connecting technical SEO, answer clarity and content evidence",
+      width: 1448,
+      height: 1086,
+    },
     directAnswer: "SEO builds crawlable, indexable and useful pages. AEO makes answers easy to extract and understand. GEO improves the clarity and evidence that generative systems can retrieve and cite. AIO connects those disciplines across AI-assisted search. SXO makes sure the visitor can complete the next step. They are not five separate marketing channels.",
     takeaways: [
       "Start with technical SEO and genuinely useful pages; the other layers cannot rescue content that is inaccessible or unhelpful.",
@@ -179,6 +185,12 @@ export const insights: Insight[] = [
     published: "2026-08-12",
     modified: "2026-08-12",
     readTime: "9 MIN READ",
+    image: {
+      src: "/case-studies/generated/product-ai.webp",
+      alt: "AI search eligibility system connecting crawl access, structured content and measurement",
+      width: 1448,
+      height: 1086,
+    },
     directAnswer: "To improve AI citation eligibility, allow the relevant search crawler, keep important pages indexable, publish clear factual passages with sources, identify the author and organisation, connect related pages with internal links, and make structured data match the visible page. These steps improve eligibility; they do not guarantee that an AI system will cite the page.",
     takeaways: [
       "Allow OAI-SearchBot for ChatGPT search; GPTBot controls potential model-training use and is a separate decision.",

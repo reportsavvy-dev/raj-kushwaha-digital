@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Contact, Footer } from "../../page";
+import { Contact, Footer } from "../../components/SiteSections";
 import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { RKDMark } from "../../components/BrandMark";
@@ -45,6 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const service = serviceBySlug(slug);
   if (!service) return {};
   const canonical = `/services/${service.slug}`;
+  const visual = serviceCaseVisuals[service.slug];
   return {
     title: { absolute: service.metaTitle },
     description: service.metaDescription,
@@ -54,6 +55,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: service.metaDescription,
       url: canonical,
       type: "website",
+      images: [{ url: visual.src, alt: visual.alt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.metaTitle,
+      description: service.metaDescription,
+      images: [visual.src],
     },
   };
 }
@@ -108,7 +116,7 @@ export default async function ServicePage({ params }: PageProps) {
         <h1>{service.name}</h1>
         <p className="service-direct-answer">{service.directAnswer}</p>
         <p>{service.intro}</p>
-        <div><Link className="primary-button magnetic" href="/contact">START A {service.shortName.toUpperCase()} PROJECT <span>→</span></Link><Link className="text-link" href={hasClientProof ? "#client-work" : "#case-study"}>{hasClientProof ? "SEE CLIENT WORK" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
+        <div><Link className="primary-button magnetic" href="/contact">START YOUR {service.shortName.toUpperCase()} PROJECT <span>→</span></Link><Link className="text-link" href={hasClientProof ? "#client-work" : "#case-study"}>{hasClientProof ? "SEE CLIENT WORK" : "SEE THE PLANNING EXAMPLE"} ↓</Link></div>
       </div>
       <ServiceOrbital service={orbitalService}/>
     </section>

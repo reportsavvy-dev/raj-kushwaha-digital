@@ -206,7 +206,16 @@ test("every sitemap page renders unique metadata and valid local images", async 
     assert.ok(!titles.has(title), `${pathname} has a unique title: ${title}`);
     titles.add(title);
     assert.match(html, /<h1\b/i, `${pathname} has an h1`);
-    assert.match(html, new RegExp(`rel="canonical" href="https://www\\.rajkushwahadigital\\.com${pathname === "/" ? "/" : pathname}"`));
+    const canonical = `https://www.rajkushwahadigital.com${pathname === "/" ? "/" : pathname}`;
+    assert.ok(html.includes(`rel="canonical" href="${canonical}"`), `${pathname} has a self-referencing canonical`);
+    assert.ok(html.includes(`property="og:url" content="${canonical}"`), `${pathname} has a self-referencing Open Graph URL`);
+    assert.match(html, /property="og:title" content="[^"]+"/, `${pathname} has an Open Graph title`);
+    assert.match(html, /property="og:description" content="[^"]+"/, `${pathname} has an Open Graph description`);
+    assert.match(html, /property="og:image" content="https:\/\/www\.rajkushwahadigital\.com\/[^"]+"/, `${pathname} has an absolute Open Graph image`);
+    assert.match(html, /name="twitter:card" content="summary_large_image"/, `${pathname} has a large X card`);
+    assert.match(html, /name="twitter:title" content="[^"]+"/, `${pathname} has an X title`);
+    assert.match(html, /name="twitter:description" content="[^"]+"/, `${pathname} has an X description`);
+    assert.match(html, /name="twitter:image" content="https:\/\/www\.rajkushwahadigital\.com\/[^"]+"/, `${pathname} has an absolute X image`);
     assert.doesNotMatch(html, /brand-intro|C:\\Users\\|C:\/Users\//i, pathname);
 
     for (const match of html.matchAll(/<img[^>]+src="(\/[^"?]+)"/g)) {

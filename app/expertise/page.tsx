@@ -3,7 +3,7 @@ import { Cursor } from "../components/Cursor";
 import { ExpertiseExplorer } from "../components/ExpertiseExplorer";
 import { Nav } from "../components/Nav";
 import { services } from "../data/services";
-import { Contact, Footer } from "../page";
+import { Contact, Footer } from "../components/SiteSections";
 
 export const dynamic = "force-static";
 
@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   title: { absolute: "Digital Marketing Services & Expertise | RKD" },
   description: "Explore 15 connected services across SEO, media, social, branding, content, development and AI automation.",
   alternates: { canonical: "/expertise" },
+  openGraph: {
+    title: "Digital Marketing Services & Expertise | RKD",
+    description: "Explore 15 connected services across SEO, media, social, branding, content, development and AI automation.",
+    url: "/expertise",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Raj Kushwaha Digital connected marketing expertise" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Marketing Services & Expertise | RKD",
+    description: "Explore 15 connected services across SEO, media, social, branding, content, development and AI automation.",
+    images: ["/og.jpg"],
+  },
 };
 
 export default function Expertise() {

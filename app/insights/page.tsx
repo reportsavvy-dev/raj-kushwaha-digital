@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Cursor } from "../components/Cursor";
 import { Nav } from "../components/Nav";
 import { insights } from "../data/insights";
-import { Contact, Footer } from "../page";
+import { Contact, Footer } from "../components/SiteSections";
 
 export const dynamic = "force-static";
 
@@ -16,6 +16,13 @@ export const metadata: Metadata = {
     description: "Practical search and growth guidance built from primary sources, real work and explicit limitations.",
     url: "/insights",
     type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Raj Kushwaha Digital search and growth insights" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Marketing Insights | Raj Kushwaha Digital",
+    description: "Practical search and growth guidance built from primary sources, real work and explicit limitations.",
+    images: ["/og.jpg"],
   },
 };
 

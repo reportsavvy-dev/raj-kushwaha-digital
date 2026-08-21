@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { caseStudies, caseStudyBySlug } from "../../data/caseStudies";
-import { Contact, Footer } from "../../page";
+import { Contact, Footer } from "../../components/SiteSections";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -26,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: study.metaDescription,
     alternates: { canonical },
     openGraph: { title: study.headline, description: study.metaDescription, url: canonical, type: "article", images: [{ url: study.heroImage }] },
+    twitter: { card: "summary_large_image", title: study.headline, description: study.metaDescription, images: [study.heroImage] },
   };
 }
 

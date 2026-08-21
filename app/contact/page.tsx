@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ContactForm } from "../components/ContactForm";
 import { Cursor } from "../components/Cursor";
 import { Nav } from "../components/Nav";
-import { Footer } from "../page";
+import { Footer } from "../components/SiteSections";
 
 export const dynamic = "force-static";
 
@@ -12,10 +12,17 @@ export const metadata: Metadata = {
   description: "Tell Raj Kushwaha Digital what is stuck, what needs to change and what a useful result looks like. Start a marketing, search, creative, web or AI project.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Start a Project | Raj Kushwaha Digital",
-    description: "Share the business problem, scope and timing. We will review the brief and recommend a useful next move.",
+    title: "Contact Raj Kushwaha Digital | Start a Project",
+    description: "Tell Raj Kushwaha Digital what is stuck, what needs to change and what a useful result looks like. Start a marketing, search, creative, web or AI project.",
     url: "/contact",
     type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 800, alt: "Start a project with Raj Kushwaha Digital" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Raj Kushwaha Digital | Start a Project",
+    description: "Tell Raj Kushwaha Digital what is stuck, what needs to change and what a useful result looks like.",
+    images: ["/og.jpg"],
   },
 };
 

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Cursor } from "../../../components/Cursor";
 import { Nav } from "../../../components/Nav";
 import { linkedinWorkBySlug, linkedinWorkSamples } from "../../../data/linkedinWork";
-import { Contact, Footer } from "../../../page";
+import { Contact, Footer } from "../../../components/SiteSections";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -31,6 +31,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: canonical,
       type: "article",
       images: [{ url: sample.postImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: sample.headline,
+      description: sample.summary,
+      images: [sample.postImage],
     },
   };
 }
