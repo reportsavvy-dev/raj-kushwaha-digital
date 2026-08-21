@@ -7080,3 +7080,122 @@ footer .logo-lockup:hover .logo-name small {
     contain-intrinsic-size: auto 1100px;
   }
 }
+
+/* Local preview: RKD elastic multi-arrow cursor trail. */
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 1002;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+.cursor-trail.is-visible {
+  opacity: 1;
+}
+.cursor-arrow {
+  --cursor-tone: var(--coral);
+  position: fixed;
+  top: -2px;
+  left: -2px;
+  width: 18px;
+  height: 24px;
+  background: var(--cursor-tone);
+  clip-path: polygon(0 0, 0 84%, 25% 64%, 40% 100%, 56% 92%, 41% 57%, 72% 57%);
+  transform-origin: 2px 2px;
+  filter: drop-shadow(0 1px 0 rgba(17, 17, 15, 0.26));
+  will-change: transform;
+  transition: width 0.18s ease, height 0.18s ease, opacity 0.12s ease, filter 0.18s ease;
+}
+.cursor-arrow--teal {
+  --cursor-tone: #12b8ae;
+  width: 15px;
+  height: 20px;
+  z-index: 1;
+}
+.cursor-arrow--violet {
+  --cursor-tone: #6758ff;
+  width: 16px;
+  height: 21px;
+  z-index: 2;
+}
+.cursor-arrow--gold {
+  --cursor-tone: #ffb800;
+  width: 17px;
+  height: 22px;
+  z-index: 3;
+}
+.cursor-arrow--coral {
+  --cursor-tone: #ff5738;
+  width: 18px;
+  height: 23px;
+  z-index: 4;
+}
+.cursor-arrow--main {
+  --cursor-tone: #11110f;
+  width: 20px;
+  height: 27px;
+  z-index: 5;
+  filter: drop-shadow(1px 1px 0 rgba(244, 240, 231, 0.9));
+}
+.cursor-arrow--main:before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.cursor-arrow--main:after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: -8px;
+  left: -8px;
+  border: 2px solid var(--coral);
+  border-radius: 50%;
+  opacity: 0;
+}
+.cursor-trail.cursor-active .cursor-arrow--main {
+  width: 23px;
+  height: 31px;
+  filter: drop-shadow(2px 2px 0 rgba(244, 240, 231, 0.95));
+}
+.cursor-trail.cursor-service .cursor-arrow:not(.cursor-arrow--main) {
+  filter: drop-shadow(0 2px 0 rgba(17, 17, 15, 0.28));
+}
+.cursor-trail.cursor-click .cursor-arrow:not(.cursor-arrow--main) {
+  opacity: 0.42;
+}
+.cursor-trail.cursor-click .cursor-arrow--main:after {
+  animation: cursorTrailPulse 0.34s ease-out;
+}
+html.native-cursor body {
+  cursor: auto !important;
+}
+html.native-cursor .cursor-trail,
+.cursor-dot,
+.cursor-ring {
+  display: none !important;
+}
+@keyframes cursorTrailPulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.25);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+@media (pointer: coarse), (hover: none), (prefers-reduced-motion: reduce) {
+  body {
+    cursor: auto;
+  }
+  .cursor-trail {
+    display: none !important;
+  }
+}

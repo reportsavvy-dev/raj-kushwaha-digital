@@ -2,27 +2,67 @@
 
 import { useEffect, useRef } from "react";
 
+const CURSOR_TONES = ["teal", "violet", "gold", "coral", "main"] as const;
+
 export function Cursor() {
-  const dot = useRef<HTMLDivElement>(null);
-  const ring = useRef<HTMLDivElement>(null);
+  const trail = useRef<HTMLDivElement>(null);
+  const arrows = useRef<Array<HTMLSpanElement | null>>([]);
   const progress = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const finePointer = window.matchMedia("(pointer: fine)").matches;
-    const cursorEnabled = finePointer;
-    let x = 0;
-    let y = 0;
-    let ringX = 0;
-    let ringY = 0;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const cursorEnabled = finePointer && !reducedMotion;
+
+    if (!cursorEnabled) {
+      document.documentElement.classList.add("native-cursor");
+      return () => document.documentElement.classList.remove("native-cursor");
+    }
+
+    let x = -60;
+    let y = -60;
     let cursorFrame = 0;
     let scrollFrame = 0;
+    let serviceActive = false;
+    const followers = CURSOR_TONES.map(() => ({ x: -60, y: -60 }));
+    const easing = [0.12, 0.17, 0.24, 0.34, 1];
+    const maxLag = [54, 41, 29, 17, 0];
 
     const renderCursor = () => {
-      ringX += (x - ringX) * 0.18;
-      ringY += (y - ringY) * 0.18;
-      ring.current?.style.setProperty("transform", `translate3d(${ringX}px,${ringY}px,0)`);
+      let moving = false;
 
-      if (Math.abs(x - ringX) > 0.15 || Math.abs(y - ringY) > 0.15) {
+      followers.forEach((position, index) => {
+        if (index === followers.length - 1) {
+          position.x = x;
+          position.y = y;
+        } else {
+          position.x += (x - position.x) * easing[index];
+          position.y += (y - position.y) * easing[index];
+
+          const deltaX = x - position.x;
+          const deltaY = y - position.y;
+          const distance = Math.hypot(deltaX, deltaY);
+          const limit = maxLag[index] * (serviceActive ? 1.22 : 1);
+
+          if (distance > limit) {
+            position.x = x - (deltaX / distance) * limit;
+            position.y = y - (deltaY / distance) * limit;
+          }
+
+          if (Math.abs(deltaX) > 0.12 || Math.abs(deltaY) > 0.12) moving = true;
+        }
+
+        const tilt = index === followers.length - 1
+          ? 0
+          : Math.max(-10, Math.min(10, (x - position.x) * 0.13));
+
+        arrows.current[index]?.style.setProperty(
+          "transform",
+          `translate3d(${position.x}px,${position.y}px,0) rotate(${tilt}deg)`,
+        );
+      });
+
+      if (moving) {
         cursorFrame = window.requestAnimationFrame(renderCursor);
       } else {
         cursorFrame = 0;
@@ -30,24 +70,24 @@ export function Cursor() {
     };
 
     const move = (event: PointerEvent) => {
-      if (!cursorEnabled) return;
       x = event.clientX;
       y = event.clientY;
-      dot.current?.style.setProperty("transform", `translate3d(${x}px,${y}px,0)`);
+      trail.current?.classList.add("is-visible");
       if (!cursorFrame) cursorFrame = window.requestAnimationFrame(renderCursor);
     };
 
     const over = (event: PointerEvent) => {
-      if (!cursorEnabled) return;
       const target = event.target as HTMLElement;
       const isHeaderNavigation = Boolean(target.closest(".nav"));
-      ring.current?.classList.toggle(
-        "cursor-active",
-        !isHeaderNavigation && Boolean(target.closest("a,button,.hover-target")),
-      );
+      const isInteractive = !isHeaderNavigation && Boolean(target.closest("a,button,.hover-target"));
+      serviceActive = Boolean(target.closest(".capability-motion-row"));
+      trail.current?.classList.toggle("cursor-active", isInteractive);
+      trail.current?.classList.toggle("cursor-service", serviceActive);
     };
-    const down = () => cursorEnabled && ring.current?.classList.add("cursor-click");
-    const up = () => ring.current?.classList.remove("cursor-click");
+
+    const down = () => trail.current?.classList.add("cursor-click");
+    const up = () => trail.current?.classList.remove("cursor-click");
+    const hide = () => trail.current?.classList.remove("is-visible");
 
     const renderScroll = () => {
       scrollFrame = 0;
@@ -59,39 +99,36 @@ export function Cursor() {
     };
 
     const magneticCleanups: Array<() => void> = [];
-    if (finePointer) {
-      document.querySelectorAll<HTMLElement>(".magnetic").forEach((element) => {
-        let rect: DOMRect | null = null;
-        let frame = 0;
-        let offsetX = 0;
-        let offsetY = 0;
-        const enter = () => { rect = element.getBoundingClientRect(); };
-        const paint = () => {
-          frame = 0;
-          element.style.transform = `translate3d(${offsetX}px,${offsetY}px,0)`;
-        };
-        const magneticMove = (event: PointerEvent) => {
-          if (!cursorEnabled) return;
-          rect ??= element.getBoundingClientRect();
-          offsetX = (event.clientX - rect.left - rect.width / 2) * 0.12;
-          offsetY = (event.clientY - rect.top - rect.height / 2) * 0.16;
-          if (!frame) frame = window.requestAnimationFrame(paint);
-        };
-        const leave = () => {
-          rect = null;
-          element.style.transform = "";
-        };
-        element.addEventListener("pointerenter", enter);
-        element.addEventListener("pointermove", magneticMove);
-        element.addEventListener("pointerleave", leave);
-        magneticCleanups.push(() => {
-          element.removeEventListener("pointerenter", enter);
-          element.removeEventListener("pointermove", magneticMove);
-          element.removeEventListener("pointerleave", leave);
-          if (frame) window.cancelAnimationFrame(frame);
-        });
+    document.querySelectorAll<HTMLElement>(".magnetic").forEach((element) => {
+      let rect: DOMRect | null = null;
+      let frame = 0;
+      let offsetX = 0;
+      let offsetY = 0;
+      const enter = () => { rect = element.getBoundingClientRect(); };
+      const paint = () => {
+        frame = 0;
+        element.style.transform = `translate3d(${offsetX}px,${offsetY}px,0)`;
+      };
+      const magneticMove = (event: PointerEvent) => {
+        rect ??= element.getBoundingClientRect();
+        offsetX = (event.clientX - rect.left - rect.width / 2) * 0.12;
+        offsetY = (event.clientY - rect.top - rect.height / 2) * 0.16;
+        if (!frame) frame = window.requestAnimationFrame(paint);
+      };
+      const leave = () => {
+        rect = null;
+        element.style.transform = "";
+      };
+      element.addEventListener("pointerenter", enter);
+      element.addEventListener("pointermove", magneticMove);
+      element.addEventListener("pointerleave", leave);
+      magneticCleanups.push(() => {
+        element.removeEventListener("pointerenter", enter);
+        element.removeEventListener("pointermove", magneticMove);
+        element.removeEventListener("pointerleave", leave);
+        if (frame) window.cancelAnimationFrame(frame);
       });
-    }
+    });
 
     const motionObserver = new IntersectionObserver(
       (entries) => entries.forEach((entry) => entry.target.classList.toggle("motion-paused", !entry.isIntersecting)),
@@ -103,6 +140,8 @@ export function Cursor() {
     window.addEventListener("pointerover", over, { passive: true });
     window.addEventListener("pointerdown", down, { passive: true });
     window.addEventListener("pointerup", up, { passive: true });
+    window.addEventListener("blur", hide);
+    document.documentElement.addEventListener("mouseleave", hide);
     window.addEventListener("scroll", scroll, { passive: true });
     renderScroll();
 
@@ -111,6 +150,8 @@ export function Cursor() {
       window.removeEventListener("pointerover", over);
       window.removeEventListener("pointerdown", down);
       window.removeEventListener("pointerup", up);
+      window.removeEventListener("blur", hide);
+      document.documentElement.removeEventListener("mouseleave", hide);
       window.removeEventListener("scroll", scroll);
       magneticCleanups.forEach((cleanup) => cleanup());
       motionObserver.disconnect();
@@ -121,7 +162,12 @@ export function Cursor() {
 
   return <>
     <div className="page-progress"><small>01</small><i><span ref={progress}/></i><b>RKD</b></div>
-    <div ref={dot} className="cursor-dot"><i/></div>
-    <div ref={ring} className="cursor-ring"><i/><b>+</b></div>
+    <div ref={trail} className="cursor-trail" aria-hidden="true">
+      {CURSOR_TONES.map((tone, index) => <span
+        className={`cursor-arrow cursor-arrow--${tone}`}
+        key={tone}
+        ref={(node) => { arrows.current[index] = node; }}
+      />)}
+    </div>
   </>;
 }
