@@ -2276,7 +2276,7 @@ body:before {
   top: 22px;
 }
 .orbital-label b {
-  color: var(--service-accent);
+  color: color-mix(in srgb, var(--service-accent), white 58%);
 }
 .orbital-axis {
   bottom: 22px;
@@ -2312,7 +2312,7 @@ body:before {
   height: 145px;
   border-radius: 50%;
   background: var(--service-accent);
-  color: #111;
+  color: white;
   z-index: 12;
   display: flex;
   flex-direction: column;
@@ -2459,10 +2459,10 @@ body:before {
 }
 .service-index button.active {
   background: var(--service-accent);
-  color: #111;
+  color: white;
 }
 .service-index button.active span {
-  color: #111;
+  color: white;
 }
 .expertise-panel {
   background: linear-gradient(145deg, #f9f5ed 58%, var(--service-soft));
@@ -2490,7 +2490,7 @@ body:before {
   margin-top: 24px;
   padding: 15px 16px;
   background: var(--service-accent);
-  color: #111;
+  color: white;
   display: flex;
   justify-content: space-between;
   font: 800 9px var(--font-geist-mono);
@@ -2503,7 +2503,7 @@ body:before {
 .service-page .primary-button {
   background: var(--service-accent);
   border-color: var(--service-accent);
-  color: #111;
+  color: white;
 }
 .service-detail-hero {
   min-height: 790px;
@@ -2569,6 +2569,7 @@ body:before {
   margin-right: 34px;
   font: 800 10px var(--font-geist-mono);
   text-transform: uppercase;
+  color: white;
 }
 .service-marquee .tool-logo {
   width: 32px;
@@ -2670,7 +2671,7 @@ body:before {
   color: var(--service-accent);
 }
 .service-benefits article:hover span {
-  color: #111;
+  color: white;
 }
 .service-benefits h3 {
   font-size: 26px;
@@ -2683,7 +2684,11 @@ body:before {
   color: var(--muted);
 }
 .service-benefits article:hover p {
-  color: #292723;
+  color: white;
+}
+.service-process .eyebrow-small,
+.service-process-grid span {
+  color: color-mix(in srgb, var(--service-accent), white 58%);
 }
 .service-process {
   background: var(--ink);
@@ -6924,12 +6929,13 @@ footer .logo-lockup:hover .logo-name small {
   text-transform: uppercase;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
-.brand-guide-controls > div button span { color: var(--coral); font-size: 8px; }
+.brand-guide-controls > div button span { color: #b92f13; font-size: 8px; }
 .brand-guide-controls > div button.is-active {
   background: var(--ink);
   color: #fffdf8;
   transform: translateY(-2px);
 }
+.brand-guide-controls > div button.is-active span { color: #ff8063; }
 .brand-guide-decks {
   display: grid;
   gap: 86px;
@@ -6953,6 +6959,13 @@ footer .logo-lockup:hover .logo-name small {
   letter-spacing: .1em;
 }
 .brand-guide-deck-heading > span { color: var(--coral); }
+.brand-guide-deck-heading small {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 6px;
+  background: var(--ink);
+  color: #fffdf8;
+}
 .brand-guide-deck-heading h3 {
   margin: 5px 0 0;
   font-size: clamp(32px, 4vw, 58px);
