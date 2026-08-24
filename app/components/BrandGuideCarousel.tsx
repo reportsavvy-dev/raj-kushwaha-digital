@@ -135,7 +135,7 @@ function BrandDeck({
         key={`${project.client}-${slide.label}-control`}
         className={index === active ? "is-active" : ""}
         onClick={() => goTo(index)}
-        aria-label={`Show ${project.client} ${slide.title}`}
+        title={`Show ${project.client} ${slide.title}`}
         aria-current={index === active ? "true" : undefined}
       ><span>{String(index + 1).padStart(2, "0")}</span><b>{slide.label}</b></button>)}</div>
       <button type="button" onClick={() => goTo(active + 1)} aria-label={`Show next ${project.client} guide page`}>→</button>

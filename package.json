@@ -12,6 +12,7 @@
     "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "indexnow:submit": "node scripts/submit-indexnow.mjs",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

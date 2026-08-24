@@ -36,7 +36,7 @@ export const designProjects: DesignProject[] = [
       "Business card, A4 letterhead and DL envelope",
     ],
     proof: ["34 validated files", "8-page brand guide", "4 colour systems"],
-    accent: "#16a6a0",
+    accent: "#006f6b",
     soft: "#d9f4f1",
   },
   {
@@ -60,7 +60,7 @@ export const designProjects: DesignProject[] = [
     sourceHref: "https://www.keymedsolution.com/",
     sourceLabel: "VISIT OFFICIAL WEBSITE",
     caseHref: "/work/key-medsolutions-search-authority",
-    accent: "#00a86b",
+    accent: "#00784c",
     soft: "#dcf5e8",
   },
   {
@@ -83,7 +83,7 @@ export const designProjects: DesignProject[] = [
     proof: ["Official logo used", "Public website verified", "No invented performance data"],
     sourceHref: "https://www.khrcm.com/",
     sourceLabel: "VISIT OFFICIAL WEBSITE",
-    accent: "#1679bd",
+    accent: "#0c6098",
     soft: "#dceefa",
   },
 ];

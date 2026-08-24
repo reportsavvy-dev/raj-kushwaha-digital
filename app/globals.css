@@ -536,6 +536,14 @@ a {
 }
 .nav nav a {
   position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+.nav > a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
 }
 .nav nav a:after {
   content: "";
@@ -6886,6 +6894,7 @@ footer .logo-lockup:hover .logo-name small {
 }
 .brand-guide-controls > button,
 .brand-guide-controls > div button {
+  height: 48px;
   min-height: 48px;
   border: 1px solid var(--ink);
   border-radius: 9px;
@@ -6893,6 +6902,7 @@ footer .logo-lockup:hover .logo-name small {
   color: var(--ink);
   cursor: pointer;
 }
+.brand-guide-controls > button { min-width: 44px; }
 .brand-guide-controls > div {
   display: flex;
   min-width: 0;

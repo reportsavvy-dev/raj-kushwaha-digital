@@ -51,7 +51,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Start with one billing decision", "Use plain language around the consequence", "Build a clinical visual hierarchy", "Keep contact details and next action visible"],
     delivered: ["Topic and audience framing", "Single-image LinkedIn creative", "Brand-specific visual direction", "Caption and publishing package"],
     services: sharedServices,
-    accent: "#087cad",
+    accent: "#06658f",
     accentSoft: "#d9f2ff",
   },
   {
@@ -74,7 +74,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Frame one hiring decision", "Translate assessment language into a visual idea", "Keep the message mobile-readable", "Use the brand palette consistently"],
     delivered: ["Editorial angle", "LinkedIn post design", "Caption structure", "Brand consistency system"],
     services: sharedServices,
-    accent: "#25b7ff",
+    accent: "#006d9c",
     accentSoft: "#d9f3ff",
   },
   {
@@ -97,7 +97,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Lead with a memorable contrast", "Turn the advice into a step-by-step path", "Use high-contrast mobile typography", "Keep the brand visually distinct"],
     delivered: ["Content concept", "4:5 LinkedIn artwork", "Editorial hierarchy", "Ready-to-publish copy direction"],
     services: sharedServices,
-    accent: "#e5222c",
+    accent: "#b81723",
     accentSoft: "#ffe0e2",
   },
   {
@@ -120,7 +120,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Define the audience before the topic", "Separate the operational reminder from legal interpretation", "Use one clear evidence trail", "Maintain a repeatable green-on-navy identity"],
     delivered: ["Research-led topic framing", "LinkedIn graphic", "Accessibility-ready alt-text direction", "Caption and source structure"],
     services: sharedServices,
-    accent: "#38ee83",
+    accent: "#087a43",
     accentSoft: "#d6ffe5",
   },
   {
@@ -143,7 +143,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Anchor each post in one control or decision", "Use a clean data-editorial visual language", "Avoid unsupported statistics", "Connect the topic to a credible business audience"],
     delivered: ["Thought-leadership planning", "Topic-specific creative", "LinkedIn caption system", "Cross-post brand rules"],
     services: sharedServices,
-    accent: "#2789d8",
+    accent: "#1769a8",
     accentSoft: "#dcefff",
   },
   {
@@ -166,7 +166,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Make the learning principle the headline", "Use a visual model rather than a stock classroom image", "Keep the post scannable", "Connect learning to employability"],
     delivered: ["Educational content concept", "LinkedIn feed creative", "Visual learning model", "Caption and CTA direction"],
     services: sharedServices,
-    accent: "#f28a1d",
+    accent: "#9b5100",
     accentSoft: "#fff0dc",
   },
   {
@@ -189,7 +189,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Choose a market-specific hiring problem", "Lead with a direct point of view", "Use the established Silverspace identity", "Connect the post to the broader organic content system"],
     delivered: ["LinkedIn editorial planning", "Branded campaign creative", "Copy and CTA system", "Organic distribution support"],
     services: sharedServices,
-    accent: "#7258ff",
+    accent: "#5335d1",
     accentSoft: "#e8e2ff",
   },
   {
@@ -212,7 +212,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Assign one audience to each post", "Match the format to the topic", "Use consistent corporate design cues", "Give every caption a practical next step"],
     delivered: ["Content pillar system", "LinkedIn article creative", "Brand-led layout", "Publishing copy direction"],
     services: sharedServices,
-    accent: "#24a9e2",
+    accent: "#006d9c",
     accentSoft: "#dcf5ff",
   },
   {
@@ -235,7 +235,7 @@ export const linkedinWorkSamples: LinkedInWorkSample[] = [
     approach: ["Use one timely compliance reminder", "Keep legal interpretation outside the graphic", "Create a readable evidence journey", "Preserve the Vizva UK visual identity"],
     delivered: ["UK-focused topic research", "LinkedIn creative", "Caption and source framework", "Brand-specific publishing system"],
     services: sharedServices,
-    accent: "#17aee5",
+    accent: "#006d9c",
     accentSoft: "#dcf7ff",
   },
 ];

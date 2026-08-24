@@ -35,7 +35,7 @@ export const caseStudies: PortfolioCaseStudy[] = [
     metaDescription: "See how Silverspace combined SEO, expert content and LinkedIn publishing to grow organic clicks, backlinks and qualified B2B demand.",
     heroImage: "/case-studies/silverspace-card-illustration.webp",
     heroAlt: "Connected search, content and professional audience illustration for Silverspace Inc",
-    accent: "#635bff",
+    accent: "#4438ca",
     accentSoft: "#e6e1ff",
     services: ["seo-aeo-geo-sxo", "social-media-management-marketing", "content-marketing", "branding", "logo-graphic-design", "lead-generation"],
     metrics: [
@@ -83,7 +83,7 @@ export const caseStudies: PortfolioCaseStudy[] = [
     metaDescription: "See the SEO and content work that helped Key MedSolutions expand organic clicks, search impressions and specialist medical billing visibility.",
     heroImage: "/case-studies/keymed-card-illustration.webp",
     heroAlt: "Healthcare billing search authority and analytics illustration for Key MedSolutions",
-    accent: "#00a86b",
+    accent: "#00784c",
     accentSoft: "#d8f7e8",
     services: ["seo-aeo-geo-sxo", "content-marketing", "social-media-management-marketing", "lead-generation"],
     metrics: [
@@ -131,7 +131,7 @@ export const caseStudies: PortfolioCaseStudy[] = [
     metaDescription: "Explore Vizva's 90 day LinkedIn and SEO program, with portfolio evidence for follower growth, organic clicks and international demand.",
     heroImage: "/case-studies/vizva-card-illustration.webp",
     heroAlt: "Professional audience growth and search demand illustration for Vizva Consultancy Services",
-    accent: "#19a8dd",
+    accent: "#006d9c",
     accentSoft: "#d8f3ff",
     services: ["social-media-management-marketing", "seo-aeo-geo-sxo", "content-marketing", "lead-generation", "digital-marketing"],
     metrics: [

@@ -1,18 +1,13 @@
-"use client";
-
 import type { Service } from "../data/services";
 import { ToolLogo } from "./ToolLogo";
-import { useMotionSurface } from "./useMotionSurface";
 
 export type OrbitalService = Pick<Service, "shortName" | "tools" | "visual" | "accent" | "accentSoft">;
 
 export function ServiceOrbital({ service, compact = false }: { service: OrbitalService; compact?: boolean }) {
-  const motion = useMotionSurface("--orbit-x", "--orbit-y");
   const rings = [service.tools.slice(0, 2), service.tools.slice(2, 5), service.tools.slice(5, 8)];
 
   return <div
     className={`service-orbital ${compact ? "orbital-compact" : ""}`}
-    {...motion}
     style={{"--service-accent": service.accent, "--service-soft": service.accentSoft} as React.CSSProperties}
   >
     <div className="orbital-label"><span>{service.visual.toUpperCase()} SYSTEM</span><b>● LIVE</b></div>

@@ -1,7 +1,4 @@
-"use client";
-
 import { ToolLogo } from "./ToolLogo";
-import { useMotionSurface } from "./useMotionSurface";
 
 const planets = [
   { name: "Meta Ads", tool: "Meta Ads", orbit: "orbit-one", delay: "0s", color: "#0866ff", className: "planet-meta", content: <><div className="planet-chart"><i/><i/><i/><i/></div><small>CAMPAIGN SIGNAL</small></> },
@@ -13,9 +10,7 @@ const planets = [
 ];
 
 export function HeroSolarSystem() {
-  const motion = useMotionSurface("--solar-x", "--solar-y");
-
-  return <div className="hero-solar-system" {...motion} aria-label="Connected marketing tools orbiting the Raj Kushwaha Digital analytics core">
+  return <div className="hero-solar-system" aria-label="Connected marketing tools orbiting the Raj Kushwaha Digital analytics core">
     <div className="solar-stage">
     <div className="solar-glow"/>
     <div className="solar-orbit orbit-one" aria-hidden="true"/>
