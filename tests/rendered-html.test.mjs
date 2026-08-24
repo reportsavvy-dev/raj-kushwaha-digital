@@ -196,7 +196,7 @@ test("every sitemap page renders unique metadata and valid local images", async 
   const paths = [...sitemap.matchAll(/<loc>https:\/\/www\.rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
   const titles = new Set();
 
-  assert.equal(paths.length, 36);
+  assert.equal(paths.length, 37);
   for (const pathname of paths) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
@@ -276,6 +276,29 @@ test("new search visibility guide ships an optimized hero, sources and schema", 
   assert.match(article, /"image":"https:\/\/www\.rajkushwahadigital\.com\/insights\/seo-aeo-geo-aio-one-system\.webp"/);
   assert.match(sitemap, /seo-aeo-geo-aio-one-search-visibility-system/);
   assert.match(feed, /seo-aeo-geo-aio-one-search-visibility-system/);
+});
+
+test("AI search measurement guide publishes comparison tables, keywords and internal links", async () => {
+  const [articleResponse, sitemapResponse, feedResponse] = await Promise.all([
+    render("/insights/measure-ai-search-visibility-gsc-ga4-bing"),
+    render("/sitemap.xml"),
+    render("/feed.xml"),
+  ]);
+  assert.equal(articleResponse.status, 200);
+  const [article, sitemap, feed] = await Promise.all([
+    articleResponse.text(), sitemapResponse.text(), feedResponse.text(),
+  ]);
+  assert.match(article, /How to measure AI search visibility in 2026/);
+  assert.match(article, /name="keywords" content="measure AI search visibility/);
+  assert.match(article, /src="\/insights\/measure-ai-search-visibility-2026\.webp"/);
+  assert.match(article, /AI search measurement sources and their limits/);
+  assert.match(article, /<table>/);
+  assert.match(article, /href="\/insights\/how-to-appear-in-ai-search-citations"/);
+  assert.match(article, /"datePublished":"2026-08-24"/);
+  assert.match(article, /"keywords":"measure AI search visibility/);
+  assert.match(article, /Google Search Console: Generative AI performance report/);
+  assert.match(sitemap, /measure-ai-search-visibility-gsc-ga4-bing/);
+  assert.match(feed, /measure-ai-search-visibility-gsc-ga4-bing/);
 });
 
 test("contact page offers a clear and accessible project enquiry", async () => {

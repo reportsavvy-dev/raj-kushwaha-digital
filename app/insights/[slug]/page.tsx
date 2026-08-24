@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: { absolute: insight.metaTitle },
     description: insight.description,
+    keywords: insight.keywords,
     authors: [{ name: "Raj Kushwaha", url: "/about/raj-kushwaha" }],
     alternates: { canonical },
     openGraph: {
@@ -62,6 +63,7 @@ export default async function InsightPage({ params }: PageProps) {
         publisher: { "@id": `${baseUrl}/#organization` },
         isPartOf: { "@id": `${baseUrl}/#website` },
         about: insight.category,
+        keywords: insight.keywords?.join(", "),
         image: insight.image ? `${baseUrl}${insight.image.src}` : undefined,
       },
       {
@@ -103,7 +105,18 @@ export default async function InsightPage({ params }: PageProps) {
             <h2>{section.heading}</h2>
             {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             {section.bullets ? <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul> : null}
+            {section.table ? <div className="article-table-wrap">
+              <table>
+                <caption>{section.table.caption}</caption>
+                <thead><tr>{section.table.headers.map((header) => <th scope="col" key={header}>{header}</th>)}</tr></thead>
+                <tbody>{section.table.rows.map((row) => <tr key={row.join("|")}>{row.map((cell, index) => index === 0 ? <th scope="row" key={cell}>{cell}</th> : <td key={cell}>{cell}</td>)}</tr>)}</tbody>
+              </table>
+            </div> : null}
           </section>)}
+          {insight.relatedInsights?.length ? <section className="article-related-reading" aria-labelledby="related-reading-heading">
+            <span>RELATED READING</span><h2 id="related-reading-heading">Continue the research</h2>
+            <ul>{insight.relatedInsights.map((item) => <li key={item.href}><Link href={item.href}>{item.label} <i>↗</i></Link></li>)}</ul>
+          </section> : null}
           <section className="article-sources" aria-labelledby="article-sources-heading">
             <span>PRIMARY SOURCES</span><h2 id="article-sources-heading">Check the platform guidance</h2>
             <p>Sources reviewed {new Date(`${insight.modified}T00:00:00Z`).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" })}. These links support the platform-specific statements above; they do not imply a partnership or endorsement.</p>
