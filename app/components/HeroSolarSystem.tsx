@@ -19,26 +19,26 @@ export function HeroSolarSystem() {
     <div className="solar-signal signal-a"/><div className="solar-signal signal-b"/><div className="solar-signal signal-c"/><div className="solar-signal signal-d"/>
 
     <article className="solar-core">
-      <header><span>RKD GROWTH INTELLIGENCE</span><b>● ILLUSTRATIVE DATA</b></header>
+      <header><span>RKD GROWTH INTELLIGENCE</span><b>CONNECTED SYSTEM</b></header>
       <div className="analytics-sources" aria-label="Analytics data sources">
         <ToolLogo name="GA4"/><ToolLogo name="Google Search Console"/><ToolLogo name="Meta Ads"/><ToolLogo name="HubSpot"/>
       </div>
       <div className="analytics-kpis">
-        <article><small>BLENDED ROAS</small><strong>4.8×</strong><span>↑ 18.6%</span></article>
-        <article><small>QUALIFIED LEADS</small><strong>386</strong><span>↑ 24.1%</span></article>
-        <article><small>ORGANIC VISIBILITY</small><strong>+42%</strong><span>90 DAYS</span></article>
+        <article><small>SEARCH SIGNAL</small><strong>LIVE</strong><span>QUERY + PAGE</span></article>
+        <article><small>MEDIA SIGNAL</small><strong>SYNC</strong><span>SPEND + LEADS</span></article>
+        <article><small>CRM SIGNAL</small><strong>TRACE</strong><span>SOURCE + SALE</span></article>
       </div>
       <div className="analytics-performance">
-        <header><small>ATTRIBUTED CONVERSIONS</small><b>74</b></header>
+        <header><small>MEASUREMENT LAYER</small><b>CONNECTED</b></header>
         <div className="analytics-line"><i/><i/><i/><i/><i/><i/></div>
       </div>
       <div className="analytics-channels">
-        <span>GOOGLE <i><b style={{width:"84%"}}/></i><em>32</em></span>
-        <span>META <i><b style={{width:"67%"}}/></i><em>21</em></span>
-        <span>ORGANIC <i><b style={{width:"51%"}}/></i><em>14</em></span>
-        <span>EMAIL <i><b style={{width:"29%"}}/></i><em>07</em></span>
+        <span>GOOGLE <i><b style={{width:"84%"}}/></i><em>SEARCH</em></span>
+        <span>META <i><b style={{width:"67%"}}/></i><em>PAID</em></span>
+        <span>ORGANIC <i><b style={{width:"51%"}}/></i><em>CONTENT</em></span>
+        <span>EMAIL <i><b style={{width:"29%"}}/></i><em>NURTURE</em></span>
       </div>
-      <div className="core-footer"><span>SESSIONS 82.4K</span><span>CAC ₹1,240</span><span>CVR 3.7%</span></div>
+      <div className="core-footer"><span>GA4 + GSC</span><span>ADS + CRM</span><span>DECISION READY</span></div>
     </article>
 
     {planets.map((planet) => <div className={`solar-runner ${planet.orbit}`} style={{animationDelay: planet.delay} as React.CSSProperties} key={planet.name}>

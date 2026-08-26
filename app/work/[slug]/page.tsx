@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { caseStudies, caseStudyBySlug } from "../../data/caseStudies";
 import { Contact, Footer } from "../../components/SiteSections";
@@ -66,7 +65,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return <main className="case-study-page" style={{"--case-accent": study.accent, "--case-soft": study.accentSoft} as React.CSSProperties}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
     <section className="case-hero shell">
       <div className="case-hero-copy">
         <span className="eyebrow-small">PORTFOLIO CASE / {String(index + 1).padStart(2, "0")}</span>

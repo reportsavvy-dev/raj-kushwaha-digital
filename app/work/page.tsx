@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Cursor } from "../components/Cursor";
 import { LinkedInWorkCard } from "../components/LinkedInWorkCard";
 import { Nav } from "../components/Nav";
 import { caseStudies } from "../data/caseStudies";
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return <main className="work-page">
-    <Cursor/><Nav/>
+    <Nav/>
     <section className="work-hero shell">
       <span className="eyebrow-small">CLIENT WORK / PORTFOLIO EVIDENCE</span>
       <h1>Proof before<br/><i>promises.</i></h1>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Cursor } from "../components/Cursor";
 import { Nav } from "../components/Nav";
 import { insights } from "../data/insights";
 import { Contact, Footer } from "../components/SiteSections";
@@ -61,7 +60,7 @@ const structuredData = {
 export default function InsightsPage() {
   return <main className="insights-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
     <section className="insights-hero shell">
       <span className="eyebrow-small">RESEARCH / PRACTICE / EVIDENCE</span>
       <h1>Useful answers.<br/><i>Clear limits.</i></h1>

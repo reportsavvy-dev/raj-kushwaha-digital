@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { insightBySlug, insights } from "../../data/insights";
 import { Contact, Footer } from "../../components/SiteSections";
@@ -79,7 +78,7 @@ export default async function InsightPage({ params }: PageProps) {
 
   return <main className="insight-article-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
     <article>
       <header className="article-hero shell">
         <nav aria-label="Breadcrumb"><Link href="/insights">INSIGHTS</Link><span>/</span><span>{insight.category}</span></nav>

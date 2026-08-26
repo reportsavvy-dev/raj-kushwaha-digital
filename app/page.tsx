@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Cursor } from "./components/Cursor";
 import { DeferredToolOrbit } from "./components/DeferredToolOrbit";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { LinkedInWorkCard } from "./components/LinkedInWorkCard";
@@ -49,22 +48,24 @@ const homeClientLogos = [
 
 export default function Home() {
   return <main>
-    <Cursor/><Nav/>
+    <Nav/>
     <section className="home-hero shell">
       <div className="hero-copy">
-        <section className="hero-signal-strip" aria-label="Active marketing platforms">
-          <header><span>● ACTIVE SIGNALS</span><i/></header>
-          <div>{heroSignals.map((signal, index) => <article key={signal.label} style={{"--signal-index": index} as React.CSSProperties}>
-            <ToolLogo name={signal.tool}/><span><b>{signal.label}</b><small>{signal.note}</small></span>
-          </article>)}</div>
-          <footer>{heroSignals.map((signal) => <i key={signal.label}/>)}</footer>
-        </section>
         <span className="eyebrow-small">INDEPENDENT DIGITAL MARKETING AGENCY</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
         <p className="studio-hero-copy">Raj Kushwaha Digital connects strategy, search, media, creative, development and automation around one job: turning qualified attention into measurable business progress.</p>
         <div><Link className="primary-button magnetic" href="/contact">START A PROJECT <span>→</span></Link><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
       </div>
       <HeroSolarSystem/>
+    </section>
+
+    <section className="home-signal-band shell" aria-label="Active marketing platforms">
+      <div className="hero-signal-strip">
+        <header><span>ACTIVE MARKETING SYSTEM</span><i/></header>
+        <div>{heroSignals.map((signal, index) => <article key={signal.label} style={{"--signal-index": index} as React.CSSProperties}>
+          <ToolLogo name={signal.tool}/><span><b>{signal.label}</b><small>{signal.note}</small></span>
+        </article>)}</div>
+      </div>
     </section>
 
     <div className="ticker coral-ticker"><div>{[...services, ...services].map((service, index) => <span key={`${service.name}-${index}`}>{service.name} <b>•</b></span>)}</div></div>

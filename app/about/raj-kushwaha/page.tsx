@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { Contact, Footer } from "../../components/SiteSections";
 
@@ -29,7 +28,7 @@ const structuredData = {
 export default function RajKushwahaPage() {
   return <main className="author-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
     <section className="author-hero shell">
       <span className="eyebrow-small">STRATEGIST / OPERATOR / AUTHOR</span>
       <h1>Raj<br/><i>Kushwaha.</i></h1>

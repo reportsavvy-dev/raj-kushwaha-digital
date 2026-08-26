@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Contact, Footer } from "../../components/SiteSections";
-import { Cursor } from "../../components/Cursor";
 import { Nav } from "../../components/Nav";
 import { RKDMark } from "../../components/BrandMark";
 import { BrandGuideCarousel } from "../../components/BrandGuideCarousel";
@@ -108,7 +107,7 @@ export default async function ServicePage({ params }: PageProps) {
 
   return <main className="service-page" style={{"--service-accent": service.accent, "--service-soft": service.accentSoft} as React.CSSProperties}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
 
     <section className="service-detail-hero shell">
       <div className="service-hero-copy">

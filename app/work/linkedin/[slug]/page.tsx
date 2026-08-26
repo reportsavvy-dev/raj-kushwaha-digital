@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Cursor } from "../../../components/Cursor";
 import { Nav } from "../../../components/Nav";
 import { linkedinWorkBySlug, linkedinWorkSamples } from "../../../data/linkedinWork";
 import { Contact, Footer } from "../../../components/SiteSections";
@@ -77,7 +76,7 @@ export default async function LinkedInWorkPage({ params }: PageProps) {
 
   return <main className="case-study-page linkedin-sample-page" style={{ "--case-accent": sample.accent, "--case-soft": sample.accentSoft } as React.CSSProperties}>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
 
     <section className="case-hero linkedin-case-hero shell">
       <div className="case-hero-copy">

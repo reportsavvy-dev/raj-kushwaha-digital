@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "../components/ContactForm";
-import { Cursor } from "../components/Cursor";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/SiteSections";
 
@@ -51,7 +50,7 @@ const structuredData = {
 export default function ContactPage() {
   return <main className="contact-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}/>
-    <Cursor/><Nav/>
+    <Nav/>
     <section className="contact-page-layout shell">
       <div className="contact-page-intro">
         <span className="eyebrow-small">NEW BUSINESS / PROJECT ENQUIRY</span>
