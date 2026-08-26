@@ -5,7 +5,6 @@ import { useEffect } from "react";
 const motionSelectors = [
   ".ticker",
   ".service-marquee",
-  ".home-client-carousel",
   ".hero-solar-system",
 ].join(",");
 

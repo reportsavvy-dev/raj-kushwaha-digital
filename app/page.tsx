@@ -5,6 +5,7 @@ import { DeferredToolOrbit } from "./components/DeferredToolOrbit";
 import { HeroSolarSystem } from "./components/HeroSolarSystem";
 import { LinkedInWorkCard } from "./components/LinkedInWorkCard";
 import { Nav } from "./components/Nav";
+import { SignalRail } from "./components/SignalRail";
 import { Contact, Footer } from "./components/SiteSections";
 import { ToolLogo } from "./components/ToolLogo";
 import { caseStudies } from "./data/caseStudies";
@@ -78,24 +79,8 @@ export default function Home() {
       </Link>)}</div>
     </section>
 
-    <section className="home-clients shell">
-      <span className="eyebrow-small">SELECTED CLIENT WORK</span>
-      <div className="home-client-carousel" aria-label="Selected client work moving in a three dimensional carousel">
-        <div className="home-client-arc">
-          {homeClientLogos.map((client, index) => <Link
-            className="home-client-motion"
-            href={client.href}
-            key={client.name}
-            style={{"--client-delay": `${index * -3}s`, "--client-mobile-delay": `${index * -2.4}s`} as React.CSSProperties}
-            aria-label={`View work for ${client.name}`}
-          >
-            <span className="home-client-card">
-              <Image src={client.src} alt={client.alt} width={170} height={72} unoptimized/>
-              <small>{client.name}</small>
-            </span>
-          </Link>)}
-        </div>
-      </div>
+    <section className="signal-rail-section shell">
+      <SignalRail clients={homeClientLogos}/>
     </section>
 
     <section className="featured-work shell">

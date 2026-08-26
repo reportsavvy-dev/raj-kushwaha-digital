@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { MotionGovernor } from "./components/MotionGovernor";
+import { SignalCursor } from "./components/SignalCursor";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rajkushwahadigital.com"),
@@ -84,5 +85,5 @@ const organizationSchema = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}/><MotionGovernor/>{children}</body></html>;
+  return <html lang="en"><body><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c") }}/><MotionGovernor/><SignalCursor/>{children}</body></html>;
 }

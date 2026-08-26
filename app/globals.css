@@ -5640,139 +5640,252 @@ footer .logo-lockup:hover .logo-name small {
   box-shadow: 0 24px 52px #0003, 0 0 0 8px #f4f0e7cc;
 }
 
-.home-clients > .home-client-carousel {
-  position: relative;
-  display: block;
-  width: 100%;
-  min-height: 285px;
-  overflow: hidden;
-  border: 1px solid var(--ink);
-  border-radius: 12px;
-  perspective: 1200px;
-  perspective-origin: 50% 44%;
-  background-color: #fbf8f1;
-  background-image: radial-gradient(#9c958a40 0.75px, transparent 0.75px);
-  background-size: 8px 8px;
-  isolation: isolate;
+/* The Signal Rail keeps every real client mark front-facing and optically sharp. */
+.signal-rail-section {
+  padding: 18px 0 110px;
+  border-top: 1px solid var(--line);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 620px;
 }
 
-.home-client-carousel::before {
+.signal-rail {
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  border-radius: 14px;
+  background-color: #f9f5ed;
+  background-image: radial-gradient(#827b7040 0.7px, transparent 0.7px);
+  background-size: 8px 8px;
+}
+
+.signal-rail__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 50px;
+  align-items: end;
+  padding: 32px 34px 26px;
+  border-bottom: 1px solid var(--line);
+  background: #f9f5ede8;
+}
+
+.signal-rail__header h2 {
+  max-width: 740px;
+  margin: 0;
+  font-size: clamp(38px, 5vw, 74px);
+  font-weight: 520;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.signal-rail__header p {
+  max-width: 66ch;
+  margin: 14px 0 0;
+  color: #524f49;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.signal-rail__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.signal-rail__controls button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--white);
+  transition: color var(--motion-fast) var(--ease-out), background var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
+}
+
+.signal-rail__controls button:active {
+  transform: scale(0.96);
+}
+
+.signal-rail__controls svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.7;
+}
+
+.signal-rail__controls > span {
+  min-width: 64px;
+  color: var(--muted);
+  font: 700 10px/1 var(--font-geist-mono);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.signal-rail__viewport {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.signal-rail__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.signal-rail__viewport[data-dragging="true"] {
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.signal-rail__track {
+  position: relative;
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: 24px;
+  align-items: center;
+  padding: 58px max(28px, calc(50% - 144px)) 54px;
+}
+
+.signal-rail__track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9d9587 12%, #9d9587 88%, transparent);
+}
+
+.signal-card {
+  --signal-accent: var(--coral);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: clamp(238px, 22vw, 288px);
+  min-height: 218px;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 18px;
+  overflow: visible;
+  scroll-snap-align: center;
+  border: 1px solid #5d5850;
+  border-radius: 12px;
+  color: var(--ink);
+  background: #fffdf8;
+  box-shadow: 0 12px 28px #3c30221a;
+  opacity: 0.72;
+  transform: translate3d(0, 0, 0);
+  transition: opacity var(--motion-medium) var(--ease-out), transform var(--motion-medium) var(--ease-out), border-color var(--motion-medium) ease, box-shadow var(--motion-medium) ease;
+}
+
+.signal-card::before {
   content: "";
   position: absolute;
   z-index: -1;
-  left: 50%;
-  bottom: -218px;
-  width: min(1160px, 92%);
-  height: 390px;
-  border: 1px solid #7e776d66;
-  border-radius: 50%;
-  transform: translateX(-50%) rotateX(66deg);
-}
-
-.home-client-arc {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-
-.home-clients .home-client-motion {
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 50%;
-  display: block;
-  width: clamp(168px, 14vw, 224px);
-  min-height: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  opacity: 0;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  will-change: transform, opacity;
-  animation: clientCarousel3D 30s linear infinite;
-  animation-delay: var(--client-delay);
-}
-
-.home-clients .home-client-card {
-  display: flex;
-  min-height: 142px;
-  padding: 19px 17px 14px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  border: 1px solid #211f1b;
+  inset: -1px;
+  border: 1px solid var(--signal-accent);
   border-radius: 12px;
-  background: linear-gradient(145deg, #fffefa, #eee8dd);
-  box-shadow: 0 20px 34px #21180f26;
-  transform: translate3d(-50%, -50%, 0);
-  transition: filter 0.2s, box-shadow 0.2s;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity var(--motion-medium) ease, transform var(--motion-medium) var(--ease-out);
 }
 
-.home-clients .home-client-motion:hover,
-.home-clients .home-client-motion:focus-visible {
-  z-index: 5;
-  background: transparent;
-  animation-play-state: paused;
+.signal-card[data-active="true"] {
+  z-index: 3;
+  border-color: transparent;
+  opacity: 1;
+  transform: translate3d(0, -9px, 0);
+  box-shadow: 0 24px 50px #36261626;
 }
 
-.home-clients .home-client-motion:hover .home-client-card,
-.home-clients .home-client-motion:focus-visible .home-client-card {
-  filter: brightness(1.025);
-  box-shadow: 0 28px 48px #21180f38;
+.signal-card[data-active="true"]::before {
+  opacity: 1;
+  transform: scale(1.055);
 }
 
-.home-clients .home-client-motion img {
-  width: min(100%, 170px);
-  height: 68px;
-  object-fit: contain;
-  transform: translateZ(18px);
-}
-
-.home-clients .home-client-motion small {
+.signal-card__status {
   color: var(--muted);
-  font: 700 8px/1.25 var(--font-geist-mono);
-  letter-spacing: 0.08em;
-  text-align: center;
+  font: 700 8px/1 var(--font-geist-mono);
+  letter-spacing: 0.14em;
+}
+
+.signal-card[data-active="true"] .signal-card__status {
+  color: var(--signal-accent);
+}
+
+.signal-card__logo {
+  display: grid;
+  min-height: 120px;
+  margin: 13px 0 15px;
+  place-items: center;
+  border: 1px solid #ddd7cc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.signal-card__logo img {
+  width: auto;
+  max-width: min(82%, 188px);
+  height: auto;
+  max-height: 76px;
+  object-fit: contain;
+}
+
+.signal-card__footer {
+  display: flex;
+  min-height: 34px;
+  margin-top: auto;
+  gap: 16px;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.signal-card__footer > b {
+  max-width: 190px;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  transform: translateZ(12px);
 }
 
-.home-client-carousel.motion-paused .home-client-motion {
-  animation-play-state: paused;
+.signal-card__footer > span {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font: 700 9px/1 var(--font-geist-mono);
 }
 
-@keyframes clientCarousel3D {
-  0% {
-    opacity: 0;
-    transform: translate3d(calc(-50vw - 240px), 34px, -190px) rotateY(40deg) scale(0.62);
-  }
-  7% { opacity: 0.72; }
-  22% {
-    opacity: 1;
-    transform: translate3d(-30vw, 9px, -85px) rotateY(25deg) scale(0.8);
-  }
-  40% {
-    transform: translate3d(-10vw, -15px, 38px) rotateY(10deg) scale(1.02);
-  }
-  50% {
-    opacity: 1;
-    transform: translate3d(0, -25px, 92px) rotateY(0) scale(1.16);
-  }
-  60% {
-    transform: translate3d(10vw, -15px, 38px) rotateY(-10deg) scale(1.02);
-  }
-  78% {
-    opacity: 1;
-    transform: translate3d(30vw, 9px, -85px) rotateY(-25deg) scale(0.8);
-  }
-  93% { opacity: 0.72; }
-  100% {
-    opacity: 0;
-    transform: translate3d(calc(50vw + 240px), 34px, -190px) rotateY(-40deg) scale(0.62);
-  }
+.signal-card__footer svg {
+  width: 13px;
+  height: 13px;
+}
+
+.signal-rail__meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  padding: 0 34px 24px;
+}
+
+.signal-rail__meter > span {
+  height: 2px;
+  background: linear-gradient(90deg, var(--coral), #315bea 58%, #12a89d);
+  transform-origin: left center;
+  transition: transform 320ms var(--ease-out);
+}
+
+.signal-rail__meter > small {
+  color: var(--muted);
+  font: 700 8px/1 var(--font-geist-mono);
+  letter-spacing: 0.14em;
 }
 
 .linkedin-work-card,
@@ -5874,17 +5987,27 @@ footer .logo-lockup:hover .logo-name small {
     margin: 10px -16px 30px;
   }
   .solar-stage { transform: scale(0.48); }
-  .home-clients > .home-client-carousel { min-height: 225px; }
-  .home-clients .home-client-motion {
-    width: 164px;
-    animation-duration: 24s;
-    animation-delay: var(--client-mobile-delay);
+  .signal-rail-section { padding-bottom: 78px; }
+  .signal-rail { border-radius: 10px; }
+  .signal-rail__header {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 25px 22px 21px;
   }
-  .home-clients .home-client-card {
-    min-height: 116px;
-    padding: 13px;
+  .signal-rail__header h2 { font-size: clamp(36px, 13vw, 54px); }
+  .signal-rail__header p { font-size: 13px; }
+  .signal-rail__controls { justify-content: space-between; }
+  .signal-rail__controls > span { margin-inline: auto; }
+  .signal-rail__track {
+    gap: 17px;
+    padding: 43px max(24px, calc(50% - 140px)) 40px;
   }
-  .home-clients .home-client-motion img { height: 54px; }
+  .signal-card {
+    width: min(280px, calc(100vw - 48px));
+    min-height: 208px;
+  }
+  .signal-card__logo { min-height: 108px; }
+  .signal-rail__meter { padding: 0 22px 20px; }
   .experience-orbit { min-height: 205px; }
   .experience-orbit > i {
     width: 150px;
@@ -5895,27 +6018,11 @@ footer .logo-lockup:hover .logo-name small {
 
 @media (prefers-reduced-motion: reduce) {
   .experience-orbit > i { animation: none; }
-  .home-clients > .home-client-carousel {
-    min-height: 178px;
-    overflow-x: auto;
-  }
-  .home-client-arc {
-    position: relative;
-    display: flex;
-    width: max-content;
-    padding: 20px;
-    gap: 12px;
-  }
-  .home-clients .home-client-motion {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 200px;
-    opacity: 1;
-    animation: none;
-    transform: none;
-  }
-  .home-clients .home-client-card { transform: none; }
+  .signal-rail__viewport { scroll-behavior: auto; }
+  .signal-card,
+  .signal-card::before,
+  .signal-rail__meter > span { transition: none; }
+  .signal-card[data-active="true"] { transform: none; }
 }
 
 /* Case-study imagery and guaranteed logo badges */
@@ -6902,10 +7009,6 @@ footer .logo-lockup:hover .logo-name small {
   max-width: none;
   margin: 0;
 }
-.motion-paused .home-client-motion,
-.home-client-carousel.motion-paused .home-client-motion {
-  animation-play-state: paused !important;
-}
 :where(a, button, summary):focus-visible {
   outline: 2px solid var(--coral);
   outline-offset: 4px;
@@ -6920,11 +7023,129 @@ footer .logo-lockup:hover .logo-name small {
   }
 }
 @media (hover: hover) and (pointer: fine) {
+  .signal-rail__controls button:hover {
+    color: var(--white);
+    background: var(--ink);
+  }
+  .signal-card:hover,
+  .signal-card:focus-visible {
+    opacity: 1;
+    transform: translate3d(0, -6px, 0);
+  }
   .hero-signal-strip article:hover,
   .linkedin-work-card:hover,
   .service-linkedin-grid > a:hover {
     transform: translateY(-4px);
   }
+}
+
+/* RKD Signal Comet cursor: one transform-only follower on fine pointers. */
+.signal-cursor {
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-80px, -80px, 0);
+  transition: opacity 120ms ease;
+}
+
+.signal-cursor.is-visible:not(.is-hidden) { opacity: 1; }
+
+.signal-cursor__orbit {
+  position: absolute;
+  left: -18px;
+  top: -18px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #181714a8;
+  border-radius: 50%;
+  transform: translate3d(5px, 5px, 0);
+  transition: border-color 180ms ease, transform 180ms var(--ease-out);
+}
+
+.signal-cursor__head {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #fff8;
+  background: var(--coral);
+  box-shadow: 3px 5px 14px #cc331155;
+  transform: rotate(45deg);
+  transition: transform 140ms var(--ease-out), background 140ms ease;
+}
+
+.signal-cursor__particle {
+  position: absolute;
+  border-radius: 50%;
+  transition: transform 180ms var(--ease-out), opacity 180ms ease;
+}
+
+.signal-cursor__particle--one {
+  left: -16px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  background: #12a89d;
+}
+
+.signal-cursor__particle--two {
+  left: -25px;
+  top: 16px;
+  width: 4px;
+  height: 4px;
+  background: #315bea;
+}
+
+.signal-cursor__particle--three {
+  left: -32px;
+  top: 19px;
+  width: 3px;
+  height: 3px;
+  background: #ffb000;
+}
+
+.signal-cursor.is-action .signal-cursor__orbit {
+  border-color: var(--coral);
+  transform: translate3d(5px, 5px, 0) scale(1.32);
+}
+
+.signal-cursor.is-action .signal-cursor__head {
+  background: #315bea;
+  transform: rotate(45deg) scale(1.18);
+}
+
+.signal-cursor.is-action .signal-cursor__particle--one { transform: translate3d(-4px, 3px, 0); }
+.signal-cursor.is-action .signal-cursor__particle--two { transform: translate3d(-7px, 5px, 0); }
+.signal-cursor.is-action .signal-cursor__particle--three { transform: translate3d(-10px, 6px, 0); }
+.signal-cursor.is-pressed .signal-cursor__head { transform: rotate(45deg) scale(0.82); }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.signal-cursor-enabled,
+  html.signal-cursor-enabled body,
+  html.signal-cursor-enabled a,
+  html.signal-cursor-enabled button,
+  html.signal-cursor-enabled summary,
+  html.signal-cursor-enabled [role="button"] {
+    cursor: none;
+  }
+  html.signal-cursor-enabled input,
+  html.signal-cursor-enabled select {
+    cursor: auto;
+  }
+  html.signal-cursor-enabled textarea,
+  html.signal-cursor-enabled [contenteditable="true"] {
+    cursor: text;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .signal-cursor { display: none; }
 }
 @media (max-width: 650px) {
   .nav {
