@@ -6,6 +6,7 @@ const motionSelectors = [
   ".ticker",
   ".service-marquee",
   ".hero-solar-system",
+  ".hero-periodic-system",
 ].join(",");
 
 export function MotionGovernor() {

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DeferredToolOrbit } from "./components/DeferredToolOrbit";
-import { HeroSolarSystem } from "./components/HeroSolarSystem";
+import { HeroPeriodicSystem } from "./components/HeroPeriodicSystem";
 import { LinkedInWorkCard } from "./components/LinkedInWorkCard";
 import { Nav } from "./components/Nav";
 import { SignalRail } from "./components/SignalRail";
@@ -57,7 +57,7 @@ export default function Home() {
         <p className="studio-hero-copy">Raj Kushwaha Digital connects strategy, search, media, creative, development and automation around one job: turning qualified attention into measurable business progress.</p>
         <div><Link className="primary-button magnetic" href="/contact">START A PROJECT <span>→</span></Link><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
       </div>
-      <HeroSolarSystem/>
+      <HeroPeriodicSystem/>
     </section>
 
     <section className="home-signal-band shell" aria-label="Active marketing platforms">
