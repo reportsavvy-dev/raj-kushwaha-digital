@@ -576,6 +576,7 @@ a {
   min-height: 785px;
   display: grid;
   grid-template-columns: 0.83fr 1.17fr;
+  column-gap: clamp(32px, 3.6vw, 72px);
   align-items: center;
   overflow: hidden;
 }
