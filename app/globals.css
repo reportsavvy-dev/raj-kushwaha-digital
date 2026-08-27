@@ -7584,3 +7584,108 @@ footer .logo-lockup:hover .logo-name small {
   }
   .periodic-card { transition: none; }
 }
+
+/* Single-mode capability table: reference-led, lightweight and fully clickable. */
+.periodic-system__viewport {
+  position: absolute;
+  inset: 78px 14px 52px;
+  overflow: hidden;
+}
+
+.periodic-system__table {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 720px);
+  min-width: 560px;
+  height: 100%;
+  margin-inline: auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.periodic-system__table .periodic-card,
+.periodic-system__table .periodic-card--core {
+  width: 100%;
+  max-width: 92px;
+  height: auto;
+  aspect-ratio: 92 / 108;
+  margin: 0;
+}
+
+.periodic-system__table .periodic-card--core {
+  border-color: #161715;
+  box-shadow: 0 16px 34px #211b1638, 0 2px 0 #ffffff26 inset;
+}
+
+.periodic-system__table .periodic-card:hover,
+.periodic-system__table .periodic-card:focus-visible {
+  z-index: 2;
+  transform: translateY(-6px) scale(1.025);
+}
+
+.periodic-system__legend {
+  right: 22px;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .periodic-system__table .periodic-card {
+    animation: periodic-table-enter 440ms var(--ease-out) both;
+    animation-delay: calc(var(--card-index) * 13ms);
+  }
+}
+
+@keyframes periodic-table-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 820px) {
+  .hero-periodic-system {
+    height: 590px;
+  }
+
+  .periodic-system__viewport {
+    inset: 70px 0 48px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 18px 14px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .periodic-system__table {
+    width: 600px;
+    min-width: 600px;
+    gap: 8px;
+    margin-inline: 0;
+  }
+
+  .periodic-system__table .periodic-card,
+  .periodic-system__table .periodic-card--core {
+    width: 78px;
+    max-width: 78px;
+    scroll-snap-align: center;
+  }
+
+  .periodic-system__legend {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .periodic-system__table .periodic-card {
+    animation: none;
+    transition: none;
+  }
+}
