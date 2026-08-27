@@ -81,19 +81,22 @@ export function HeroPeriodicSystem() {
     let hovering = false;
     let autoTimer = 0;
     let animationFrame = 0;
-    let pointerFrame = 0;
+    let interactionFrame = 0;
     let resizeObserver: ResizeObserver | null = null;
     let intersectionObserver: IntersectionObserver | null = null;
     const cleanup: Array<() => void> = [];
 
     const initialise = async () => {
       const THREE = await import("three");
-      const { CSS3DObject, CSS3DRenderer } = await import("three/examples/jsm/renderers/CSS3DRenderer.js");
+      const [{ CSS3DObject, CSS3DRenderer }, { TrackballControls }] = await Promise.all([
+        import("three/examples/jsm/renderers/CSS3DRenderer.js"),
+        import("three/examples/jsm/controls/TrackballControls.js"),
+      ]);
       if (disposed) return;
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(40, 1, 1, 5000);
-      camera.position.z = 880;
+      camera.position.z = 950;
 
       const world = new THREE.Group();
       scene.add(world);
@@ -103,6 +106,16 @@ export function HeroPeriodicSystem() {
       renderer.domElement.setAttribute("aria-label", "Interactive digital marketing capability system");
       host.replaceChildren(renderer.domElement);
 
+      const controls = new TrackballControls(camera, renderer.domElement);
+      controls.rotateSpeed = 0.72;
+      controls.zoomSpeed = 0.82;
+      controls.noPan = true;
+      controls.staticMoving = false;
+      controls.dynamicDampingFactor = 0.13;
+      controls.minDistance = 720;
+      controls.maxDistance = 1500;
+      controls.enabled = false;
+
       const objects: InstanceType<typeof CSS3DObject>[] = [];
       const targets: Record<LayoutMode, Object3D[]> = {
         table: [],
@@ -111,6 +124,7 @@ export function HeroPeriodicSystem() {
         grid: [],
       };
       const lookVector = new THREE.Vector3();
+      let suppressNavigationUntil = 0;
 
       cards.forEach((card, index) => {
         const element = document.createElement("a");
@@ -118,6 +132,9 @@ export function HeroPeriodicSystem() {
         element.href = card.href;
         element.setAttribute("aria-label", `${card.label}. View related expertise.`);
         element.innerHTML = `<span class="periodic-card__index">${String(index + 1).padStart(2, "0")}</span><strong>${card.symbol}</strong><small>${card.label}</small><i aria-hidden="true"></i>`;
+        element.addEventListener("click", (event) => {
+          if (performance.now() < suppressNavigationUntil) event.preventDefault();
+        });
 
         const object = new CSS3DObject(element);
         object.position.set((Math.random() - 0.5) * 1400, (Math.random() - 0.5) * 900, (Math.random() - 0.5) * 1200);
@@ -125,26 +142,36 @@ export function HeroPeriodicSystem() {
         objects.push(object);
 
         const tableTarget = new THREE.Object3D();
-        tableTarget.position.set((card.column - 3) * 106, (2.5 - card.row) * 111, card.category === "core" ? 25 : 0);
+        tableTarget.position.set(
+          (card.column - 3) * 106,
+          card.category === "core" ? 0 : (2.5 - card.row) * 111,
+          card.category === "core" ? 35 : 0,
+        );
         targets.table.push(tableTarget);
 
         const sphereTarget = new THREE.Object3D();
         const phi = Math.acos(-1 + (2 * index) / cards.length);
         const theta = Math.sqrt(cards.length * Math.PI) * phi;
-        sphereTarget.position.setFromSphericalCoords(305, phi, theta);
+        sphereTarget.position.setFromSphericalCoords(285, phi, theta);
         lookVector.copy(sphereTarget.position).multiplyScalar(2);
         sphereTarget.lookAt(lookVector);
         targets.sphere.push(sphereTarget);
 
         const helixTarget = new THREE.Object3D();
-        const helixAngle = index * 0.5 + Math.PI;
-        helixTarget.position.setFromCylindricalCoords(285, helixAngle, -(index * 24) + 360);
+        const helixAngle = index * 0.46 + Math.PI;
+        helixTarget.position.setFromCylindricalCoords(245, helixAngle, -(index * 17) + 255);
         lookVector.set(helixTarget.position.x * 2, helixTarget.position.y, helixTarget.position.z * 2);
         helixTarget.lookAt(lookVector);
         targets.helix.push(helixTarget);
 
         const gridTarget = new THREE.Object3D();
-        gridTarget.position.set((index % 5) * 135 - 270, -(Math.floor(index / 5) % 3) * 142 + 142, Math.floor(index / 15) * -245 + 120);
+        const gridLayer = Math.floor(index / 12);
+        const gridSlot = index % 12;
+        gridTarget.position.set(
+          (gridSlot % 4) * 145 - 217.5,
+          (1 - Math.floor(gridSlot / 4)) * 145,
+          (1 - gridLayer) * 220,
+        );
         targets.grid.push(gridTarget);
       });
 
@@ -152,37 +179,75 @@ export function HeroPeriodicSystem() {
         if (!disposed && visible) renderer.render(scene, camera);
       };
 
+      controls.addEventListener("change", render);
+
+      let controlsUntil = 0;
+      const updateControls = (time: number) => {
+        interactionFrame = 0;
+        if (disposed || !visible) return;
+        controls.update();
+        render();
+        if (time < controlsUntil) interactionFrame = requestAnimationFrame(updateControls);
+      };
+
+      const keepControlsAlive = (duration = 760) => {
+        controlsUntil = performance.now() + duration;
+        if (!interactionFrame) interactionFrame = requestAnimationFrame(updateControls);
+      };
+
+      let dragging = false;
+      let pointerStartX = 0;
+      let pointerStartY = 0;
+      const onControlPointerDown = (event: PointerEvent) => {
+        if (!controls.enabled) return;
+        dragging = false;
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+        root.classList.add("is-dragging");
+        window.clearTimeout(autoTimer);
+        keepControlsAlive(1100);
+      };
+
+      const onControlPointerMove = (event: PointerEvent) => {
+        if (!root.classList.contains("is-dragging")) return;
+        if (Math.hypot(event.clientX - pointerStartX, event.clientY - pointerStartY) > 6) dragging = true;
+        keepControlsAlive(480);
+      };
+
+      const onControlPointerUp = () => {
+        if (!root.classList.contains("is-dragging")) return;
+        root.classList.remove("is-dragging");
+        if (dragging) suppressNavigationUntil = performance.now() + 220;
+        keepControlsAlive(900);
+      };
+
+      const onControlWheel = () => keepControlsAlive(900);
+
+      renderer.domElement.addEventListener("pointerdown", onControlPointerDown);
+      renderer.domElement.addEventListener("wheel", onControlWheel, { passive: true });
+      window.addEventListener("pointermove", onControlPointerMove, { passive: true });
+      window.addEventListener("pointerup", onControlPointerUp, { passive: true });
+      cleanup.push(() => renderer.domElement.removeEventListener("pointerdown", onControlPointerDown));
+      cleanup.push(() => renderer.domElement.removeEventListener("wheel", onControlWheel));
+      cleanup.push(() => window.removeEventListener("pointermove", onControlPointerMove));
+      cleanup.push(() => window.removeEventListener("pointerup", onControlPointerUp));
+      cleanup.push(() => controls.removeEventListener("change", render));
+      cleanup.push(() => controls.dispose());
+
+      let fitDistance = 950;
       const sizeRenderer = () => {
         const rect = host.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
-        camera.position.z = rect.width < 560 ? 1180 : rect.width < 700 ? 1000 : 880;
+        fitDistance = rect.width < 600 ? 1120 : rect.width < 780 ? 1030 : rect.width < 980 ? 950 : 900;
+        const cameraDirection = camera.position.clone().sub(controls.target).normalize();
+        camera.position.copy(cameraDirection.multiplyScalar(fitDistance));
+        controls.minDistance = fitDistance * 0.76;
+        controls.maxDistance = fitDistance * 1.62;
         camera.aspect = rect.width / rect.height;
         camera.updateProjectionMatrix();
+        controls.update();
         renderer.setSize(rect.width, rect.height);
         render();
-      };
-
-      let targetRotationX = 0;
-      let targetRotationY = 0;
-      const settlePointer = () => {
-        pointerFrame = 0;
-        if (disposed || !visible) return;
-        world.rotation.x += (targetRotationX - world.rotation.x) * 0.09;
-        world.rotation.y += (targetRotationY - world.rotation.y) * 0.09;
-        render();
-        const remaining = Math.abs(targetRotationX - world.rotation.x) + Math.abs(targetRotationY - world.rotation.y);
-        if (remaining > 0.0008) pointerFrame = requestAnimationFrame(settlePointer);
-      };
-
-      const requestPointerFrame = () => {
-        if (!pointerFrame) pointerFrame = requestAnimationFrame(settlePointer);
-      };
-
-      const onPointerMove = (event: PointerEvent) => {
-        const rect = root.getBoundingClientRect();
-        targetRotationY = ((event.clientX - rect.left) / rect.width - 0.5) * 0.16;
-        targetRotationX = -((event.clientY - rect.top) / rect.height - 0.5) * 0.11;
-        requestPointerFrame();
       };
 
       const onPointerEnter = () => {
@@ -192,40 +257,69 @@ export function HeroPeriodicSystem() {
 
       const onPointerLeave = () => {
         hovering = false;
-        targetRotationX = 0;
-        targetRotationY = 0;
-        requestPointerFrame();
         scheduleAuto();
       };
 
-      const easeOutExpo = (value: number) => value === 1 ? 1 : 1 - Math.pow(2, -10 * value);
+      const easeInOutQuint = (value: number) => value < 0.5
+        ? 16 * value * value * value * value * value
+        : 1 - Math.pow(-2 * value + 2, 5) / 2;
+
+      const modeRotation: Record<LayoutMode, { x: number; y: number; z: number }> = {
+        table: { x: 0, y: 0, z: 0 },
+        sphere: { x: 0.03, y: -0.18, z: 0 },
+        helix: { x: 0.02, y: -0.28, z: 0 },
+        grid: { x: 0.16, y: -0.42, z: 0.02 },
+      };
 
       const transformTo = (mode: LayoutMode, manual = false) => {
         if (disposed || !visible) return;
         cancelAnimationFrame(animationFrame);
         window.clearTimeout(autoTimer);
+        controls.enabled = false;
         const starts = objects.map((object) => ({
           position: object.position.clone(),
           rotation: object.rotation.clone(),
         }));
+        const worldRotationStart = world.rotation.clone();
+        const cameraPositionStart = camera.position.clone();
+        const cameraUpStart = camera.up.clone();
+        const cameraPositionTarget = new THREE.Vector3(0, 0, fitDistance);
+        const cameraUpTarget = new THREE.Vector3(0, 1, 0);
+        const rotationTarget = modeRotation[mode];
         const startTime = performance.now();
-        const duration = manual ? 850 : 1250;
+        const duration = manual ? 1050 : 1380;
         setActiveMode(mode);
 
         const animate = (time: number) => {
           if (disposed || !visible) return;
           const progress = Math.min(1, (time - startTime) / duration);
-          const eased = easeOutExpo(progress);
           objects.forEach((object, index) => {
+            const delay = (index % 7) * 12;
+            const localProgress = Math.min(1, Math.max(0, (time - startTime - delay) / (duration - delay)));
+            const eased = easeInOutQuint(localProgress);
             const target = targets[mode][index];
             object.position.lerpVectors(starts[index].position, target.position, eased);
             object.rotation.x = THREE.MathUtils.lerp(starts[index].rotation.x, target.rotation.x, eased);
             object.rotation.y = THREE.MathUtils.lerp(starts[index].rotation.y, target.rotation.y, eased);
             object.rotation.z = THREE.MathUtils.lerp(starts[index].rotation.z, target.rotation.z, eased);
           });
+          const cameraEase = easeInOutQuint(progress);
+          world.rotation.set(
+            THREE.MathUtils.lerp(worldRotationStart.x, rotationTarget.x, cameraEase),
+            THREE.MathUtils.lerp(worldRotationStart.y, rotationTarget.y, cameraEase),
+            THREE.MathUtils.lerp(worldRotationStart.z, rotationTarget.z, cameraEase),
+          );
+          camera.position.lerpVectors(cameraPositionStart, cameraPositionTarget, cameraEase);
+          camera.up.lerpVectors(cameraUpStart, cameraUpTarget, cameraEase).normalize();
+          camera.lookAt(controls.target);
           render();
           if (progress < 1) animationFrame = requestAnimationFrame(animate);
-          else scheduleAuto();
+          else {
+            controls.target.set(0, 0, 0);
+            controls.enabled = mode !== "table";
+            controls.update();
+            scheduleAuto();
+          }
         };
         animationFrame = requestAnimationFrame(animate);
       };
@@ -246,10 +340,8 @@ export function HeroPeriodicSystem() {
         transformTo(mode, manual);
       };
 
-      root.addEventListener("pointermove", onPointerMove, { passive: true });
       root.addEventListener("pointerenter", onPointerEnter);
       root.addEventListener("pointerleave", onPointerLeave);
-      cleanup.push(() => root.removeEventListener("pointermove", onPointerMove));
       cleanup.push(() => root.removeEventListener("pointerenter", onPointerEnter));
       cleanup.push(() => root.removeEventListener("pointerleave", onPointerLeave));
 
@@ -261,9 +353,10 @@ export function HeroPeriodicSystem() {
         if (!visible) {
           window.clearTimeout(autoTimer);
           cancelAnimationFrame(animationFrame);
-          cancelAnimationFrame(pointerFrame);
-          pointerFrame = 0;
+          cancelAnimationFrame(interactionFrame);
+          interactionFrame = 0;
         } else {
+          controls.update();
           render();
           scheduleAuto();
         }
@@ -290,7 +383,7 @@ export function HeroPeriodicSystem() {
       disposed = true;
       window.clearTimeout(autoTimer);
       cancelAnimationFrame(animationFrame);
-      cancelAnimationFrame(pointerFrame);
+      cancelAnimationFrame(interactionFrame);
       resizeObserver?.disconnect();
       intersectionObserver?.disconnect();
       transitionRef.current = null;
@@ -305,6 +398,10 @@ export function HeroPeriodicSystem() {
     setActiveMode(mode);
     transitionRef.current?.(mode, true);
   };
+
+  const interactionHint = activeMode === "table"
+    ? "Select a card to open its service."
+    : "Drag to rotate. Scroll to zoom. Select a card to open it.";
 
   return <section
     className={`hero-periodic-system${ready ? " is-ready" : ""}`}
@@ -346,6 +443,6 @@ export function HeroPeriodicSystem() {
         key={mode}
       >{mode}</button>)}
     </div>
-    <p className="periodic-system__hint"><span aria-hidden="true" /> Move to explore. Select a card to open its service.</p>
+    <p className="periodic-system__hint"><span aria-hidden="true" /> {interactionHint}</p>
   </section>;
 }

@@ -7167,46 +7167,49 @@ footer .logo-lockup:hover .logo-name small {
   --periodic-development: #4ba86c;
   position: relative;
   min-width: 0;
-  height: 660px;
-  overflow: visible;
+  height: 720px;
+  overflow: hidden;
   contain: layout paint style;
   isolation: isolate;
+}
+
+.hero-periodic-system::before {
+  content: "";
+  position: absolute;
+  z-index: 18;
+  top: 66px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 72%, transparent);
+  pointer-events: none;
 }
 
 .periodic-system__title {
   position: absolute;
   z-index: 20;
-  top: 68px;
-  left: 4px;
-  width: 178px;
+  top: 18px;
+  left: 22px;
+  width: 280px;
   color: var(--ink);
   pointer-events: none;
 }
 
-.periodic-system__title::after {
-  content: "";
-  display: block;
-  width: 44px;
-  height: 1px;
-  margin-top: 16px;
-  background: var(--ink);
-}
-
 .periodic-system__title span,
 .periodic-system__title strong {
-  display: block;
-  font: 760 13px/1.35 var(--font-geist-mono);
-  letter-spacing: 0.15em;
+  display: inline;
+  font: 760 11px/1.35 var(--font-geist-mono);
+  letter-spacing: 0.14em;
 }
 
 .periodic-system__title strong {
-  margin-top: 2px;
+  margin-left: 7px;
 }
 
 .periodic-system__host,
 .periodic-system__fallback {
   position: absolute;
-  inset: 22px 0 58px;
+  inset: 78px 0 58px;
 }
 
 .periodic-system__host {
@@ -7222,9 +7225,14 @@ footer .logo-lockup:hover .logo-name small {
 .periodic-renderer {
   position: absolute;
   inset: 0;
-  overflow: visible;
+  overflow: hidden;
   transform-style: preserve-3d;
-  touch-action: pan-y;
+  touch-action: none;
+  cursor: grab;
+}
+
+.hero-periodic-system.is-dragging .periodic-renderer {
+  cursor: grabbing;
 }
 
 .periodic-system__fallback {
@@ -7248,6 +7256,13 @@ footer .logo-lockup:hover .logo-name small {
   top: calc(50% + var(--table-row) * 95px - 286px);
 }
 
+@media (min-width: 821px) {
+  .periodic-system__fallback .periodic-card--core {
+    top: calc(50% - 63px);
+    left: calc(50% - 58px);
+  }
+}
+
 .periodic-card {
   --card-color: var(--periodic-search);
   position: relative;
@@ -7267,6 +7282,7 @@ footer .logo-lockup:hover .logo-name small {
   text-rendering: geometricPrecision;
   transform-style: preserve-3d;
   transition: border-color 160ms ease, box-shadow 180ms var(--ease-out), opacity 160ms ease;
+  cursor: pointer;
 }
 
 .periodic-card--search { --card-color: var(--periodic-search); }
@@ -7280,7 +7296,7 @@ footer .logo-lockup:hover .logo-name small {
   --card-color: #161715;
   width: 116px;
   height: 126px;
-  margin: -9px 0 0 -12px;
+  margin: 0;
   border-color: #161715;
   box-shadow: 0 18px 38px #211b1640, 0 2px 0 #ffffff26 inset;
 }
@@ -7354,7 +7370,7 @@ footer .logo-lockup:hover .logo-name small {
   z-index: 21;
   right: 170px;
   bottom: 16px;
-  left: 0;
+  left: 22px;
   display: flex;
   align-items: center;
   gap: 13px;
@@ -7389,8 +7405,8 @@ footer .logo-lockup:hover .logo-name small {
 .periodic-system__modes {
   position: absolute;
   z-index: 30;
-  right: 0;
-  bottom: 4px;
+  right: 18px;
+  bottom: 8px;
   display: flex;
   gap: 2px;
   padding: 4px;
@@ -7424,8 +7440,8 @@ footer .logo-lockup:hover .logo-name small {
 .periodic-system__hint {
   position: absolute;
   z-index: 21;
-  top: 17px;
-  right: 4px;
+  top: 24px;
+  right: 22px;
   margin: 0;
   color: #6e6961;
   font: 700 7px/1 var(--font-geist-mono);
@@ -7471,13 +7487,12 @@ footer .logo-lockup:hover .logo-name small {
 
 @media (min-width: 1920px) {
   .hero-periodic-system { height: 820px; }
-  .periodic-system__title { top: 92px; }
 }
 
 @media (min-width: 2560px) {
   .hero-periodic-system { height: 1080px; }
   .periodic-system__title {
-    top: 135px;
+    top: 24px;
     width: 250px;
   }
   .periodic-system__title span,
@@ -7493,7 +7508,7 @@ footer .logo-lockup:hover .logo-name small {
 
 @media (max-width: 1000px) {
   .hero-periodic-system {
-    height: 650px;
+    height: 700px;
     margin-top: 18px;
   }
 }
@@ -7517,7 +7532,7 @@ footer .logo-lockup:hover .logo-name small {
     font-size: 10px;
   }
   .periodic-system__title strong { margin-left: 6px; }
-  .periodic-system__title::after { margin-top: 10px; }
+  .hero-periodic-system::before { top: 60px; }
   .periodic-system__host,
   .periodic-system__modes,
   .periodic-system__legend { display: none; }
