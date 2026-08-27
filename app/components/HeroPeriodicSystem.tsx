@@ -357,8 +357,7 @@ export function HeroPeriodicSystem() {
           interactionFrame = 0;
         } else {
           controls.update();
-          render();
-          scheduleAuto();
+          transformTo(root.dataset.mode as LayoutMode, true);
         }
       }, { rootMargin: "120px 0px" });
       intersectionObserver.observe(root);
