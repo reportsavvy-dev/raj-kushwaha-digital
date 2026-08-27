@@ -45,16 +45,6 @@ const cards: PeriodicCard[] = [
   { symbol: "API", label: "Integrations", category: "development", href: "/services/app-software-development", column: 4, row: 4 },
 ];
 
-const legend = [
-  ["search", "Search"],
-  ["paid", "Paid"],
-  ["social", "Social"],
-  ["content", "Content"],
-  ["brand", "Brand"],
-  ["data", "Automation & Data"],
-  ["development", "Development"],
-] as const;
-
 export function HeroPeriodicSystem() {
   return <section className="hero-periodic-system" aria-labelledby="periodic-system-title">
     <header className="periodic-system__title" id="periodic-system-title">
@@ -62,32 +52,33 @@ export function HeroPeriodicSystem() {
       <strong>PERIODIC SYSTEM</strong>
     </header>
 
-    <p className="periodic-system__hint"><span aria-hidden="true" /> Select a card to open its service.</p>
-
-    <div className="periodic-system__viewport">
-      <div className="periodic-system__table" role="list" aria-label="Digital marketing capabilities">
-        {cards.map((card, index) => <a
-          className={`periodic-card periodic-card--${card.category}`}
-          href={card.href}
-          style={{
-            gridColumn: card.column + 1,
-            gridRow: card.row + 1,
-            "--card-index": index,
-          } as React.CSSProperties}
-          aria-label={`${card.label}. View related expertise.`}
-          role="listitem"
-          key={`${card.symbol}-${card.label}`}
-        >
-          <span className="periodic-card__index">{String(index + 1).padStart(2, "0")}</span>
-          <strong>{card.symbol}</strong>
-          <small>{card.label}</small>
-          <i aria-hidden="true" />
-        </a>)}
+    <div className="periodic-system__panel">
+      <div className="periodic-system__panel-head">
+        <strong>TABLE</strong>
+        <p className="periodic-system__hint"><span aria-hidden="true" /> Select a card to open its service.</p>
       </div>
-    </div>
 
-    <div className="periodic-system__legend" aria-label="Capability colour key">
-      {legend.map(([category, label]) => <span className={`legend-${category}`} key={category}><i />{label}</span>)}
+      <div className="periodic-system__viewport">
+        <div className="periodic-system__table" role="list" aria-label="Digital marketing capabilities">
+          {cards.map((card, index) => <a
+            className={`periodic-card periodic-card--${card.category}`}
+            href={card.href}
+            style={{
+              gridColumn: card.column + 1,
+              gridRow: card.row + 1,
+              "--card-index": index,
+            } as React.CSSProperties}
+            aria-label={`${card.label}. View related expertise.`}
+            role="listitem"
+            key={`${card.symbol}-${card.label}`}
+          >
+            <span className="periodic-card__index">{String(index + 1).padStart(2, "0")}</span>
+            <strong>{card.symbol}</strong>
+            <small>{card.label}</small>
+            <i aria-hidden="true" />
+          </a>)}
+        </div>
+      </div>
     </div>
   </section>;
 }
