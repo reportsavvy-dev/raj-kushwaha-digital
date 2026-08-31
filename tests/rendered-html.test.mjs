@@ -38,6 +38,8 @@ test("home page renders verified portfolio proof", async () => {
   assert.doesNotMatch(html, /brand-intro|C:\\Users\\|C:\/Users\//i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
   assert.doesNotMatch(html, /[—–]/);
+  assert.ok(Buffer.byteLength(html) < 180_000, "home HTML should stay below 180 KB");
+  assert.ok((html.match(/<svg/g) ?? []).length < 30, "home should not inline repeated decorative SVGs");
 });
 
 test("work index renders all portfolio case routes", async () => {

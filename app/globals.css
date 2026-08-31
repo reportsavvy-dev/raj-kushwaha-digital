@@ -1572,7 +1572,7 @@ body:before {
   justify-content: center;
   min-height: 49px;
 }
-.mini-tool-orbit .tool-logo {
+.mini-tool-orbit .mini-tool-badge {
   width: 49px;
   height: 49px;
   margin-left: -8px;
@@ -1583,20 +1583,15 @@ body:before {
   place-items: center;
   transition: 0.35s;
   position: relative;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
 }
-.mini-tool-orbit .tool-logo:first-child {
+.mini-tool-orbit .mini-tool-badge:first-child {
   margin-left: 0;
 }
-.mini-tool-orbit .tool-logo svg {
-  font-size: 19px;
-}
-.mini-tool-orbit .tool-logo small {
-  display: none;
-}
-.mini-tool-orbit .tool-logo b {
-  font-size: 9px;
-}
-.capability-motion-row:hover .mini-tool-orbit .tool-logo {
+.capability-motion-row:hover .mini-tool-orbit .mini-tool-badge {
   margin-left: 5px;
   transform: rotate(calc(var(--n, 1) * 8deg)) translateY(-3px);
   background: var(--ink);
@@ -1807,12 +1802,9 @@ body:before {
   .capability-motion-row {
     grid-template-columns: 40px 1fr 120px 20px !important;
   }
-  .mini-tool-orbit .tool-logo {
+  .mini-tool-orbit .mini-tool-badge {
     width: 34px;
     height: 34px;
-  }
-  .mini-tool-orbit .tool-logo svg {
-    font-size: 14px;
   }
   .service-universe {
     min-height: 500px;
@@ -1957,7 +1949,7 @@ body:before {
 .capability-motion-row:hover p {
   color: var(--ink) !important;
 }
-.capability-motion-row:hover .mini-tool-orbit .tool-logo {
+.capability-motion-row:hover .mini-tool-orbit .mini-tool-badge {
   background: var(--white);
   color: var(--ink);
   border-color: var(--ink);
