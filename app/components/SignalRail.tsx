@@ -188,6 +188,7 @@ export function SignalRail({ clients }: { clients: SignalClient[] }) {
               data-active={index === activeIndex ? "true" : "false"}
               data-cursor-action="view"
               href={client.href}
+              prefetch={false}
               key={`${client.name}-${index}`}
               style={{ "--signal-accent": accents[index % accents.length] } as React.CSSProperties}
               aria-label={`View work for ${client.name}`}

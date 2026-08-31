@@ -14,6 +14,7 @@ export function LinkedInWorkCard({ sample, index, recent = false }: LinkedInWork
 
   return <Link
     href={`/work/linkedin/${sample.slug}`}
+    prefetch={false}
     className="linkedin-work-card"
     style={{ "--sample-accent": sample.accent, "--sample-soft": sample.accentSoft } as CSSProperties}
   >

@@ -50,7 +50,7 @@ const organizationSchema = {
       name: "Raj Kushwaha Digital",
       alternateName: "RKD",
       url: "https://www.rajkushwahadigital.com/",
-      logo: "https://www.rajkushwahadigital.com/icon",
+      logo: "https://www.rajkushwahadigital.com/icon.svg",
       email: "hello@rajkushwahadigital.com",
       description: "Independent digital marketing agency covering strategy, search, media, creative, development and AI automation.",
       founder: { "@id": "https://www.rajkushwahadigital.com/#raj-kushwaha" },

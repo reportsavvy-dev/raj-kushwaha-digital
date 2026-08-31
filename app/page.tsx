@@ -55,7 +55,7 @@ export default function Home() {
         <span className="eyebrow-small">INDEPENDENT DIGITAL MARKETING AGENCY</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
         <p className="studio-hero-copy">Raj Kushwaha Digital connects strategy, search, media, creative, development and automation around one job: turning qualified attention into measurable business progress.</p>
-        <div><Link className="primary-button magnetic" href="/contact">START A PROJECT <span>→</span></Link><Link className="secondary-button magnetic" href="/expertise">EXPLORE EXPERTISE ↗</Link></div>
+        <div><Link className="primary-button magnetic" href="/contact" prefetch={false}>START A PROJECT <span>→</span></Link><Link className="secondary-button magnetic" href="/expertise" prefetch={false}>EXPLORE EXPERTISE ↗</Link></div>
       </div>
       <HeroPeriodicSystem/>
     </section>
@@ -73,7 +73,7 @@ export default function Home() {
 
     <section className="home-capabilities shell">
       <header><span className="eyebrow-small">15 CONNECTED SERVICES</span><h2>Specialists where needed.<br/><i>One system where it matters.</i></h2><p>Choose a service to see what it solves, what the work includes, how success is measured and which tools support delivery. The recommendation starts with your constraint, not a preselected channel package.</p></header>
-      <div className="capability-rows">{services.map((service, index) => <Link href={`/services/${service.slug}`} className="hover-target capability-motion-row" key={service.name} style={{"--row-accent": service.accent, "--row-soft": service.accentSoft} as React.CSSProperties}>
+      <div className="capability-rows">{services.map((service, index) => <Link href={`/services/${service.slug}`} prefetch={false} className="hover-target capability-motion-row" key={service.name} style={{"--row-accent": service.accent, "--row-soft": service.accentSoft} as React.CSSProperties}>
         <span>{String(index + 1).padStart(2, "0")}</span><h3>{service.name}</h3><p>{service.summary}</p>
         <DeferredToolOrbit tools={service.tools.slice(0, 4)}/><b>↗</b>
       </Link>)}</div>
@@ -85,14 +85,14 @@ export default function Home() {
 
     <section className="featured-work shell">
       <header><span className="eyebrow-small">PORTFOLIO BACKED CASE STUDIES</span><h2>Real work.<br/><i>Visible evidence.</i></h2><p>Client stories built from Raj&apos;s supplied portfolio, including platform captures, before and after snapshots and attributed feedback. Historical rankings are clearly identified as point in time evidence.</p></header>
-      <div className="work-grid">{caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} className="work-card verified-work-card" key={study.slug} style={{"--work-accent": study.accent, "--work-soft": study.accentSoft} as React.CSSProperties}>
+      <div className="work-grid">{caseStudies.map((study, index) => <Link href={`/work/${study.slug}`} prefetch={false} className="work-card verified-work-card" key={study.slug} style={{"--work-accent": study.accent, "--work-soft": study.accentSoft} as React.CSSProperties}>
         <div className="work-card-image"><Image src={study.heroImage} alt={study.heroAlt} fill unoptimized sizes="(max-width: 900px) 100vw, 33vw"/><span className="work-visual-logo"><Image src={study.logo} alt="" width={145} height={54} unoptimized/></span></div>
         <div className="work-card-top"><span>0{index + 1}</span><b>VERIFIED PORTFOLIO CASE</b></div>
         <h3>{study.headline}</h3><p>{study.industry}</p>
         <div className="work-card-metric">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong><small>{metric.label}</small></span>)}</div>
         <span className="work-arrow">READ THE EVIDENCE ↗</span>
       </Link>)}</div>
-      <Link className="all-work-link" href="/work">VIEW ALL CLIENT WORK ↗</Link>
+      <Link className="all-work-link" href="/work" prefetch={false}>VIEW ALL CLIENT WORK ↗</Link>
     </section>
 
     <section className="home-linkedin-work shell">
@@ -100,7 +100,7 @@ export default function Home() {
       <div className="linkedin-work-grid">
         {recentLinkedInWorkSamples.map((sample, index) => <LinkedInWorkCard sample={sample} index={index} recent key={sample.slug}/>)}
       </div>
-      <Link className="all-work-link" href="/work#linkedin-work">VIEW THE LINKEDIN WORK ARCHIVE <span aria-hidden="true">↗</span></Link>
+      <Link className="all-work-link" href="/work#linkedin-work" prefetch={false}>VIEW THE LINKEDIN WORK ARCHIVE <span aria-hidden="true">↗</span></Link>
     </section>
 
     <section className="home-testimonials shell">
@@ -112,7 +112,7 @@ export default function Home() {
     <section className="about-raj shell">
       <span className="eyebrow-small">WHO LEADS THE WORK</span>
       <div className="experience-orbit" aria-label="Six years of hands on digital marketing experience"><strong>06</strong><i aria-hidden="true"/><small>YEARS OF HANDS ON DIGITAL MARKETING EXPERIENCE</small></div>
-      <article><h2>Raj Kushwaha works across search, social, content and analytics.</h2><p>His portfolio covers organic growth programs for staffing, medical billing and consulting brands. The work shown here combines strategy with execution: page planning, technical search, content production, LinkedIn publishing, measurement and the client conversations needed to keep each channel useful.</p><p>Before independent client work, the portfolio records experience with Autotech Nonwoven, Ages Pvt Ltd and Webtezz.</p><Link className="text-link" href="/about/raj-kushwaha">ABOUT RAJ AND THE EDITORIAL STANDARD ↗</Link></article>
+      <article><h2>Raj Kushwaha works across search, social, content and analytics.</h2><p>His portfolio covers organic growth programs for staffing, medical billing and consulting brands. The work shown here combines strategy with execution: page planning, technical search, content production, LinkedIn publishing, measurement and the client conversations needed to keep each channel useful.</p><p>Before independent client work, the portfolio records experience with Autotech Nonwoven, Ages Pvt Ltd and Webtezz.</p><Link className="text-link" href="/about/raj-kushwaha" prefetch={false}>ABOUT RAJ AND THE EDITORIAL STANDARD ↗</Link></article>
     </section>
 
     <section className="method"><div className="shell"><span className="eyebrow-small">HOW THE WORK RUNS</span><h2>Evidence before activity.<br/><i>Learning before scale.</i></h2><div className="method-steps"><article><span>01</span><h3>Diagnose</h3><p>Review the offer, audience, journey, data and operating limits to identify the real constraint.</p></article><article><span>02</span><h3>Decide</h3><p>Set the outcome, channel roles, scope, ownership and success signals before production begins.</p></article><article><span>03</span><h3>Build</h3><p>Create the campaigns, content or product in testable parts with measurement attached.</p></article><article><span>04</span><h3>Improve</h3><p>Use customer behavior and commercial evidence to stop, repair or scale the right work.</p></article></div></div></section>
