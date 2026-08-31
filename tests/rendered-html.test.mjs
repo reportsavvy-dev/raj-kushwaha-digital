@@ -198,7 +198,7 @@ test("every sitemap page renders unique metadata and valid local images", async 
   const paths = [...sitemap.matchAll(/<loc>https:\/\/www\.rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
   const titles = new Set();
 
-  assert.equal(paths.length, 37);
+  assert.equal(paths.length, 38);
   for (const pathname of paths) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
@@ -318,4 +318,23 @@ test("contact page offers a clear and accessible project enquiry", async () => {
   assert.match(html, /sent securely to hello@rajkushwahadigital\.com/i);
   assert.match(html, /"@type":"ContactPage"/);
   assert.match(html, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/contact"/);
+});
+
+test("analytics is consent-gated and the privacy notice is public", async () => {
+  const [homeResponse, privacyResponse, sitemapResponse] = await Promise.all([
+    render("/"),
+    render("/privacy"),
+    render("/sitemap.xml"),
+  ]);
+  const [home, privacy, sitemap] = await Promise.all([
+    homeResponse.text(), privacyResponse.text(), sitemapResponse.text(),
+  ]);
+
+  assert.doesNotMatch(home, /googletagmanager\.com\/gtm\.js/);
+  assert.match(home, /\/assets\/AnalyticsConsent-/);
+  assert.match(home, /href="\/privacy"/);
+  assert.match(privacy, /Optional website analytics/);
+  assert.match(privacy, /rkd_analytics_consent/);
+  assert.match(privacy, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/privacy"/);
+  assert.match(sitemap, /https:\/\/www\.rajkushwahadigital\.com\/privacy/);
 });

@@ -56,6 +56,7 @@ export function ContactForm() {
         throw new Error("Submission failed");
       }
 
+      window.dataLayer?.push({ event: "generate_lead", form_name: "project_enquiry" });
       formElement.reset();
       setStatus("Thank you. Your enquiry has been submitted successfully.");
     } catch {
