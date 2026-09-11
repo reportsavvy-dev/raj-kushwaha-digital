@@ -5,7 +5,7 @@ import { services } from "./data/services";
 import { insights } from "./data/insights";
 
 const baseUrl = "https://www.rajkushwahadigital.com";
-const lastModified = new Date("2026-09-01T00:00:00.000Z");
+const lastModified = new Date("2026-09-11T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/insights`, lastModified },
     { url: `${baseUrl}/about/raj-kushwaha`, lastModified },
     { url: `${baseUrl}/privacy`, lastModified },
+    { url: `${baseUrl}/digital-marketing-agency-ahmedabad`, lastModified },
     ...insights.map((insight) => ({
       url: `${baseUrl}/insights/${insight.slug}`,
       lastModified: new Date(`${insight.modified}T00:00:00.000Z`),

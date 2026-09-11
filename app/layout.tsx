@@ -6,8 +6,8 @@ import { AnalyticsConsent } from "./components/AnalyticsConsent";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rajkushwahadigital.com"),
-  title: { default: "Digital Marketing Agency | Raj Kushwaha Digital", template: "%s | Raj Kushwaha Digital" },
-  description: "Raj Kushwaha Digital connects SEO, paid media, social, branding, web development and AI automation into measurable growth systems.",
+  title: { default: "Digital Marketing Agency in Ahmedabad | Raj Kushwaha Digital", template: "%s | Raj Kushwaha Digital" },
+  description: "Ahmedabad digital marketing agency connecting SEO, AEO, GEO, paid media, content, web development and AI automation to measurable business goals.",
   authors: [{ name: "Raj Kushwaha", url: "https://www.rajkushwahadigital.com/about/raj-kushwaha" }],
   creator: "Raj Kushwaha Digital",
   publisher: "Raj Kushwaha Digital",
@@ -53,7 +53,12 @@ const organizationSchema = {
       url: "https://www.rajkushwahadigital.com/",
       logo: "https://www.rajkushwahadigital.com/icon.svg",
       email: "hello@rajkushwahadigital.com",
-      description: "Independent digital marketing agency covering strategy, search, media, creative, development and AI automation.",
+      description: "Independent digital marketing agency serving Ahmedabad businesses across strategy, search, media, creative, development and AI automation.",
+      areaServed: {
+        "@type": "City",
+        name: "Ahmedabad",
+        containedInPlace: { "@type": "AdministrativeArea", name: "Gujarat" },
+      },
       founder: { "@id": "https://www.rajkushwahadigital.com/#raj-kushwaha" },
       contactPoint: {
         "@type": "ContactPoint",

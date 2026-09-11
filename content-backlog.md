@@ -3,6 +3,7 @@
 | Status | Publish date | Review date | Search intent | Working title | Primary destination |
 | --- | --- | --- | --- | --- | --- |
 | Published | 2026-08-17 | 2026-11-17 | Compare SEO, AEO, GEO and AIO, then implement them as one operating system | SEO, AEO, GEO and AIO in 2026: build one search visibility system | `/services/seo-aeo-geo-sxo` |
+| Published | 2026-09-11 | 2026-12-11 | Find and compare a digital marketing agency serving Ahmedabad | Digital Marketing Agency in Ahmedabad | `/digital-marketing-agency-ahmedabad` |
 
 ## Review checklist
 

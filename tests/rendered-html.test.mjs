@@ -187,7 +187,7 @@ test("home and digital marketing service use distinct search titles", async () =
   const [home, service] = await Promise.all([homeResponse.text(), serviceResponse.text()]);
   const getTitle = (html) => html.match(/<title>([^<]+)<\/title>/)?.[1];
 
-  assert.equal(getTitle(home), "Digital Marketing Agency | Raj Kushwaha Digital");
+  assert.equal(getTitle(home), "Digital Marketing Agency in Ahmedabad | Raj Kushwaha Digital");
   assert.equal(getTitle(service), "Integrated Digital Marketing Services | RKD");
   assert.notEqual(getTitle(home), getTitle(service));
 });
@@ -198,7 +198,7 @@ test("every sitemap page renders unique metadata and valid local images", async 
   const paths = [...sitemap.matchAll(/<loc>https:\/\/www\.rajkushwahadigital\.com([^<]*)<\/loc>/g)].map((match) => match[1] || "/");
   const titles = new Set();
 
-  assert.equal(paths.length, 38);
+  assert.equal(paths.length, 39);
   for (const pathname of paths) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
@@ -337,4 +337,29 @@ test("analytics is consent-gated and the privacy notice is public", async () => 
   assert.match(privacy, /rkd_analytics_consent/);
   assert.match(privacy, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/privacy"/);
   assert.match(sitemap, /https:\/\/www\.rajkushwahadigital\.com\/privacy/);
+});
+
+test("Ahmedabad page is indexable, locally relevant and evidence-led", async () => {
+  const [pageResponse, sitemapResponse] = await Promise.all([
+    render("/digital-marketing-agency-ahmedabad"),
+    render("/sitemap.xml"),
+  ]);
+  assert.equal(pageResponse.status, 200);
+  const [page, sitemap] = await Promise.all([pageResponse.text(), sitemapResponse.text()]);
+
+  assert.match(page, /<h1>Digital marketing agency in Ahmedabad<\/h1>/);
+  assert.match(page, /No ethical agency can guarantee a ranking/);
+  assert.match(page, /"areaServed":\{"@type":"City","name":"Ahmedabad"/);
+  assert.match(page, /rel="canonical" href="https:\/\/www\.rajkushwahadigital\.com\/digital-marketing-agency-ahmedabad"/);
+  assert.match(page, /href="\/services\/seo-aeo-geo-sxo"/);
+  assert.match(page, /href="\/work"/);
+  assert.match(sitemap, /digital-marketing-agency-ahmedabad/);
+});
+
+test("security policy permits consented GA4 without opening unrelated origins", async () => {
+  const response = await render();
+  const csp = response.headers.get("content-security-policy") ?? "";
+  assert.match(csp, /script-src[^;]*https:\/\/www\.googletagmanager\.com/);
+  assert.match(csp, /connect-src[^;]*https:\/\/\*\.google-analytics\.com/);
+  assert.doesNotMatch(csp, /script-src[^;]*\*/);
 });

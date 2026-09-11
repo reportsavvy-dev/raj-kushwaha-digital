@@ -15,12 +15,12 @@ import { services } from "./data/services";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: { absolute: "Digital Marketing Agency | Raj Kushwaha Digital" },
-  description: "Raj Kushwaha Digital connects SEO, paid media, social, branding, web development and AI automation into measurable growth systems.",
+  title: { absolute: "Digital Marketing Agency in Ahmedabad | Raj Kushwaha Digital" },
+  description: "Ahmedabad digital marketing agency connecting SEO, AEO, GEO, paid media, content, web development and AI automation to measurable business goals.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Digital Marketing Agency | Raj Kushwaha Digital",
-    description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
+    title: "Digital Marketing Agency in Ahmedabad | Raj Kushwaha Digital",
+    description: "Strategy, search, media, creative, development and automation for Ahmedabad businesses, connected to measurable business progress.",
     url: "/",
     siteName: "Raj Kushwaha Digital",
     type: "website",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Marketing Agency | Raj Kushwaha Digital",
-    description: "Strategy, search, media, creative, development and automation connected to measurable business progress.",
+    title: "Digital Marketing Agency in Ahmedabad | Raj Kushwaha Digital",
+    description: "Strategy, search, media, creative, development and automation for Ahmedabad businesses, connected to measurable business progress.",
     images: ["/og.jpg"],
   },
 };
@@ -52,7 +52,7 @@ export default function Home() {
     <Nav/>
     <section className="home-hero shell">
       <div className="hero-copy">
-        <span className="eyebrow-small">INDEPENDENT DIGITAL MARKETING AGENCY</span>
+        <span className="eyebrow-small">INDEPENDENT DIGITAL MARKETING AGENCY / AHMEDABAD</span>
         <h1 className="kinetic-title"><span>Move <i>attention.</i></span><span>Build <i>momentum.</i></span></h1>
         <p className="studio-hero-copy">Raj Kushwaha Digital connects strategy, search, media, creative, development and automation around one job: turning qualified attention into measurable business progress.</p>
         <div><Link className="primary-button magnetic" href="/contact" prefetch={false}>START A PROJECT <span>→</span></Link><Link className="secondary-button magnetic" href="/expertise" prefetch={false}>EXPLORE EXPERTISE ↗</Link></div>
@@ -117,6 +117,10 @@ export default function Home() {
 
     <section className="method"><div className="shell"><span className="eyebrow-small">HOW THE WORK RUNS</span><h2>Evidence before activity.<br/><i>Learning before scale.</i></h2><div className="method-steps"><article><span>01</span><h3>Diagnose</h3><p>Review the offer, audience, journey, data and operating limits to identify the real constraint.</p></article><article><span>02</span><h3>Decide</h3><p>Set the outcome, channel roles, scope, ownership and success signals before production begins.</p></article><article><span>03</span><h3>Build</h3><p>Create the campaigns, content or product in testable parts with measurement attached.</p></article><article><span>04</span><h3>Improve</h3><p>Use customer behavior and commercial evidence to stop, repair or scale the right work.</p></article></div></div></section>
     <section className="real-growth shell"><h2>No ranking guarantees.<br/><i>No invented results.</i></h2><p>Raj Kushwaha Digital documents assumptions, labels concept work honestly and reports the signals that support an actual business decision.</p></section>
+    <section className="local-discovery shell" aria-labelledby="ahmedabad-heading">
+      <div><span className="eyebrow-small">AHMEDABAD DIGITAL GROWTH</span><h2 id="ahmedabad-heading">Local relevance.<br/><i>Connected execution.</i></h2></div>
+      <div><p>For Ahmedabad businesses, Raj Kushwaha Digital connects local search intent with SEO, AEO, GEO, paid acquisition, content, development and measurement without forcing every channel into the plan.</p><Link href="/digital-marketing-agency-ahmedabad">DIGITAL MARKETING IN AHMEDABAD <span aria-hidden="true">↗</span></Link></div>
+    </section>
     <Contact/><Footer/>
   </main>;
 }

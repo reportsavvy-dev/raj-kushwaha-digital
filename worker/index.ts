@@ -21,6 +21,15 @@ interface ExecutionContext {
 
 const ALLOWED_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 
+type EdgeCacheStorage = CacheStorage & { default?: Cache };
+
+function edgeCacheFor(request: Request, url: URL): Cache | undefined {
+  const acceptsHtml = request.headers.get("accept")?.includes("text/html");
+  const isDocument = request.method === "GET" && acceptsHtml && !url.search && request.headers.get("rsc") !== "1";
+  if (!isDocument) return undefined;
+  return (globalThis as typeof globalThis & { caches?: EdgeCacheStorage }).caches?.default;
+}
+
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -28,11 +37,11 @@ const CONTENT_SECURITY_POLICY = [
   "frame-ancestors 'none'",
   "frame-src 'none'",
   "form-action 'self' https://formsubmit.co",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://formsubmit.co",
+  "connect-src 'self' https://formsubmit.co https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
   "media-src 'self'",
   "manifest-src 'self'",
   "worker-src 'self' blob:",
@@ -90,7 +99,16 @@ const worker = {
       return secureResponse(response);
     }
 
-    return secureResponse(await handler.fetch(request, env, ctx));
+    const edgeCache = edgeCacheFor(request, url);
+    const cached = await edgeCache?.match(request);
+    if (cached) return cached;
+
+    const response = secureResponse(await handler.fetch(request, env, ctx));
+    if (edgeCache && response.ok && response.headers.get("content-type")?.startsWith("text/html") && !response.headers.has("set-cookie")) {
+      response.headers.set("Cache-Control", "public, max-age=0, s-maxage=900");
+      ctx.waitUntil(edgeCache.put(request, response.clone()).catch(() => undefined));
+    }
+    return response;
   },
 };
 

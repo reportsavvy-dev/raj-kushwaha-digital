@@ -8,5 +8,5 @@ export function Contact() {
 }
 
 export function Footer() {
-  return <footer><div className="shell"><Logo/><nav aria-label="Footer"><Link href="/work">WORK</Link><Link href="/insights">INSIGHTS</Link><Link href="/about/raj-kushwaha">ABOUT RAJ</Link><Link href="/contact">CONTACT</Link><Link href="/privacy">PRIVACY</Link><CookieSettingsButton/></nav><span>© {new Date().getFullYear()} RAJ KUSHWAHA DIGITAL</span></div></footer>;
+  return <footer><div className="shell"><Logo/><nav aria-label="Footer"><Link href="/work">WORK</Link><Link href="/insights">INSIGHTS</Link><Link href="/digital-marketing-agency-ahmedabad">AHMEDABAD</Link><Link href="/about/raj-kushwaha">ABOUT RAJ</Link><Link href="/contact">CONTACT</Link><Link href="/privacy">PRIVACY</Link><CookieSettingsButton/></nav><span>© {new Date().getFullYear()} RAJ KUSHWAHA DIGITAL</span></div></footer>;
 }
