@@ -21,15 +21,6 @@ interface ExecutionContext {
 
 const ALLOWED_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 
-type EdgeCacheStorage = CacheStorage & { default?: Cache };
-
-function edgeCacheFor(request: Request, url: URL): Cache | undefined {
-  const acceptsHtml = request.headers.get("accept")?.includes("text/html");
-  const isDocument = request.method === "GET" && acceptsHtml && !url.search && request.headers.get("rsc") !== "1";
-  if (!isDocument) return undefined;
-  return (globalThis as typeof globalThis & { caches?: EdgeCacheStorage }).caches?.default;
-}
-
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -99,16 +90,7 @@ const worker = {
       return secureResponse(response);
     }
 
-    const edgeCache = edgeCacheFor(request, url);
-    const cached = await edgeCache?.match(request);
-    if (cached) return cached;
-
-    const response = secureResponse(await handler.fetch(request, env, ctx));
-    if (edgeCache && response.ok && response.headers.get("content-type")?.startsWith("text/html") && !response.headers.has("set-cookie")) {
-      response.headers.set("Cache-Control", "public, max-age=0, s-maxage=900");
-      ctx.waitUntil(edgeCache.put(request, response.clone()).catch(() => undefined));
-    }
-    return response;
+    return secureResponse(await handler.fetch(request, env, ctx));
   },
 };
 
