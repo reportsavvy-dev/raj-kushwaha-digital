@@ -191,7 +191,7 @@ export function SignalRail({ clients }: { clients: SignalClient[] }) {
               prefetch={false}
               key={`${client.name}-${index}`}
               style={{ "--signal-accent": accents[index % accents.length] } as React.CSSProperties}
-              aria-label={`View work for ${client.name}`}
+              aria-label={`${index === activeIndex ? "Active signal" : "Client signal"} ${client.name} ${String(index + 1).padStart(2, "0")}`}
               onClick={(event) => {
                 if (dragRef.current.moved) {
                   event.preventDefault();
