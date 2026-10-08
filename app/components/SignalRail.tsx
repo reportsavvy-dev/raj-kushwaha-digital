@@ -110,7 +110,7 @@ export function SignalRail({ clients }: { clients: SignalClient[] }) {
 
   const move = (direction: -1 | 1) => {
     markInteraction();
-    centerCard((activeIndex + direction + clients.length) % clients.length, reduceMotion ? "auto" : "smooth");
+    centerCard((activeIndex + direction + clients.length) % clients.length, redueMotion ? "auto" : "smooth");
   };
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
